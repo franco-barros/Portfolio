@@ -1,15 +1,15 @@
 const Navbar = () => {
   return (
-    <nav className="flex justify-between p-4 bg-gray-800 text-white">
+    <nav className="flex justify-between items-center p-4 bg-gray-800 text-white border-b-4 border-red-600">
       <a href="/" className="text-lg font-bold">
         Mi Portafolio
       </a>
       <ul className="flex space-x-4">
         <li>
-          <a href="../AboutMe">Sobre mí</a>
+          <a href="../aboutme">Sobre mí</a>
         </li>
         <li>
-          <a href="../Projects">Proyectos</a>
+          <a href="../projects">Proyectos</a>
         </li>
         <li>
           <a href="">Contacto</a>

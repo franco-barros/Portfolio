@@ -1,17 +1,15 @@
-import Navbar from "../Components/Navbar";
-import Hero from "../Components/Hero";
-import AboutMe from "../Components/AboutMe";
-import Projects from "../Components/Projects";
-import Footer from "../Components/Footer";
+import React from "react";
+import Hero from "@/components/hero";
+import AboutMe from "@/components/aboutme";
+import Projects from "@/components/projects";
+
 
 const HomePage = () => {
   return (
     <div>
-      <Navbar />
       <Hero />
       <AboutMe />
       <Projects />
-      <Footer />
     </div>
   );
 };
