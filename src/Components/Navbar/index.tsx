@@ -1,18 +1,37 @@
-const Navbar = () => {
+"use client";
+
+const Navbar = (id: string) => {
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <nav className="flex justify-between items-center p-4 bg-gray-800 text-white border-b-4 border-red-600">
-      <a href="/" className="text-lg font-bold">
+      <button
+        onClick={() => scrollToSection("inicio")}
+        className="text-lg font-bold cursor-pointer"
+      >
         Mi Portafolio
-      </a>
+      </button>
       <ul className="flex space-x-4">
         <li>
-          <a href="../aboutme">Sobre mí</a>
+          <button
+            onClick={() => scrollToSection("about")}
+            className="cursor-pointer"
+          >
+            Sobre mí
+          </button>
         </li>
         <li>
-          <a href="../projects">Proyectos</a>
-        </li>
-        <li>
-          <a href="">Contacto</a>
+          <button
+            onClick={() => scrollToSection("footer")}
+            className="cursor-pointer"
+          >
+            Contacto
+          </button>
         </li>
       </ul>
     </nav>

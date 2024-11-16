@@ -28,7 +28,32 @@ const Projects = () => {
             </ul>
           </div>
         </div>
-        {/* Aquí puedes agregar más proyectos */}
+        <div className="bg-gray-200 p-4 rounded-lg shadow-md">
+          <h3 className="font-semibold text-xl">Listify</h3>
+          <p className="text-gray-600">
+            Aplicación web de lista de tareas con sincronización en tiempo real
+            entre pestañas del navegador. Permite crear, completar y eliminar
+            tareas de forma eficiente
+          </p>
+          <div className="mt-4">
+            <a
+              href="https://github.com/franco-barros/Listify"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:underline"
+            >
+              Ver Proyecto
+            </a>
+          </div>
+          <div className="mt-4">
+            <span className="font-medium">Tecnologías:</span>
+            <ul className="flex flex-wrap space-x-2 mt-1 text-sm">
+              <li className="text-blue-500">React</li>
+              <li className="text-blue-500">CSS</li>
+              <li className="text-blue-500">JavaScript</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   );

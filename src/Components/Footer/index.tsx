@@ -5,7 +5,10 @@ import GitHubIcon from "@/assets/icons/github.png";
 
 const Footer = () => {
   return (
-    <footer className="py-6 px-8 text-white text-center bg-gradient-to-r from-orange-500 via-red-500 to-red-600">
+    <footer
+      id="footer"
+      className="py-6 px-8 text-white text-center bg-gradient-to-r from-orange-500 via-red-500 to-red-600"
+    >
       <p>
         &copy; {new Date().getFullYear()} Franco Barros. Todos los derechos
         reservados.
