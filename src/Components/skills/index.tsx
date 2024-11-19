@@ -16,7 +16,7 @@ const Skills = () => {
       id="skills"
       className="py-16 px-8 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 text-white text-center"
     >
-      <h2 className="text-3xl font-bold mb-8">Mis Habilidades</h2>
+      <h2 className="text-3xl font-bold mb-8">Mis skills</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
         {/* React */}
         <div className="skill-card p-6 bg-white text-center rounded-lg shadow-lg flex flex-col items-center justify-center max-h-72">
