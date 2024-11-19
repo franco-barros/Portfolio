@@ -9,18 +9,16 @@ const Navbar = (id: string) => {
   };
 
   return (
-    <nav className="flex justify-between items-center p-4 bg-gray-800 text-white border-b-4 border-red-600">
+    <nav className="flex justify-between items-center p-6 bg-gradient-to-r from-gray-700 to-gray-600 text-white shadow-lg">
       <button
         onClick={() => scrollToSection("inicio")}
-        className="text-lg font-bold cursor-pointer"
-      >
-        Mi Portafolio
-      </button>
-      <ul className="flex space-x-4">
+        className="text-2xl font-extrabold text-red-500 hover:text-red-400 transition duration-300"
+      ></button>
+      <ul className="flex space-x-8">
         <li>
           <button
             onClick={() => scrollToSection("about")}
-            className="cursor-pointer"
+            className="text-lg font-medium text-white hover:text-gray-400 transition duration-300 items-start"
           >
             Sobre mí
           </button>
@@ -28,7 +26,7 @@ const Navbar = (id: string) => {
         <li>
           <button
             onClick={() => scrollToSection("footer")}
-            className="cursor-pointer"
+            className="text-lg font-medium text-white hover:text-gray-400 transition duration-300"
           >
             Contacto
           </button>
