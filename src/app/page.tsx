@@ -1,8 +1,8 @@
 import React from "react";
-import Hero from "@/components/hero";
-import AboutMe from "@/components/aboutme";
-import Projects from "@/components/projects";
-import Skills from "@/components/skills";
+import Hero from "../Components/hero";
+import AboutMe from "../Components/aboutme";
+import Projects from "../Components/Projects";
+import Skills from "../Components/skills/Skills";
 
 const HomePage = () => {
   return (

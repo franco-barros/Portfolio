@@ -1,0 +1,51 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(
+    to right,
+    #111827,
+    #1f2937
+  ); /* Azul oscuro elegante */
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar button {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #facc15; /* Amarillo vibrante */
+  transition: color 0.3s ease-in-out;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar button:hover {
+  color: #fde047; /* Amarillo más claro */
+}
+
+.navList {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.navList button {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: white;
+  transition: color 0.3s ease-in-out;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navList button:hover {
+  color: #facc15; /* Resalta en amarillo al pasar el mouse */
+}

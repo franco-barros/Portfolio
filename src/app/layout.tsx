@@ -1,9 +1,14 @@
-import React from "react";
-import { ReactNode } from "react";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import React, { ReactNode } from "react";
+import Navbar from "../Components/navbar";
+import Footer from "../Components/footer/Footer";
 import "@/styles/globals.css";
-export default function Layout({ children }: { children: ReactNode }) {
+
+// Definimos las props como solo lectura
+interface LayoutProps {
+  readonly children: ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <head />
