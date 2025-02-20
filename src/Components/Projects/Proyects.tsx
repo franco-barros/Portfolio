@@ -4,7 +4,7 @@ import styles from "../../styles/Proyects.module.css";
 const Projects = () => {
   return (
     <section id="projects" className={styles.projectsSection}>
-      <h2 className={styles.title}>Mis Proyectos</h2>
+      <h2 className={styles.title}>My Proyects</h2>
       <div className={styles.projectsGrid}>
         <div className={styles.projectCard}>
           <h3 className={styles.projectTitle}>Market Multiverse</h3>

@@ -12,7 +12,7 @@ const AboutMe = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        Sobre mí
+        About me
       </motion.h2>
       <motion.p
         className={styles.paragraph}

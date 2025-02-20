@@ -1,0 +1,114 @@
+/* Contenedor que ocupa toda la pantalla con fondo oscuro semitransparente */
+.menuOverlayContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1100;
+  overflow: hidden;
+  background: var(--overlay-bg, rgba(0, 0, 0, 0.8));
+}
+
+/* Contenedor del menú que se animará para revelar el contenido */
+.animatedMenu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--mobile-menu-bg, #fff);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Animación de apertura (revelado circular) */
+.open {
+  animation: expandMenu 0.5s forwards;
+}
+
+/* Animación de cierre (contracción circular) */
+.closing {
+  animation: collapseMenu 0.5s forwards;
+}
+
+/* Keyframes para expandir el overlay */
+@keyframes expandMenu {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: circle(150% at 50% 50%);
+    opacity: 1;
+  }
+}
+
+/* Keyframes para contraer el overlay */
+@keyframes collapseMenu {
+  0% {
+    clip-path: circle(150% at 50% 50%);
+    opacity: 1;
+  }
+  100% {
+    clip-path: circle(0% at 50% 50%);
+    opacity: 0;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 5rem;
+  color: var(--foreground);
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Estilos base para los items del menú */
+.menuItem {
+  background: none;
+  border: none;
+  color: var(--foreground);
+  font-size: 2rem;
+  margin: 1rem 0;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s forwards;
+}
+
+/* Efecto hover para los items */
+.menuItem:hover {
+  color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+/* Animación de entrada para los items del menú con efecto de deslizado y fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Establece retrasos escalonados para cada botón, 
+     suponiendo que el botón de cierre no se cuenta */
+.menuItem:nth-of-type(2) {
+  animation-delay: 0.3s;
+}
+.menuItem:nth-of-type(3) {
+  animation-delay: 0.4s;
+}
+.menuItem:nth-of-type(4) {
+  animation-delay: 0.5s;
+}

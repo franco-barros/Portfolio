@@ -56,7 +56,7 @@ const Skills = () => {
 
   return (
     <section id="skills" className={styles.skillsSection}>
-      <h2 className={styles.heading}>Mis skills</h2>
+      <h2 className={styles.heading}>Tools</h2>
       <div className={styles.carousel} ref={carouselRef}>
         <motion.div className={styles.inner} animate={controls}>
           {duplicatedSkills.map((skill, index) => (

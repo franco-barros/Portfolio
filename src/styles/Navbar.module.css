@@ -1,51 +1,70 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(
-    to right,
-    #111827,
-    #1f2937
-  ); /* Azul oscuro elegante */
-  color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  color: var(--foreground);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
-.navbar button {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #facc15; /* Amarillo vibrante */
-  transition: color 0.3s ease-in-out;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.navbar button:hover {
-  color: #fde047; /* Amarillo más claro */
-}
-
-.navList {
+/* Contenedor para centrar el contenido y limitar el ancho */
+.navContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 60px;
   display: flex;
-  gap: 2rem;
-  list-style: none;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.navList button {
-  font-size: 1.125rem;
-  font-weight: 500;
-  color: white;
-  transition: color 0.3s ease-in-out;
+/* Logo a la izquierda */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Contenedor del ThemeToggle en el centro */
+.themeToggleWrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* Contenedor del menú a la derecha */
+.menuWrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* Botón para desktop: muestra la palabra "Menu" */
+.desktopMenuButton {
   background: none;
   border: none;
+  font-size: 1rem;
   cursor: pointer;
+  color: var(--foreground);
 }
 
-.navList button:hover {
-  color: #facc15; /* Resalta en amarillo al pasar el mouse */
+/* Botón para mobile: muestra el icono hamburguesa (oculto en desktop) */
+.mobileMenuButton {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--foreground);
+  margin-left: 1rem;
+}
+
+/* RESPONSIVIDAD */
+@media (max-width: 768px) {
+  .desktopMenuButton {
+    display: none;
+  }
+  .mobileMenuButton {
+    display: block;
+  }
 }
