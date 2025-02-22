@@ -1,15 +1,15 @@
-/* Projects.module.css */
-
 .projectsSection {
   padding: 6rem 2rem;
-  background-color: #f9fafb; /* Fondo claro y elegante */
+  background: var(--background);
   text-align: center;
+  overflow: hidden;
+  position: relative;
 }
 
 .title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1f2937; /* Gris oscuro para contraste */
+  color: var(--foreground);
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -21,7 +21,7 @@
   display: block;
   width: 100px;
   height: 4px;
-  background-color: #2563eb; /* Azul moderno */
+  background-color: var(--accent-color);
   margin: 8px auto 0;
   border-radius: 2px;
 }
@@ -32,30 +32,32 @@
   gap: 24px;
   justify-content: center;
   margin-top: 2rem;
+  position: relative;
 }
 
 .projectCard {
-  background-color: white;
+  background-color: var(--project-card-bg);
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .projectCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
 }
 
 .projectTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--foreground);
   margin-bottom: 8px;
 }
 
 .description {
-  color: #4b5563;
+  color: var(--foreground);
   font-size: 1rem;
   line-height: 1.5;
   margin-top: 8px;
@@ -66,7 +68,7 @@
 }
 
 .projectLink {
-  color: #2563eb;
+  color: var(--accent-color);
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease-in-out;
@@ -74,7 +76,7 @@
 
 .projectLink:hover {
   text-decoration: underline;
-  color: #1d4ed8; /* Azul más intenso al pasar el mouse */
+  color: var(--accent-color);
 }
 
 .techContainer {
@@ -84,7 +86,7 @@
 .techTitle {
   font-weight: 600;
   font-size: 1rem;
-  color: #374151; /* Gris oscuro */
+  color: var(--foreground);
 }
 
 .techList {
@@ -96,8 +98,8 @@
 }
 
 .techItem {
-  background-color: #2563eb;
-  color: white;
+  background-color: var(--accent-color);
+  color: var(--foreground);
   padding: 4px 10px;
   border-radius: 6px;
   font-size: 0.85rem;

@@ -1,25 +1,27 @@
 :root {
-  /* Variables generales */
-  --background: #ffffff;
-  --foreground: #171717;
+  --background-dark: #000;
+  --background-light: #fff;
+  --text-dark: white;
+  --text-light: black;
+  --accent-color: #2563eb;
+  --secondary-text: #d1d5db;
 
-  /* Variables para el Navbar */
-  --primary-bg: #2c3e50; /* Azul oscuro elegante */
-  --secondary-bg: #34495e; /* Azul ligeramente más claro */
-  --mobile-menu-bg: #232f3e; /* Fondo aún más oscuro para el menú */
-  --accent-color: #d4af37; /* Acento dorado elegante */
+  --background: var(--background-light);
+  --foreground: var(--text-light);
+  --navbar-scrolled-bg: rgba(255, 255, 255, 0.6);
+  --project-card-bg: rgba(255, 255, 255, 0.1);
 }
 
-/* Modo oscuro (se activa cuando hay class="dark" en <html>) */
 html.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: var(--background-dark);
+  --foreground: var(--text-dark);
+  --navbar-scrolled-bg: rgba(0, 0, 0, 0.6);
+  --project-card-bg: rgba(0, 0, 0, 0.1);
 
-  /* Ajustes para el Navbar en modo oscuro */
   --primary-bg: #1a1a1a;
   --secondary-bg: #2a2a2a;
   --mobile-menu-bg: #121212;
-  --accent-color: #d4af37; /* Se mantiene el mismo acento */
+  --accent-color: #d4af37;
 }
 
 body {

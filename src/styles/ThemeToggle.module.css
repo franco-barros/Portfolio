@@ -1,40 +1,69 @@
 .themeToggle {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
   padding: 6px;
-  border-radius: 12px;
-  backdrop-filter: blur(5px);
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
 }
 
 .iconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.5);
   transition: transform 0.3s ease-in-out;
 }
 
-.iconWrapper:hover {
-  transform: scale(1.05);
+.themeToggle:hover .iconWrapper {
+  transform: scale(1.1);
 }
 
 .themeIcon {
-  font-size: 20px;
+  font-size: 24px;
+  transition: color 0.3s ease;
 }
 
-/* RESPONSIVIDAD */
+/* Sol cuando está activo (amarillo) */
+.activeLight {
+  color: #f59e0b;
+}
+
+/* Luna cuando está activa (morado) */
+.activeDark {
+  color: #4f46e5;
+}
+
+/* Icono inactivo */
+.inactiveIcon {
+  opacity: 0.5; /* Opacidad para iconos inactivos */
+}
+
+/* Aseguramos que el sol (en modo oscuro) siempre sea visible con su color amarillo */
+.dark .inactiveIcon.sun {
+  color: #f59e0b; /* Color amarillo del sol */
+}
+
+/* Aseguramos que la luna (en modo claro) se vea bien con mezcla */
+.light .inactiveIcon.moon {
+  color: #4f46e5; /* Color morado de la luna */
+}
+
+/* Responsividad */
 @media (max-width: 480px) {
   .themeToggle {
     padding: 4px;
   }
-
   .themeIcon {
-    font-size: 18px;
+    font-size: 22px;
   }
 }

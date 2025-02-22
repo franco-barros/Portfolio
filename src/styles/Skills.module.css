@@ -1,15 +1,15 @@
-/* Skills.module.css */
 .skillsSection {
   padding: 6rem 2rem;
-  background: #f9fafb; /* Fondo claro para elegancia */
+  background: var(--background);
   text-align: center;
   overflow: hidden;
+  position: relative;
 }
 
 .heading {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1f2937; /* Gris oscuro */
+  color: var(--foreground);
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -21,42 +21,60 @@
   display: block;
   width: 80px;
   height: 4px;
-  background-color: #2563eb; /* Azul elegante */
+  background-color: var(--accent-color);
   margin: 8px auto 0;
   border-radius: 2px;
+}
+
+.carouselWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+}
+
+.gradientLeft,
+.gradientRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+}
+
+.gradientLeft {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 1), transparent);
+}
+
+.gradientRight {
+  right: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 1), transparent);
 }
 
 .carousel {
   overflow: hidden;
   position: relative;
-  width: 100%;
-  padding: 2rem 0;
+  width: 80%;
+  max-width: 900px;
 }
 
 .inner {
   display: flex;
-  gap: 20px;
+  gap: 30px;
 }
 
 .skillCard {
-  min-width: 120px;
-  background: white;
-  color: #1f2937; /* Gris oscuro para contraste */
-  padding: 16px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.skillCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.12);
+  background: none;
+  box-shadow: none;
+  color: var(--foreground);
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .skillIcon {
   width: 60px;
   height: 60px;
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.2));
 }

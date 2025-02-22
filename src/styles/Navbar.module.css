@@ -3,63 +3,62 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  color: var(--foreground);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 60px;
+  background: transparent;
+  transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
   z-index: 1000;
 }
 
-/* Contenedor para centrar el contenido y limitar el ancho */
+.scrolled {
+  background: var(--navbar-scrolled-bg);
+  backdrop-filter: blur(8px);
+}
+
 .navContainer {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
-  height: 60px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 100%;
 }
 
-/* Logo a la izquierda */
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
+  color: var(--foreground);
+  transition: color 0.3s ease-in-out;
 }
 
-/* Contenedor del ThemeToggle en el centro */
-.themeToggleWrapper {
-  display: flex;
-  align-items: center;
-}
-
-/* Contenedor del menú a la derecha */
 .menuWrapper {
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
 
-/* Botón para desktop: muestra la palabra "Menu" */
 .desktopMenuButton {
   background: none;
   border: none;
   font-size: 1rem;
   cursor: pointer;
   color: var(--foreground);
+  transition: color 0.3s ease-in-out;
 }
 
-/* Botón para mobile: muestra el icono hamburguesa (oculto en desktop) */
 .mobileMenuButton {
   display: none;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   cursor: pointer;
   color: var(--foreground);
-  margin-left: 1rem;
+  transition: color 0.3s ease-in-out;
 }
 
-/* RESPONSIVIDAD */
 @media (max-width: 768px) {
   .desktopMenuButton {
     display: none;

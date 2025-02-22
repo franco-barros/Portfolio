@@ -1,15 +1,11 @@
-/* Footer */
 .footer {
   padding: 2rem;
   text-align: center;
-  background: linear-gradient(
-    to right,
-    #1f2937,
-    #374151
-  ); /* Tonos oscuros modernos */
-  color: white;
+  background: var(--background); /* Ahora usa la variable global */
+  color: var(--foreground); /* Texto adaptado al tema */
 }
 
+/* Íconos en el footer */
 .iconContainer {
   display: flex;
   justify-content: center;

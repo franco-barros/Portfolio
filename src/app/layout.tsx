@@ -1,22 +1,23 @@
-import React, { ReactNode } from "react";
+"use client";
+import { ThemeProvider } from "../Context/ThemeContext";
 import Navbar from "../Components/navbar";
-import Footer from "../Components/footer/Footer";
+import Footer from "../Components/footer";
+import ThemeToggle from "../Components/themetoggle";
 import "@/styles/globals.css";
 
-// Definimos las props como solo lectura
-interface LayoutProps {
-  readonly children: ReactNode;
-}
-
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <head />
-      <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <ThemeProvider>
+      <html lang="en">
+        <body>
+          <Navbar />
+          <ThemeToggle />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </ThemeProvider>
   );
 }

@@ -1,10 +1,14 @@
-// Projects.tsx
-import styles from "../../styles/Proyects.module.css";
+"use client";
+import React from "react";
+import styles from "../../styles/Projects.module.css";
 
 const Projects = () => {
   return (
     <section id="projects" className={styles.projectsSection}>
-      <h2 className={styles.title}>My Proyects</h2>
+      {/* Capa de fondo; sin lógica de mouse, se controla de forma global */}
+      <div className={styles.backgroundEffect}></div>
+
+      <h2 className={styles.title}>My Projects</h2>
       <div className={styles.projectsGrid}>
         <div className={styles.projectCard}>
           <h3 className={styles.projectTitle}>Market Multiverse</h3>
@@ -31,12 +35,12 @@ const Projects = () => {
             </ul>
           </div>
         </div>
+
         <div className={styles.projectCard}>
           <h3 className={styles.projectTitle}>Listify</h3>
           <p className={styles.description}>
             Aplicación web de lista de tareas con sincronización en tiempo real
-            entre pestañas del navegador. Permite crear, completar y eliminar
-            tareas de forma eficiente.
+            entre pestañas del navegador.
           </p>
           <div className={styles.projectLinkContainer}>
             <a

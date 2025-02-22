@@ -2,33 +2,32 @@
 import React from "react";
 import { motion } from "framer-motion";
 import styles from "../../styles/AboutMe.module.css";
+import dynamic from "next/dynamic";
 
-const AboutMe = () => {
+const AnimatedSquares = dynamic(() => import("../animatedsquare"), {
+  ssr: false,
+});
+
+const AboutMe: React.FC = () => {
   return (
     <section id="about" className={styles.aboutSection}>
-      <motion.h2
-        className={styles.heading}
+      <motion.div
+        className={styles.textContainer}
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        About me
-      </motion.h2>
-      <motion.p
-        className={styles.paragraph}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 1 }}
-      >
-        Soy desarrollador full-stack comprometido con la innovación y la mejora
-        continua. Apasionado por la tecnología, me dedico al aprendizaje
-        constante para integrar soluciones eficientes y de alta calidad en cada
-        proyecto. He completado cursos especializados en React, Java, Node.js,
-        Express y Nest, y actualmente estoy profundizando mis conocimientos en
-        Next.js. Esta formación me permite aplicar las mejores prácticas y
-        abordar desafíos técnicos con creatividad y rigor, mientras trabajo de
-        manera colaborativa en entornos multidisciplinarios.
-      </motion.p>
+        <h2 className={styles.heading}>About Me</h2>
+        <p className={styles.paragraph}>
+          I am a full-stack developer committed to innovation and continuous
+          improvement. Passionate about technology, I am dedicated to constant
+          learning to integrate efficient and high-quality solutions into every
+          project.
+        </p>
+      </motion.div>
+      <div className={styles.squareContainer}>
+        <AnimatedSquares />
+      </div>
     </section>
   );
 };

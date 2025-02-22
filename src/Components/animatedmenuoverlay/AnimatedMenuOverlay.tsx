@@ -14,7 +14,6 @@ const AnimatedMenuOverlay: React.FC<AnimatedMenuOverlayProps> = ({
 }) => {
   const [animate, setAnimate] = useState(true);
 
-  // Al cerrar, dispara la animación inversa y espera para desmontar
   const handleClose = () => {
     setAnimate(false);
     setTimeout(() => {
@@ -29,7 +28,6 @@ const AnimatedMenuOverlay: React.FC<AnimatedMenuOverlayProps> = ({
           animate ? styles.open : styles.closing
         }`}
       >
-        {/* Botón de cerrar */}
         <button
           className={styles.closeButton}
           onClick={handleClose}
