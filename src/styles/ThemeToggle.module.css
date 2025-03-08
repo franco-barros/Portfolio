@@ -33,29 +33,26 @@
   transition: color 0.3s ease;
 }
 
-/* Sol cuando está activo (amarillo) */
-.activeLight {
-  color: #f59e0b;
+/* Por defecto, ambos usan el color de contraste */
+.activeLight,
+.activeDark {
+  color: var(--foreground);
 }
 
-/* Luna cuando está activa (morado) */
-.activeDark {
+/* En modo light, el activo (activeLight) se muestra en amarillo */
+:global(html:not(.dark)) .activeLight {
+  color: #f59e0b !important;
+}
+
+/* En modo dark, el activo (activeDark) se muestra en morado */
+:global(html.dark) .activeDark {
   color: #4f46e5;
 }
 
-/* Icono inactivo */
+/* Icono inactivo: usa el color de contraste con menor opacidad */
 .inactiveIcon {
-  opacity: 0.5; /* Opacidad para iconos inactivos */
-}
-
-/* Aseguramos que el sol (en modo oscuro) siempre sea visible con su color amarillo */
-.dark .inactiveIcon.sun {
-  color: #f59e0b; /* Color amarillo del sol */
-}
-
-/* Aseguramos que la luna (en modo claro) se vea bien con mezcla */
-.light .inactiveIcon.moon {
-  color: #4f46e5; /* Color morado de la luna */
+  color: var(--foreground);
+  opacity: 0.5;
 }
 
 /* Responsividad */
