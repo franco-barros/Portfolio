@@ -6,7 +6,7 @@ import Hero from "../Components/hero";
 import AboutMe from "../Components/aboutme";
 import Projects from "../Components/projects";
 import Skills from "../Components/skills/Skills";
-import MouseEffect from "../Components/mouseeffect"; // Importa MouseEffect
+import MouseEffect from "../Components/mouseeffect";
 
 const HomePage: React.FC = () => {
   const [showGreeting, setShowGreeting] = useState<boolean>(true);
