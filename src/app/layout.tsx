@@ -3,6 +3,7 @@ import { ThemeProvider } from "../Context/ThemeContext";
 import Navbar from "../Components/navbar";
 import Footer from "../Components/footer";
 import ThemeToggle from "../Components/themetoggle";
+import Chatbot from "../Components/chatbot";
 import "@/styles/globals.css";
 
 export default function Layout({
@@ -15,6 +16,7 @@ export default function Layout({
           <Navbar />
           <ThemeToggle />
           <main>{children}</main>
+          <Chatbot />
           <Footer />
         </body>
       </html>

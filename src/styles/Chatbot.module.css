@@ -1,0 +1,56 @@
+.chatbotContainer {
+  position: fixed;
+  right: 20px; /* Distancia desde el borde derecho */
+  bottom: 20px; /* Distancia desde el fondo */
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  width: 320px;
+  max-width: 90%;
+  padding: 1rem;
+  background-color: var(
+    --background
+  ); /* Usa la variable global para el fondo */
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.heading {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.chatContent {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.sendButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: var(--accent-color);
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sendButton:hover {
+  background-color: #1d4ed8; /* Un tono más oscuro del color de acento */
+}
+
+.responseBox {
+  background-color: #f4f4f4;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
