@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Greeting from "../Components/greeting/Greeting";
 import Hero from "../Components/hero";
@@ -9,14 +9,11 @@ import Skills from "../Components/skills/Skills";
 import MouseEffect from "../Components/mouseeffect";
 
 const HomePage: React.FC = () => {
-  const [showGreeting, setShowGreeting] = useState<boolean>(true);
+  const [showGreeting, setShowGreeting] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowGreeting(false);
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, []);
+  const handleGreetingComplete = () => {
+    setShowGreeting(false);
+  };
 
   return (
     <MouseEffect>
@@ -38,30 +35,23 @@ const HomePage: React.FC = () => {
               backgroundColor: "#f9f9f9",
             }}
           >
-            <Greeting />
+            <Greeting onComplete={handleGreetingComplete} />
           </motion.div>
         )}
-
-        <div
-          style={{
-            opacity: showGreeting ? 0 : 1,
-            transition: "opacity 1s ease-in-out",
-          }}
-        >
-          <section id="home">
-            <Hero />
-          </section>
-          <section id="about">
-            <AboutMe />
-          </section>
-          <section id="skills">
-            <Skills />
-          </section>
-          <section id="projects">
-            <Projects />
-          </section>
-        </div>
       </AnimatePresence>
+
+      <section id="home">
+        <Hero />
+      </section>
+      <section id="about">
+        <AboutMe />
+      </section>
+      <section id="skills">
+        <Skills />
+      </section>
+      <section id="projects">
+        <Projects />
+      </section>
     </MouseEffect>
   );
 };

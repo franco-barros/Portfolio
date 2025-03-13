@@ -8,7 +8,7 @@
   transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
   display: flex;
   align-items: center;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 .scrolled {
@@ -32,6 +32,11 @@
   font-weight: bold;
   color: var(--foreground);
   transition: color 0.3s ease-in-out;
+}
+
+.menuOpen .themeToggle,
+.menuOpen .floatingButton {
+  display: none !important;
 }
 
 .menuWrapper {

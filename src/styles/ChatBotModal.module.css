@@ -9,11 +9,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1001;
+  z-index: 1000;
 }
 
 .modalContent {
-  background-color: var(--background); /* Utiliza tu variable global de fondo */
+  background-color: var(--background);
   padding: 1rem;
   border-radius: 8px;
   max-width: 400px;

@@ -27,7 +27,7 @@ const MouseEffect: React.FC<MouseEffectProps> = ({ children }) => {
           height: "100%",
           pointerEvents: "none",
           background: `radial-gradient(circle at ${mousePos.x}px ${mousePos.y}px, rgba(59,130,246,0.3), transparent 25%)`,
-          zIndex: 0,
+          zIndex: 1001,
         }}
       />
       <div style={{ position: "relative", zIndex: 1 }}>{children}</div>

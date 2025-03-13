@@ -6,6 +6,7 @@
   height: 100vh;
   overflow: hidden;
   background: var(--overlay-bg, rgba(0, 0, 0, 0.8));
+  z-index: 1100; /* Asegurar que sea mayor que ThemeToggle y ChatbotModal */
 }
 
 .animatedMenu {
@@ -19,6 +20,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1101; /* Un poco más alto para estar sobre todo */
 }
 
 .open {

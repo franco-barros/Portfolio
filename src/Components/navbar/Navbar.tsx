@@ -1,9 +1,9 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import AnimatedMenuOverlay from "../animatedmenuoverlay";
-import ThemeToggle from "../themetoggle/ThemeToggle"; // Agregado para el botón de tema
+import ThemeToggle from "../themetoggle/ThemeToggle";
 import styles from "../../styles/Navbar.module.css";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,6 +18,15 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Agregar clase al body cuando el menú está abierto
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add("menuOpen");
+    } else {
+      document.body.classList.remove("menuOpen");
+    }
+  }, [menuOpen]);
+
   // Función para hacer scroll suave a las secciones
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -29,7 +38,12 @@ const Navbar = () => {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
+    <motion.nav
+      className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1, duration: 0.5 }}
+    >
       <div className={styles.navContainer}>
         {/* Logo del navbar */}
         <div className={styles.logo}>Fb</div>
@@ -65,7 +79,7 @@ const Navbar = () => {
           scrollToSection={scrollToSection}
         />
       )}
-    </nav>
+    </motion.nav>
   );
 };
 
