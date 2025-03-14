@@ -1,107 +1,97 @@
 .projectsSection {
-  padding: 6rem 2rem;
-  background: var(--background);
-  text-align: center;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--background);
+  /* El z-index aquí no debe interferir con el stacking global;
+     recuerda que el Layout ya envuelve el contenido en una capa con z-index 20 */
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2.4rem;
+  font-weight: bold;
   color: var(--foreground);
-  margin-bottom: 1rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  margin-bottom: 20px;
   position: relative;
+  z-index: 2;
 }
 
-.title::after {
-  content: "";
-  display: block;
-  width: 100px;
-  height: 4px;
-  background-color: var(--accent-color);
-  margin: 8px auto 0;
-  border-radius: 2px;
+/* Contenedor para las tarjetas; al estar dentro del main (layerContent con z-index 20)
+   se renderizará por encima del MouseEffect global */
+.cardsContainer {
+  position: relative;
+  z-index: 2;
 }
 
 .projectsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
   justify-content: center;
-  margin-top: 2rem;
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .projectCard {
-  background-color: var(--project-card-bg);
-  padding: 20px;
+  background: var(--project-card-bg);
+  backdrop-filter: blur(15px);
   border-radius: 12px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .projectCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
 
-.projectTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
+.projectCard h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
   color: var(--foreground);
-  margin-bottom: 8px;
-}
-
-.description {
-  color: var(--foreground);
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-top: 8px;
-}
-
-.projectLinkContainer {
-  margin-top: 16px;
+  margin-bottom: 12px;
 }
 
 .projectLink {
-  color: var(--accent-color);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease-in-out;
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 12px;
+  background: var(--project-card-bg);
+  color: var(--foreground);
+  border-radius: 6px;
+  transition: background 0.3s ease, transform 0.2s;
 }
 
 .projectLink:hover {
-  text-decoration: underline;
-  color: var(--accent-color);
-}
-
-.techContainer {
-  margin-top: 16px;
-}
-
-.techTitle {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--foreground);
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
 .techList {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
-  font-size: 0.875rem;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
 }
 
-.techItem {
-  background-color: var(--accent-color);
-  color: var(--foreground);
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 500;
+.techList li {
+  background: var(--secondary-bg);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  .projectsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
 }

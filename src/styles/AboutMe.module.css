@@ -1,14 +1,15 @@
 .aboutSection {
   position: relative;
   padding: 6rem 2rem;
-  background: var(--background);
+  background: transparent; /* Permite ver las capas inferiores */
   color: var(--foreground);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 5; /* Puede ajustarse según la estructura global */
 }
 
 /* Ajustes para pantallas medianas y pequeñas */
@@ -42,7 +43,7 @@
   flex: 1;
   max-width: 600px;
   text-align: left;
-  z-index: 2;
+  z-index: 20; /* Mantiene el contenido por encima del efecto */
 }
 
 .heading {
@@ -65,5 +66,5 @@
   align-items: center;
   justify-content: center;
   height: 400px;
-  z-index: 1001;
+  z-index: 20;
 }

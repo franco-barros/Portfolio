@@ -1,9 +1,24 @@
 .skillsSection {
+  position: relative;
   padding: 6rem 2rem;
-  background: var(--background);
+  /* Fondo transparente para comportarse igual que AboutMe */
+  background: transparent;
+  color: var(--foreground);
   text-align: center;
   overflow: hidden;
-  position: relative;
+  z-index: 5; /* Ajusta según tu estructura de capas */
+}
+
+/* Efecto de fondo local (opcional).
+   Replicamos la lógica de Hero si deseas una "capa" dentro de Skills. */
+.backgroundEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none; /* No bloquea interacción */
 }
 
 .heading {
@@ -42,10 +57,12 @@
   top: 0;
   bottom: 0;
   width: 50px;
+  pointer-events: none; /* Para no bloquear hover en el carrusel */
 }
 
 .gradientLeft {
   left: 0;
+  /* Ajusta colores si quieres un gradiente más suave o transparente */
   background: linear-gradient(to right, rgba(0, 0, 0, 1), transparent);
 }
 

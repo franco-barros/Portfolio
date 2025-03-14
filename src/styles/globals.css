@@ -24,10 +24,67 @@ html.dark {
   --accent-color: #d4af37;
 }
 
+html.dark .hero {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
   transition: background 0.3s ease, color 0.3s ease;
+  overflow-x: hidden; /* Previene scroll horizontal si algún elemento se sale */
+}
+
+/* Estructura en tres capas */
+
+/* Contenedor principal: se utiliza para agrupar las capas y ocultar desbordamientos */
+.layoutBody {
+  position: relative;
+  overflow-x: hidden; /* Oculta scroll horizontal, pero permite el vertical */
+}
+
+/* Capa de fondo: se ubica detrás de todo */
+.layerBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background-color: var(--background);
+}
+
+/* Capa intermedia: para efectos interactivos como MouseEffect */
+.layerMouseEffect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  pointer-events: none; /* No bloquea la interacción con los elementos de la capa superior */
+}
+
+/* Capa superior: contiene el contenido principal y el Footer */
+.layerContent {
+  position: relative;
+  z-index: 20;
+}
+
+.layerFooter {
+  position: relative;
+  z-index: 20;
+}
+
+/* Clase adicional para efectos de fondo (por ejemplo, el efecto interactivo del MouseEffect) */
+.backgroundEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
 }

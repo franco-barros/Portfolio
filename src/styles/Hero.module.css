@@ -2,27 +2,32 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background-color: var(--background);
+  /* Elimina la transparencia y deja que el fondo global se muestre */
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  z-index: 10;
 }
 
+/* Esto permite que MouseEffect sea visible sin bloquear interacción */
 .backgroundEffect {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: 10;
+  pointer-events: none; /* No bloquea la interacción con hero */
 }
 
+/* El contenido del Hero debe estar por encima del MouseEffect */
 .heroContent {
   position: relative;
   text-align: center;
   color: var(--foreground);
-  z-index: 2;
+  z-index: 20; /* Asegura que los botones sean interactivos */
 }
 
 .title {
@@ -45,21 +50,23 @@
   border: none;
   cursor: pointer;
   transition: transform 0.2s ease;
+  z-index: 30;
+  position: relative; /* Asegura la interacción */
 }
 
 .ctaButton:hover {
   transform: scale(1.1);
 }
 
-/* Posiciona la esfera en la esquina inferior izquierda */
+/* La esfera animada se mantiene detrás del contenido */
 .animatedSphere {
   position: absolute;
-  bottom: 60px; /* Mantén esta separación vertical */
-  left: 20%; /* Ajusta el porcentaje hasta que quede donde quieras */
-  z-index: 1001; /* Debajo del contenido principal (heroContent) */
+  bottom: 60px;
+  left: 20%;
+  z-index: 5; /* Debe estar detrás del heroContent */
 }
 
-/* Responsividad si se requiere */
+/* Responsividad */
 @media (max-width: 768px) {
   .heroContent {
     text-align: center;

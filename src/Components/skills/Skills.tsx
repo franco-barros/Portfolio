@@ -33,10 +33,12 @@ const Skills = () => {
     { icon: JavaIcon },
   ];
 
+  // Duplicamos para lograr el “efecto carrusel” infinito
   const duplicatedSkills = [...skillsData, ...skillsData];
 
   useEffect(() => {
     if (carouselRef.current) {
+      // Dividimos a la mitad el scrollWidth, ya que se duplican los ítems
       setContainerWidth(carouselRef.current.scrollWidth / 2);
     }
   }, []);
@@ -46,7 +48,11 @@ const Skills = () => {
       const animateCarousel = async () => {
         await controls.start({
           x: -containerWidth,
-          transition: { duration: 15, ease: "linear", repeat: Infinity },
+          transition: {
+            duration: 15,
+            ease: "linear",
+            repeat: Infinity,
+          },
         });
       };
       animateCarousel();
@@ -55,7 +61,7 @@ const Skills = () => {
 
   return (
     <section id="skills" className={styles.skillsSection}>
-      {/* Fondo interactivo sin lógica de mouse; se controlará globalmente */}
+      {/* Si deseas un efecto de fondo local, mantenlo. Si no, elimínalo */}
       <div className={styles.backgroundEffect}></div>
 
       <h2 className={styles.heading}>Tools</h2>

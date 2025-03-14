@@ -11,6 +11,9 @@ const AnimatedSquares = dynamic(() => import("../animatedsquare"), {
 const AboutMe: React.FC = () => {
   return (
     <section id="about" className={styles.aboutSection}>
+      {/* Si deseas que el MouseEffect sea específico para AboutMe, lo puedes incluir aquí */}
+      {/* <MouseEffect className={styles.backgroundEffect} /> */}
+
       <motion.div
         className={styles.textContainer}
         initial={{ opacity: 0, x: -100 }}

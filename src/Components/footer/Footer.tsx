@@ -1,12 +1,17 @@
+"use client";
 import Image from "next/image";
 import LinkedInIcon from "../../../public/assets/icons/LinkedIn_icon.svg.png";
 import GmailIcon from "../../../public/assets/icons/Gmail_icon_(2020).svg.webp";
 import GitHubIcon from "../../../public/assets/icons/github.png";
 import styles from "../../styles/Footer.module.css";
 
-const Footer = () => {
+interface FooterProps {
+  className?: string;
+}
+
+const Footer: React.FC<FooterProps> = ({ className }) => {
   return (
-    <footer id="footer" className={styles.footer}>
+    <footer id="footer" className={`${styles.footer} ${className || ""}`}>
       <p>
         &copy; {new Date().getFullYear()} Franco Barros. Todos los derechos
         reservados.

@@ -1,8 +1,23 @@
 .footer {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   padding: 2rem;
   text-align: center;
-  background: var(--background); /* Ahora usa la variable global */
-  color: var(--foreground); /* Texto adaptado al tema */
+  background: var(--navbar-scrolled-bg);
+  backdrop-filter: blur(8px);
+  transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+  color: var(--foreground);
+  position: relative;
+  z-index: 1001;
+}
+
+.backgroundEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1; /* Coloca la capa de fondo detrás del contenido */
 }
 
 /* Íconos en el footer */

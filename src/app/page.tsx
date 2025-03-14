@@ -1,12 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Greeting from "../Components/greeting/Greeting";
 import Hero from "../Components/hero";
 import AboutMe from "../Components/aboutme";
 import Projects from "../Components/projects";
 import Skills from "../Components/skills/Skills";
-import MouseEffect from "../Components/mouseeffect";
 
 const HomePage: React.FC = () => {
   const [showGreeting, setShowGreeting] = useState(true);
@@ -16,7 +15,7 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <MouseEffect>
+    <>
       <AnimatePresence>
         {showGreeting && (
           <motion.div
@@ -52,7 +51,7 @@ const HomePage: React.FC = () => {
       <section id="projects">
         <Projects />
       </section>
-    </MouseEffect>
+    </>
   );
 };
 
