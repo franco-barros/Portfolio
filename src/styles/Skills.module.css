@@ -2,7 +2,8 @@
   position: relative;
   padding: 6rem 2rem;
   /* Fondo transparente para comportarse igual que AboutMe */
-  background: transparent;
+  background: var(--navbar-scrolled-bg); /* Mismo fondo del navbar */
+  backdrop-filter: blur(8px);
   color: var(--foreground);
   text-align: center;
   overflow: hidden;

@@ -3,9 +3,8 @@
   overflow: hidden;
   text-align: center;
   padding: 60px 20px;
-  background: var(--background);
-  /* El z-index aquí no debe interferir con el stacking global;
-     recuerda que el Layout ya envuelve el contenido en una capa con z-index 20 */
+  background: var(--navbar-scrolled-bg); /* Mismo fondo del navbar */
+  backdrop-filter: blur(8px); /* Mantiene el fondo transparente */
 }
 
 .title {
@@ -18,16 +17,16 @@
   z-index: 2;
 }
 
-/* Contenedor para las tarjetas; al estar dentro del main (layerContent con z-index 20)
-   se renderizará por encima del MouseEffect global */
+/* Contenedor de las tarjetas */
 .cardsContainer {
   position: relative;
   z-index: 2;
 }
 
+/* Diseño de la grilla */
 .projectsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 24px;
   justify-content: center;
   position: relative;
@@ -35,63 +34,11 @@
   margin: 0 auto;
 }
 
-.projectCard {
-  background: var(--project-card-bg);
-  backdrop-filter: blur(15px);
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.projectCard:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
-}
-
-.projectCard h3 {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: var(--foreground);
-  margin-bottom: 12px;
-}
-
-.projectLink {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 8px 12px;
-  background: var(--project-card-bg);
-  color: var(--foreground);
-  border-radius: 6px;
-  transition: background 0.3s ease, transform 0.2s;
-}
-
-.projectLink:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-.techList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.techList li {
-  background: var(--secondary-bg);
-  padding: 6px 10px;
-  border-radius: 8px;
-  font-weight: 600;
-  color: var(--text-dark);
-}
-
 @media (max-width: 768px) {
   .title {
     font-size: 2rem;
   }
   .projectsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   }
 }

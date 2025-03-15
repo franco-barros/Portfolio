@@ -1,7 +1,8 @@
 .aboutSection {
   position: relative;
   padding: 6rem 2rem;
-  background: transparent; /* Permite ver las capas inferiores */
+  background: var(--navbar-scrolled-bg); /* Mismo fondo del navbar */
+  backdrop-filter: blur(8px);
   color: var(--foreground);
   display: flex;
   flex-direction: row;

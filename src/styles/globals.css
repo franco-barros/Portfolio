@@ -10,6 +10,11 @@
   --foreground: var(--text-light);
   --navbar-scrolled-bg: rgba(255, 255, 255, 0.6);
   --project-card-bg: rgba(255, 255, 255, 0.1);
+
+  /* Variables para MouseEffect en modo light */
+  --mouse-effect-color1: rgba(206, 10, 10, 0.62); /* rojo */
+  --mouse-effect-color2: rgba(0, 0, 255, 0.62); /* azul */
+  --mouse-effect-color3: rgba(128, 0, 128, 0.62); /* morado */
 }
 
 html.dark {
@@ -22,6 +27,12 @@ html.dark {
   --secondary-bg: #2a2a2a;
   --mobile-menu-bg: #121212;
   --accent-color: #d4af37;
+  --secondary-bg: #ececec;
+
+  /* Variables para MouseEffect en modo dark */
+  --mouse-effect-color1: rgba(212, 175, 55, 0.62); /* dorado */
+  --mouse-effect-color2: rgba(255, 100, 0, 0.62); /* naranja */
+  --mouse-effect-color3: rgba(128, 0, 128, 0.62);
 }
 
 html.dark .hero {

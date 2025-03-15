@@ -8,23 +8,42 @@ interface MouseEffectProps {
 
 const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight);
 
   useEffect(() => {
+    const handleResize = () => setWindowHeight(window.innerHeight);
+    window.addEventListener("resize", handleResize);
+
     const handleMouseMove = (e: MouseEvent) => {
-      // Usamos clientX y clientY para obtener las coordenadas en el viewport
       setMousePos({ x: e.clientX, y: e.clientY });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
+
+  // Dividir la ventana en 3 partes iguales
+  const firstThird = windowHeight / 3;
+  const secondThird = (2 * windowHeight) / 3;
+
+  let chosenColor = "";
+  if (mousePos.y < firstThird) {
+    chosenColor = "var(--mouse-effect-color1)";
+  } else if (mousePos.y < secondThird) {
+    chosenColor = "var(--mouse-effect-color2)";
+  } else {
+    chosenColor = "var(--mouse-effect-color3)";
+  }
 
   return (
     <div
       className={className}
       style={{ position: "relative", overflow: "hidden" }}
     >
-      {/* Fondo interactivo que se posiciona según el cursor en el viewport */}
+      {/* Capa completa con radial gradient, de gran radio, que sigue al mouse */}
       <div
         style={{
           position: "fixed",
@@ -33,8 +52,10 @@ const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
           width: "100vw",
           height: "100vh",
           pointerEvents: "none",
-          background: `radial-gradient(circle at ${mousePos.x}px ${mousePos.y}px, rgba(206, 10, 10, 0.62), transparent 25%)`,
+          // Se usa un radio amplio (por ejemplo, 50vw) para que el efecto cubra gran parte de la pantalla
+          background: `radial-gradient(circle 50vw at ${mousePos.x}px ${mousePos.y}px, ${chosenColor} 0%, transparent 75%)`,
           zIndex: 10,
+          transition: "background-color 0.3s ease",
         }}
       />
       {children}

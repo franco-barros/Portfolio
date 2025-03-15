@@ -2,8 +2,8 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  /* Elimina la transparencia y deja que el fondo global se muestre */
-  background: transparent;
+  background: var(--navbar-scrolled-bg); /* Mismo fondo del navbar */
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
