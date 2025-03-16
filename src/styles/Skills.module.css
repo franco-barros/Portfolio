@@ -1,17 +1,14 @@
 .skillsSection {
   position: relative;
   padding: 6rem 2rem;
-  /* Fondo transparente para comportarse igual que AboutMe */
-  background: var(--navbar-scrolled-bg); /* Mismo fondo del navbar */
+  background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(8px);
   color: var(--foreground);
-  text-align: center;
+  text-align: left;
   overflow: hidden;
-  z-index: 5; /* Ajusta según tu estructura de capas */
+  z-index: 5;
 }
 
-/* Efecto de fondo local (opcional).
-   Replicamos la lógica de Hero si deseas una "capa" dentro de Skills. */
 .backgroundEffect {
   position: absolute;
   top: 0;
@@ -19,7 +16,7 @@
   width: 100%;
   height: 100%;
   z-index: 10;
-  pointer-events: none; /* No bloquea interacción */
+  pointer-events: none;
 }
 
 .heading {
@@ -30,8 +27,12 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   position: relative;
+  text-align: left;
+  width: 100%;
 }
 
+/* Se removió el pseudo-elemento ::after que añadía la línea de color */
+/*
 .heading::after {
   content: "";
   display: block;
@@ -41,58 +42,38 @@
   margin: 8px auto 0;
   border-radius: 2px;
 }
+*/
 
-.carouselWrapper {
-  position: relative;
+.skillsContainer {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  width: 100%;
-  overflow: hidden;
-  padding: 2rem 0;
+  gap: 15px;
+  padding: 2rem;
 }
 
-.gradientLeft,
-.gradientRight {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 50px;
-  pointer-events: none; /* Para no bloquear hover en el carrusel */
+.skillTag {
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  white-space: nowrap;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  border: 1px solid var(--accent-color);
 }
 
-.gradientLeft {
-  left: 0;
-  /* Ajusta colores si quieres un gradiente más suave o transparente */
-  background: linear-gradient(to right, rgba(0, 0, 0, 1), transparent);
+/* Diferenciación de colores */
+.frontend {
+  background-color: rgba(59, 130, 246, 0.8); /* Azul para frontend */
+  color: white;
 }
 
-.gradientRight {
-  right: 0;
-  background: linear-gradient(to left, rgba(0, 0, 0, 1), transparent);
+.backend {
+  background-color: rgba(220, 38, 38, 0.8); /* Rojo para backend */
+  color: white;
 }
 
-.carousel {
-  overflow: hidden;
-  position: relative;
-  width: 80%;
-  max-width: 900px;
-}
-
-.inner {
-  display: flex;
-  gap: 30px;
-}
-
-.skillCard {
-  background: none;
-  box-shadow: none;
-  color: var(--foreground);
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.skillIcon {
-  width: 60px;
-  height: 60px;
-  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.2));
+.skillTag:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
 }

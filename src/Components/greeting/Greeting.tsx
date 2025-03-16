@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "../../styles/Greeting.module.css";
 
 interface GreetingProps {
@@ -19,16 +19,17 @@ const greetings: string[] = [
 
 const Greeting: React.FC<GreetingProps> = ({ onComplete }) => {
   const [index, setIndex] = useState<number>(0);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     let counter = 0;
-    const interval = setInterval(() => {
+    const intervalId = setInterval(() => {
       if (counter < greetings.length - 1) {
         counter++;
         setIndex(counter);
       } else {
-        clearInterval(interval);
-        setTimeout(() => {
+        clearInterval(intervalId);
+        timeoutRef.current = setTimeout(() => {
           if (onComplete) {
             onComplete();
           }
@@ -36,7 +37,12 @@ const Greeting: React.FC<GreetingProps> = ({ onComplete }) => {
       }
     }, 200); // Cambio de saludo cada 200ms
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(intervalId);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, [onComplete]);
 
   return (

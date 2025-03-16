@@ -1,3 +1,4 @@
+// Projects.tsx
 "use client";
 import React from "react";
 import styles from "../../styles/Projects.module.css";
@@ -19,6 +20,38 @@ const projectData = [
     link: "https://github.com/francoisrosales/Listify",
     linkText: "Ver en GitHub",
     technologies: ["React", "CSS Modules", "JavaScript"],
+  },
+  {
+    title: "DevConnect",
+    description:
+      "Una red social para desarrolladores donde pueden compartir proyectos y colaborar.",
+    link: "https://github.com/francoisrosales/DevConnect",
+    linkText: "Ver en GitHub",
+    technologies: ["Next.js", "Tailwind CSS", "MongoDB"],
+  },
+  {
+    title: "CryptoStats",
+    description:
+      "Dashboard en tiempo real para seguimiento de criptomonedas con gráficos interactivos.",
+    link: "https://cryptostats-live.com",
+    linkText: "Ver Proyecto",
+    technologies: ["React", "Recharts", "Node.js"],
+  },
+  {
+    title: "TaskFlow",
+    description:
+      "Gestor de proyectos con tablero Kanban y colaboración en equipo.",
+    link: "https://github.com/francoisrosales/TaskFlow",
+    linkText: "Ver en GitHub",
+    technologies: ["React", "Redux", "Firebase"],
+  },
+  {
+    title: "WeatherNow",
+    description:
+      "Aplicación web para consultar el clima en tiempo real con integración de APIs externas.",
+    link: "https://weathernow-app.com",
+    linkText: "Ver Proyecto",
+    technologies: ["Vue.js", "CSS Modules", "OpenWeather API"],
   },
 ];
 

@@ -1,0 +1,65 @@
+/* ServicesCard.module.css */
+.serviceCard {
+  background: var(--project-card-bg);
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%; /* Se expande en toda la columna del grid */
+  max-width: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.serviceTitle {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  text-align: left;
+  color: var(--foreground);
+}
+
+.serviceSubtitle {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  text-align: left;
+  color: var(--accent-color);
+}
+
+.serviceDescription {
+  font-size: 1rem;
+  color: var(--secondary-text);
+  margin-bottom: 15px;
+}
+
+/* Lista de características */
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: var(--foreground);
+}
+
+.checkIcon {
+  margin-right: 8px;
+  color: var(--accent-color);
+}
+
+/* Botón de llamada a la acción */
+.ctaButton {
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ctaButton:hover {
+  background-color: #174ead; /* Ajusta según prefieras */
+}

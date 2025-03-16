@@ -1,14 +1,19 @@
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 10px; /* Margen superior para separarlo un poco */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%; /* Reducimos el ancho para que se aprecie el borde redondeado */
+  max-width: 1200px; /* Mantiene un ancho máximo */
   height: 60px;
   background: transparent;
   transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
   display: flex;
   align-items: center;
   z-index: 1001;
+  border-radius: 50px; /* Aumentamos el redondeo para que sea más notorio */
+  padding: 0.3rem 0.8rem; /* Igual que el logo, para dar consistencia */
+  backdrop-filter: blur(8px); /* Mantiene el mismo efecto de difuminado */
 }
 
 .scrolled {
@@ -27,11 +32,16 @@
   height: 100%;
 }
 
+/* Logo reducido y estético */
 .logo {
-  font-size: 1.8rem;
+  font-size: 1.2rem; /* Tamaño de fuente reducido */
   font-weight: bold;
   color: var(--foreground);
   transition: color 0.3s ease-in-out;
+  padding: 0.3rem 0.8rem; /* Espaciado interno ajustado */
+  border: 1px solid var(--foreground); /* Borde más sutil */
+  border-radius: 20px; /* Bordes redondeados */
+  background: transparent;
 }
 
 .menuOpen .themeToggle,
@@ -70,5 +80,9 @@
   }
   .mobileMenuButton {
     display: block;
+  }
+  .logo {
+    font-size: 1.2rem; /* Ajuste adicional en móviles */
+    padding: 0.25rem 0.6rem;
   }
 }

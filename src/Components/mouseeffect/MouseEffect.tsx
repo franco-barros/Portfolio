@@ -8,31 +8,45 @@ interface MouseEffectProps {
 
 const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight);
+  const [scrollPos, setScrollPos] = useState(0);
+  const [docHeight, setDocHeight] = useState<number>(0);
 
   useEffect(() => {
-    const handleResize = () => setWindowHeight(window.innerHeight);
-    window.addEventListener("resize", handleResize);
+    const updateDimensions = () => {
+      setDocHeight(document.documentElement.scrollHeight - window.innerHeight);
+    };
+
+    const handleScroll = () => {
+      setScrollPos(window.scrollY);
+    };
 
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
 
+    // Obtener la altura del documento al cargar
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    window.addEventListener("scroll", handleScroll);
     window.addEventListener("mousemove", handleMouseMove);
+
     return () => {
+      window.removeEventListener("resize", updateDimensions);
+      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  // Dividir la ventana en 3 partes iguales
-  const firstThird = windowHeight / 3;
-  const secondThird = (2 * windowHeight) / 3;
+  if (docHeight === 0) return null; // Evita errores de renderizado temprano
+
+  // Dividimos la página en tres secciones basadas en la altura total
+  const firstThird = docHeight / 3;
+  const secondThird = (2 * docHeight) / 3;
 
   let chosenColor = "";
-  if (mousePos.y < firstThird) {
+  if (scrollPos < firstThird) {
     chosenColor = "var(--mouse-effect-color1)";
-  } else if (mousePos.y < secondThird) {
+  } else if (scrollPos < secondThird) {
     chosenColor = "var(--mouse-effect-color2)";
   } else {
     chosenColor = "var(--mouse-effect-color3)";
@@ -43,7 +57,7 @@ const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
       className={className}
       style={{ position: "relative", overflow: "hidden" }}
     >
-      {/* Capa completa con radial gradient, de gran radio, que sigue al mouse */}
+      {/* Capa de gradiente que sigue el mouse pero cambia según el scroll */}
       <div
         style={{
           position: "fixed",
@@ -52,7 +66,6 @@ const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
           width: "100vw",
           height: "100vh",
           pointerEvents: "none",
-          // Se usa un radio amplio (por ejemplo, 50vw) para que el efecto cubra gran parte de la pantalla
           background: `radial-gradient(circle 50vw at ${mousePos.x}px ${mousePos.y}px, ${chosenColor} 0%, transparent 75%)`,
           zIndex: 10,
           transition: "background-color 0.3s ease",

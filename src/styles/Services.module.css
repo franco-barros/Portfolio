@@ -1,21 +1,21 @@
-.projectsSection {
+.servicesSection {
   position: relative;
-  padding: 6rem 2rem;
+  padding: 6rem 2rem; /* Igual que .projectsSection */
   background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(8px);
   color: var(--foreground);
-  text-align: left;
+  text-align: left; /* Alineado a la izquierda */
   overflow: hidden;
   z-index: 5;
 }
 
-.projectsContent {
+.servicesContent {
   max-width: 100%;
   margin: 0 auto;
   text-align: left;
 }
 
-.title {
+.heading {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--foreground);
@@ -28,28 +28,21 @@
   padding-left: 0.2rem; /* Ajusta según necesites */
 }
 
-.cardsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  padding: 2rem;
-}
-
-.projectsGrid {
+.servicesContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  /* Aumenta el gap */
-  gap: 80px;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 80px; /* Aumentado de 30px a 40px */
   max-width: 1200px;
   margin: 0 auto;
+  padding: 1rem;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
-  .title {
+  .heading {
     font-size: 2rem;
   }
-  .projectsGrid {
+  .servicesContainer {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 }

@@ -9,7 +9,6 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Detecta el scroll para cambiar el fondo del navbar
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -18,7 +17,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Agregar clase al body cuando el menú está abierto
   useEffect(() => {
     if (menuOpen) {
       document.body.classList.add("menuOpen");
@@ -27,7 +25,6 @@ const Navbar = () => {
     }
   }, [menuOpen]);
 
-  // Función para hacer scroll suave a las secciones
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -46,7 +43,7 @@ const Navbar = () => {
     >
       <div className={styles.navContainer}>
         {/* Logo del navbar */}
-        <div className={styles.logo}>Fb</div>
+        <div className={styles.logo}>Franco Barros</div>
 
         {/* Botón de menú y toggle de tema */}
         <div className={styles.menuWrapper}>

@@ -3,13 +3,28 @@
   backdrop-filter: blur(15px);
   border-radius: 12px;
   padding: 32px;
-  box-shadow: 0 4px 12px rgba(214, 7, 7, 0.938);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 500px;
+  margin: 40px; /* Aumenta el margen en todos los lados */
+  position: relative;
 }
 
 .projectCard:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 24px rgb(255, 255, 255);
+  transform: scale(
+    1.03
+  ); /* Escala un poco menor para evitar solapamientos excesivos */
+  box-shadow: 0 12px 24px var(--hover-glow);
+  z-index: 10;
+}
+
+html.light {
+  --hover-glow: rgba(255, 140, 0, 0.7); /* Naranja para modo claro */
+}
+
+html.dark {
+  --hover-glow: rgba(0, 140, 255, 0.7); /* Azul para modo oscuro */
 }
 
 .projectTitle {

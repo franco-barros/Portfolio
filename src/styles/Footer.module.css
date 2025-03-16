@@ -3,7 +3,7 @@
   margin-left: calc(50% - 50vw);
   padding: 2rem;
   text-align: center;
-  background: var(--navbar-scrolled-bg);
+  background: rgba(0, 0, 0, 0.8); /* Fondo más opaco para el footer */
   backdrop-filter: blur(8px);
   transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
   color: var(--foreground);

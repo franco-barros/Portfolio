@@ -1,0 +1,84 @@
+/* ContactMe.module.css */
+.contactSection {
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--navbar-scrolled-bg); /* Mantiene la coherencia visual */
+  backdrop-filter: blur(10px);
+  color: var(--foreground);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin: 50px auto;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-color);
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.inputField,
+.textAreaField {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--foreground);
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.inputField:focus,
+.textAreaField:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.textAreaField {
+  height: 150px;
+  resize: none;
+}
+
+.submitButton {
+  background: var(--accent-color);
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.submitButton:hover {
+  background: #35eb25e5;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 255, 0, 0.3);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 60px 15px;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+}

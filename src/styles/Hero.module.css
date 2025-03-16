@@ -1,7 +1,7 @@
 .hero {
   position: relative;
-  width: 100%;
-  height: 100vh;
+  width: 100vw; /* Asegura que tome el ancho completo */
+  min-height: 100vh; /* Evita que haya espacios no cubiertos */
   background: var(--navbar-scrolled-bg); /* Mismo fondo del navbar */
   backdrop-filter: blur(8px);
   display: flex;
@@ -16,8 +16,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   z-index: 10;
   pointer-events: none; /* No bloquea la interacción con hero */
 }

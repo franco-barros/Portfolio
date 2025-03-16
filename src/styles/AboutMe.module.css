@@ -1,3 +1,4 @@
+/* AboutSection.module.css */
 .aboutSection {
   position: relative;
   padding: 6rem 2rem;
@@ -13,31 +14,13 @@
   z-index: 5; /* Puede ajustarse según la estructura global */
 }
 
-/* Ajustes para pantallas medianas y pequeñas */
-@media (max-width: 768px) {
-  .aboutSection {
-    flex-direction: column;
-    padding: 3rem 1rem;
-    gap: 2rem;
-  }
-
-  .textContainer {
-    text-align: center;
-    max-width: 100%;
-  }
-
-  .heading {
-    font-size: 2rem;
-  }
-
-  .paragraph {
-    font-size: 1rem;
-  }
-
-  .squareContainer {
-    width: 100%;
-    height: 300px;
-  }
+.aboutSection .heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: var(--foreground);
+  text-align: left; /* Título alineado a la izquierda en About */
 }
 
 .textContainer {
@@ -45,14 +28,6 @@
   max-width: 600px;
   text-align: left;
   z-index: 20; /* Mantiene el contenido por encima del efecto */
-}
-
-.heading {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  color: var(--foreground);
 }
 
 .paragraph {
@@ -68,4 +43,31 @@
   justify-content: center;
   height: 400px;
   z-index: 20;
+}
+
+/* Ajustes para pantallas medianas y pequeñas */
+@media (max-width: 768px) {
+  .aboutSection {
+    flex-direction: column;
+    padding: 3rem 1rem;
+    gap: 2rem;
+  }
+
+  .textContainer {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .aboutSection .heading {
+    font-size: 2rem;
+  }
+
+  .paragraph {
+    font-size: 1rem;
+  }
+
+  .squareContainer {
+    width: 100%;
+    height: 300px;
+  }
 }

@@ -6,6 +6,8 @@ import Hero from "../Components/hero";
 import AboutMe from "../Components/aboutme";
 import Projects from "../Components/projects";
 import Skills from "../Components/skills/Skills";
+import ContactMe from "../Components/contactme";
+import Service from "../Components/service";
 
 const HomePage: React.FC = () => {
   const [showGreeting, setShowGreeting] = useState(true);
@@ -50,6 +52,12 @@ const HomePage: React.FC = () => {
       </section>
       <section id="projects">
         <Projects />
+      </section>
+      <section id="service">
+        <Service />
+      </section>
+      <section id="contactme">
+        <ContactMe />
       </section>
     </>
   );
