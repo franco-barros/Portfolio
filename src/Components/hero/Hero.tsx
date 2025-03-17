@@ -9,21 +9,24 @@ const Hero: React.FC = () => {
     <section className={styles.hero}>
       <div className={styles.backgroundEffect}></div>
 
-      {/* La esfera en la esquina inferior izquierda */}
-      <div className={styles.animatedSphere}>
-        <AnimatedSphere />
-      </div>
-
-      {/* Contenedor para el contenido y el botón del CV */}
       <div className={styles.heroContainer}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.title}>Desarrollador Fullstack</h1>
-          <p className={styles.description}>Franco Barros</p>
-          <button className={styles.ctaButton}>Ver proyectos</button>
+        {/* Columna izquierda: Esfera con foto */}
+        <div className={styles.leftColumn}>
+          <AnimatedSphere />
         </div>
 
-        {/* Botón del CV alineado a la derecha */}
-        <div className={styles.cvButton}>
+        {/* Columna central: Contenido */}
+        <div className={styles.centerColumn}>
+          <h1 className={styles.title}>Desarrollador Fullstack</h1>
+          <p className={styles.description}>Franco Barros</p>
+          {/* Convertimos el botón en un enlace para hacer scroll */}
+          <a href="#projects" className={styles.ctaButton}>
+            Ver proyectos
+          </a>
+        </div>
+
+        {/* Columna derecha: Descargar CV */}
+        <div className={styles.rightColumn}>
           <DownloadCV />
         </div>
       </div>

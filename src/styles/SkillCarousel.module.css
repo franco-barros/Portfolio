@@ -1,0 +1,35 @@
+.carouselContainer {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  background: var(--background);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.carouselContainer:hover {
+  transform: scale(1.02);
+}
+
+.card {
+  text-align: left;
+}
+
+.card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  color: var(--accent-color);
+}
+
+.card p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--foreground);
+}

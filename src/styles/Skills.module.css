@@ -4,7 +4,6 @@
   background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(8px);
   color: var(--foreground);
-  text-align: left;
   overflow: hidden;
   z-index: 5;
 }
@@ -26,30 +25,29 @@
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  position: relative;
-  text-align: left;
-  width: 100%;
 }
 
-/* Se removió el pseudo-elemento ::after que añadía la línea de color */
-/*
-.heading::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 4px;
-  background-color: var(--accent-color);
-  margin: 8px auto 0;
-  border-radius: 2px;
-}
-*/
-
-.skillsContainer {
+.skillsLayout {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
-  padding: 2rem;
+  gap: 2rem;
+}
+
+.skillsList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.skillCarouselContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
 }
 
 .skillTag {
@@ -62,18 +60,28 @@
   border: 1px solid var(--accent-color);
 }
 
-/* Diferenciación de colores */
 .frontend {
-  background-color: rgba(59, 130, 246, 0.8); /* Azul para frontend */
+  background-color: rgba(59, 130, 246, 0.8);
   color: white;
 }
 
 .backend {
-  background-color: rgba(220, 38, 38, 0.8); /* Rojo para backend */
+  background-color: rgba(220, 38, 38, 0.8);
   color: white;
 }
 
 .skillTag:hover {
   transform: scale(1.1);
   filter: brightness(1.2);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .skillsLayout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .skillsList {
+    align-items: center;
+  }
 }

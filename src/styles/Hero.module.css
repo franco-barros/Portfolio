@@ -1,8 +1,8 @@
 .hero {
   position: relative;
-  width: 100vw; /* Asegura que tome el ancho completo */
-  min-height: 100vh; /* Evita que haya espacios no cubiertos */
-  background: var(--navbar-scrolled-bg); /* Mismo fondo del navbar */
+  width: 100vw; /* Ancho completo */
+  min-height: 100vh; /* Altura completa */
+  background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
@@ -11,25 +11,57 @@
   z-index: 10;
 }
 
-/* Esto permite que MouseEffect sea visible sin bloquear interacción */
 .backgroundEffect {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 10;
-  pointer-events: none; /* No bloquea la interacción con hero */
+  z-index: 5;
+  pointer-events: none;
 }
 
-/* El contenido del Hero debe estar por encima del MouseEffect */
-.heroContent {
+/* Contenedor de tres columnas */
+.heroContainer {
   position: relative;
+  z-index: 20;
+  width: 80%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Alinea los elementos por el top */
+}
+
+/* Columna izquierda: Esfera animada, colocada hacia abajo */
+.leftColumn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 100px; /* Baja la esfera */
+}
+
+/* Columna central: Contenido del Hero, se desplaza hacia arriba */
+.centerColumn {
+  flex: 2;
   text-align: center;
   color: var(--foreground);
-  z-index: 20; /* Asegura que los botones sean interactivos */
+  position: relative;
+  top: -50px; /* Sube el contenido central */
 }
 
+/* Columna derecha: Botón para descargar CV, colocada hacia abajo */
+.rightColumn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 170px; /* Baja el botón */
+}
+
+/* Estilos del título y descripción */
 .title {
   font-size: 3rem;
   font-weight: bold;
@@ -41,6 +73,7 @@
   margin-top: 10px;
 }
 
+/* Botón "Ver proyectos" */
 .ctaButton {
   margin-top: 20px;
   padding: 10px 20px;
@@ -50,25 +83,33 @@
   border: none;
   cursor: pointer;
   transition: transform 0.2s ease;
-  z-index: 30;
-  position: relative; /* Asegura la interacción */
+  position: relative;
 }
 
 .ctaButton:hover {
   transform: scale(1.1);
 }
 
-/* La esfera animada se mantiene detrás del contenido */
+/* Ajustes para la esfera animada (si es necesario) */
 .animatedSphere {
-  position: absolute;
-  bottom: 60px;
-  left: 20%;
-  z-index: 5; /* Debe estar detrás del heroContent */
+  width: 100%;
+  max-width: 300px;
 }
 
-/* Responsividad */
+/* Responsividad: en pantallas pequeñas se apilan las columnas */
 @media (max-width: 768px) {
-  .heroContent {
+  .heroContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .leftColumn,
+  .centerColumn,
+  .rightColumn {
+    top: 0; /* Elimina el desplazamiento en móviles */
+    flex: none;
+    margin-bottom: 20px;
+  }
+  .centerColumn {
     text-align: center;
   }
 }

@@ -1,4 +1,3 @@
-// Projects.tsx
 "use client";
 import React from "react";
 import styles from "../../styles/Projects.module.css";
