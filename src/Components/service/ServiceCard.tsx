@@ -1,7 +1,6 @@
-// ServiceCard.tsx
 "use client";
 import React from "react";
-import { FaCheck } from "react-icons/fa"; // Asegúrate de tener instalado react-icons
+import { FaCheck } from "react-icons/fa"; // Make sure you have react-icons installed
 import styles from "../../styles/ServicesCard.module.css";
 
 interface ServiceCardProps {

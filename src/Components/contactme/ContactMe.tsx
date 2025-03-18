@@ -17,18 +17,18 @@ const ContactMe: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Formulario enviado:", formData);
+    console.log("Form submitted:", formData);
     setFormData({ name: "", email: "", message: "" });
   };
 
   return (
     <section id="contact" className={styles.contactSection}>
-      <h2 className={styles.heading}>Contáctame</h2>
+      <h2 className={styles.heading}>Get in Touch</h2>
       <form onSubmit={handleSubmit} className={styles.contactForm}>
         <input
           type="text"
           name="name"
-          placeholder="Tu nombre"
+          placeholder="Your Name"
           value={formData.name}
           onChange={handleChange}
           required
@@ -37,7 +37,7 @@ const ContactMe: React.FC = () => {
         <input
           type="email"
           name="email"
-          placeholder="Tu email"
+          placeholder="Your Email"
           value={formData.email}
           onChange={handleChange}
           required
@@ -45,14 +45,14 @@ const ContactMe: React.FC = () => {
         />
         <textarea
           name="message"
-          placeholder="Tu mensaje"
+          placeholder="Your Message"
           value={formData.message}
           onChange={handleChange}
           required
           className={styles.textAreaField}
         />
         <button type="submit" className={styles.submitButton}>
-          Enviar Mensaje
+          Send Message
         </button>
       </form>
     </section>

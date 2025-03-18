@@ -5,7 +5,7 @@ import Navbar from "../Components/navbar";
 import Footer from "../Components/footer";
 import ThemeToggle from "../Components/themetoggle";
 import ChatbotModal from "../Components/chatbot/ChatBotModal";
-import Greeting from "../Components/greeting/Greeting";
+import Greeting from "../Components/animations/greeting/Greeting";
 import MouseEffect from "../Components/mouseeffect";
 import "@/styles/globals.css";
 

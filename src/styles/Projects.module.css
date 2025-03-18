@@ -24,8 +24,11 @@
   letter-spacing: 1px;
   position: relative;
   text-align: left;
-  width: 100%;
-  padding-left: 0.2rem; /* Ajusta según necesites */
+  width: fit-content; /* Ajuste del ancho para que se adapte al contenido */
+  padding: 0.5rem 1rem; /* Espacio interno */
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
+  border: 2px solid var(--foreground); /* Borde con el color del foreground */
+  border-radius: 15px; /* Bordes redondeados */
 }
 
 .cardsContainer {

@@ -1,35 +1,53 @@
 .carouselContainer {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
   position: relative;
-  overflow: hidden;
-  border: 1px solid var(--accent-color);
-  border-radius: 8px;
-  background: var(--background);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
-  cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
-.carouselContainer:hover {
-  transform: scale(1.02);
+/* Se muestran las flechas solo al hacer hover sobre el contenedor */
+.carouselContainer:hover .navButton {
+  opacity: 1;
 }
 
 .card {
-  text-align: left;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  max-width: 300px;
+  height: 250px; /* Altura fija */
+  box-sizing: border-box; /* Incluye padding dentro de la altura */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
 }
 
-.card h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.5rem;
-  color: var(--accent-color);
-}
-
-.card p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
+/* Estilos para las flechas de navegación */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
   color: var(--foreground);
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 0.5rem; /* Aumenta el área clicable */
+  z-index: 10; /* Asegura que estén por encima de otros elementos */
+}
+
+/* Posición a la izquierda y derecha */
+.left {
+  left: 1rem; /* Ajustado para mayor accesibilidad */
+}
+
+.right {
+  right: 1rem;
 }

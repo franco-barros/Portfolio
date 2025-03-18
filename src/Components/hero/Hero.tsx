@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styles from "../../styles/Hero.module.css";
-import AnimatedSphere from "../animatedsphere";
+import AnimatedSphere from "../animations/animatedsphere";
 import DownloadCV from "../pdf";
 
 const Hero: React.FC = () => {

@@ -20,7 +20,16 @@
   margin-bottom: 1rem;
   text-transform: uppercase;
   color: var(--foreground);
-  text-align: left; /* Título alineado a la izquierda en About */
+  text-align: left;
+  padding: 0.5rem 1rem; /* Espacio interno para el texto */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Color de fondo dentro del borde */
+  border: 2px solid var(--foreground); /* Borde con el color del foreground */
+  border-radius: 15px; /* Bordes redondeados */
 }
 
 .textContainer {

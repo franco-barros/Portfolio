@@ -1,8 +1,7 @@
-/* ContactMe.module.css */
 .contactSection {
   text-align: center;
   padding: 80px 20px;
-  background: var(--navbar-scrolled-bg); /* Mantiene la coherencia visual */
+  background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(10px);
   color: var(--foreground);
   border-radius: 10px;
@@ -24,8 +23,11 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 100%; /* Se asegura de que no sobrepase el tamaño de la card */
   margin: 0 auto;
+  padding: 0 15px; /* Ajusta el espaciado interno para evitar desbordes */
+  box-sizing: border-box;
 }
 
 .inputField,
@@ -39,6 +41,7 @@
   color: var(--foreground);
   box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
+  box-sizing: border-box; /* Evita que el padding afecte el ancho */
 }
 
 .inputField:focus,
@@ -80,5 +83,9 @@
 
   .heading {
     font-size: 2rem;
+  }
+
+  .contactForm {
+    padding: 0 10px; /* Reduce un poco el padding en pantallas pequeñas */
   }
 }

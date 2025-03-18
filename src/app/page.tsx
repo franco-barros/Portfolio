@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Greeting from "../Components/greeting/Greeting";
+import Greeting from "../Components/animations/greeting/Greeting";
 import Hero from "../Components/hero";
 import AboutMe from "../Components/aboutme";
 import Projects from "../Components/projects";

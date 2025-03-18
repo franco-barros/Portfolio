@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import AnimatedMenuOverlay from "../animatedmenuoverlay";
+import AnimatedMenuOverlay from "../animations/animatedmenuoverlay";
 import ThemeToggle from "../themetoggle/ThemeToggle";
 import styles from "../../styles/Navbar.module.css";
 import { motion } from "framer-motion";

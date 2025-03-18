@@ -1,68 +1,67 @@
-// Services.tsx
 "use client";
 import React from "react";
 import styles from "../../styles/Services.module.css";
-import ServiceCard from "./ServiceCard"; // Asegúrate de que la ruta sea la correcta
+import ServiceCard from "./ServiceCard"; // Make sure the path is correct
 
 const servicesData = [
   {
-    title: "Desarrollo Web",
-    subtitle: "Custom Quote",
+    title: "Web Development",
+    subtitle: "Custom Solutions",
     description:
-      "Tailored web apps, paired with a marketing website, or cross-platform solutions. Let's get together and discuss your vision to provide a custom quote.",
+      "Need a modern web app, a sleek marketing site, or a cross-platform solution? Let’s chat and create something tailored to your needs.",
     features: [
-      "Modern, custom design",
-      "Responsive & accessible",
-      "Optimized performance",
-      "Animations & interactions",
-      "Scalable backend solutions or bring your own backend",
-      "Multi-platform support",
+      "Unique, modern designs",
+      "Fully responsive & accessible",
+      "Optimized for performance",
+      "Smooth animations & interactions",
+      "Scalable backend solutions (or integrate your own)",
+      "Multi-platform compatibility",
     ],
-    cta: "Secure your package now",
+    cta: "Get a quote",
   },
   {
-    title: "Consultoría",
-    subtitle: "Expert Guidance",
+    title: "Tech Consulting",
+    subtitle: "Expert Advice",
     description:
-      "Asesoramiento en tecnologías modernas y mejores prácticas para impulsar tu proyecto.",
+      "Get guidance on modern technologies, best practices, and strategies to take your project to the next level.",
     features: [
-      "Asesoría personalizada",
-      "Optimización de procesos",
-      "Estrategias tecnológicas",
+      "Personalized recommendations",
+      "Process optimization",
+      "Strategic tech solutions",
     ],
-    cta: "Contacta ahora",
+    cta: "Let’s talk",
   },
   {
-    title: "Diseño UI/UX",
-    subtitle: "User Focused",
+    title: "UI/UX Design",
+    subtitle: "User-Centered Approach",
     description:
-      "Diseños atractivos y fáciles de usar para mejorar la experiencia del usuario.",
+      "Creating beautiful, intuitive, and user-friendly designs that enhance user experience and engagement.",
     features: [
-      "Interfaz intuitiva",
-      "Experiencia de usuario optimizada",
-      "Diseño moderno",
+      "Intuitive interfaces",
+      "Optimized user experience",
+      "Modern, sleek design",
     ],
-    cta: "Ver portafolio",
+    cta: "See portfolio",
   },
   {
-    title: "Desarrollo Móvil",
-    subtitle: "Cross-Platform",
+    title: "Mobile Development",
+    subtitle: "Cross-Platform & Native",
     description:
-      "Aplicaciones móviles nativas o híbridas para iOS y Android con alto rendimiento.",
+      "Build high-performance native or hybrid mobile apps for iOS and Android that provide a seamless user experience.",
     features: [
-      "Desarrollo nativo e híbrido",
-      "Alto rendimiento",
-      "Integración con APIs y backend",
-      "Experiencia fluida",
+      "Native & hybrid development",
+      "Optimized for speed & performance",
+      "API & backend integration",
+      "Smooth, fluid experience",
     ],
-    cta: "Explora soluciones",
+    cta: "Explore solutions",
   },
 ];
 
 const Services: React.FC = () => {
   return (
     <section id="services" className={styles.servicesSection}>
-      <h2 className={styles.heading}>Servicios</h2>
+      <h2 className={styles.heading}>Services</h2>
       <div className={styles.servicesContainer}>
         {servicesData.map((service, index) => (
           <ServiceCard
