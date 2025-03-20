@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../styles/Chatbot.module.css";
+import styles from "../../styles/chatbot/Chatbot.module.css";
 
 const Chatbot: React.FC = () => {
   const [message, setMessage] = useState("");

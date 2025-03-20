@@ -27,9 +27,13 @@
   --hover-glow: rgba(255, 255, 255, 0.8);
 
   /* Variables para MouseEffect en modo light */
-  --mouse-effect-color1: rgba(0, 0, 255, 0.62); /* azull */
-  --mouse-effect-color2: rgba(206, 10, 10, 0.62); /*rojo */
+  --mouse-effect-color1: rgba(0, 0, 255, 0.62); /* azul */
+  --mouse-effect-color2: rgba(206, 10, 10, 0.62); /* rojo */
   --mouse-effect-color3: rgba(128, 0, 128, 0.62); /* morado */
+
+  /* Variables para el título global */
+  --global-title-bg-light: #6a0dad; /* Morado sólido */
+  --global-title-bg-dark: #d4af37; /* Amarillo dorado */
 }
 
 html,
@@ -143,4 +147,27 @@ html.dark .hero {
 
 .contactSection .heading {
   text-align: center;
+}
+
+/* Estilos globales para títulos personalizados (globalTitle) */
+.globalTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+  width: 100%;
+  max-width: 1200px;
+  padding: 1rem 2rem;
+  background-color: var(--global-title-bg-light);
+  border: 2px solid var(--foreground);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+}
+
+html.dark .globalTitle {
+  background-color: var(--global-title-bg-dark);
 }

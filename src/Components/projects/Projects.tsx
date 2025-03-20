@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from "../../styles/Projects.module.css";
+import styles from "../../styles/projects/Projects.module.css";
 import Project from "./Project";
 
 const projectData = [

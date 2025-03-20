@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from "../../styles/DownloadCV.module.css";
+import styles from "../../styles/utils/DownloadCV.module.css";
 import { FaDownload } from "react-icons/fa"; // Ícono de descarga
 
 const DownloadCV: React.FC = () => {

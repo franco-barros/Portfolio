@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import styles from "../../styles/Services.module.css";
-import ServiceCard from "./ServiceCard"; // Make sure the path is correct
+import styles from "../../styles/service/Services.module.css";
+import ServiceCard from "./ServiceCard"; // Asegúrate de que la ruta sea la correcta
 
 const servicesData = [
   {
@@ -61,7 +61,8 @@ const servicesData = [
 const Services: React.FC = () => {
   return (
     <section id="services" className={styles.servicesSection}>
-      <h2 className={styles.heading}>Services</h2>
+      {/* Aquí se usa la clase global definida en el CSS global */}
+      <h2 className="globalTitle">Services</h2>
       <div className={styles.servicesContainer}>
         {servicesData.map((service, index) => (
           <ServiceCard

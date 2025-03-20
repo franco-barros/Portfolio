@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { FaCheck } from "react-icons/fa"; // Make sure you have react-icons installed
-import styles from "../../styles/ServicesCard.module.css";
+import styles from "../../styles/service/ServicesCard.module.css";
 
 interface ServiceCardProps {
   title: string;

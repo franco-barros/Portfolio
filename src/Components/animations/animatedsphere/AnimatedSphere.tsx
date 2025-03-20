@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import styles from "../../../styles/AnimatedSphere.module.css";
+import styles from "../../../styles/animations/AnimatedSphere.module.css";
 
 const AnimatedSphere = () => {
   const [flipped, setFlipped] = useState(false);

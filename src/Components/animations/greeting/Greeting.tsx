@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import styles from "../../../styles/Greeting.module.css";
+import styles from "../../../styles/animations/Greeting.module.css";
 
 interface GreetingProps {
   onComplete?: () => void;

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import styles from "../../../styles/AnimatedPhrases.module.css";
+import styles from "../../../styles/animations/AnimatedPhrases.module.css";
 
 const phrases = [
   "Resuelto de problemas",

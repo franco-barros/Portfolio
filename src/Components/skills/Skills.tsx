@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from "../../styles/Skills.module.css";
+import styles from "../../styles/skills/Skills.module.css";
 import SkillCarousel from "../skillcarousel";
 
 const skillsData = [

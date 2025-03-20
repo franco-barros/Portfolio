@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import styles from "../../../styles/AnimatedMenuOverlay.module.css";
+import styles from "../../../styles/animations/AnimatedMenuOverlay.module.css";
 
 interface AnimatedMenuOverlayProps {
   onClose: () => void;

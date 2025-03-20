@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import styles from "../../styles/SkillCarousel.module.css";
+import styles from "../../styles/skills/SkillCarousel.module.css";
 
 interface Skill {
   name: string;

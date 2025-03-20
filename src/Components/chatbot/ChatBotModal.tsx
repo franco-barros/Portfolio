@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Chatbot from "./ChatBot";
-import styles from "../../styles/ChatBotModal.module.css";
+import styles from "../../styles/chatbot/ChatBotModal.module.css";
 import { BsRobot } from "react-icons/bs";
 import { motion } from "framer-motion";
 
