@@ -18,7 +18,7 @@ const AboutMe: React.FC = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        <h2 className={styles.heading}>About Me</h2>
+        <h2 className="globalTitle">About Me</h2>
         {/* Aquí se agrega el componente de frases animadas */}
         <AnimatedPhrases />
         <p className={styles.paragraph}>

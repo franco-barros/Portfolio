@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import styles from "../../../styles/animations/AnimatedPhrases.module.css";
 
 const phrases = [
-  "Resuelto de problemas",
-  "Buscador de soluciones eficientes",
-  "Desarrollador apasionado",
-  "Innovador en tecnología",
+  "Problem solver",
+  "Efficient solutions finder",
+  "Passionate developer",
+  "Technology innovator",
 ];
 
 const AnimatedPhrases = () => {
@@ -15,14 +15,14 @@ const AnimatedPhrases = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Inicia el fade out
+      // Start the fade out
       setFade(false);
-      // Después de 500ms (tiempo de fade out) cambia la frase y hace fade in
+      // After 500ms (fade out time), change the phrase and fade in
       setTimeout(() => {
         setCurrent((prev) => (prev + 1) % phrases.length);
         setFade(true);
       }, 500);
-    }, 2000); // Cambia la frase cada 3 segundos
+    }, 2000); // Change the phrase every 3 seconds
 
     return () => clearInterval(interval);
   }, []);

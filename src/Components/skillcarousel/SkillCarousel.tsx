@@ -15,6 +15,21 @@ interface SkillCarouselProps {
   autoRotateInterval?: number;
 }
 
+// Technology-to-Devicon class mapping (se puede extraer y usar desde el componente Skills)
+const deviconMap: Record<string, string> = {
+  "Node.js": "devicon-nodejs-plain colored",
+  "Express.js": "devicon-express-original colored",
+  NestJS: "devicon-nestjs-plain colored",
+  Java: "devicon-java-plain colored",
+  JavaScript: "devicon-javascript-plain colored",
+  TypeScript: "devicon-typescript-plain colored",
+  React: "devicon-react-original colored",
+  "Next.js": "devicon-nextjs-original colored",
+  CSS: "devicon-css3-plain colored",
+  "Tailwind CSS": "devicon-tailwindcss-plain colored",
+  HTML: "devicon-html5-plain colored",
+};
+
 const SkillCarousel: React.FC<SkillCarouselProps> = ({
   skills,
   autoRotateInterval = 3000,
@@ -62,6 +77,10 @@ const SkillCarousel: React.FC<SkillCarouselProps> = ({
         <FaArrowLeft />
       </button>
       <div className={styles.card}>
+        {/* Ícono Devicon */}
+        <div className={styles.iconContainer}>
+          <i className={deviconMap[skills[current].name]}></i>
+        </div>
         <h3>{skills[current].name}</h3>
         <p>{skills[current].description}</p>
         {skills[current].usage && <p>{skills[current].usage}</p>}

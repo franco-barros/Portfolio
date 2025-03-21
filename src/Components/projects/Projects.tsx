@@ -7,49 +7,49 @@ const projectData = [
   {
     title: "Market Multiverse",
     description:
-      "Una plataforma de ecommerce moderna con múltiples categorías y un diseño responsivo.",
+      "A modern e-commerce platform with multiple categories and a responsive design.",
     link: "https://francoisdev-market-multiverse.com",
-    linkText: "Ver Proyecto",
+    linkText: "View Project",
     technologies: ["React", "CSS Modules", "Next.js"],
   },
   {
     title: "Listify",
     description:
-      "Aplicación web de lista de tareas con sincronización en tiempo real entre pestañas del navegador.",
+      "A web-based task list application with real-time synchronization between browser tabs.",
     link: "https://github.com/francoisrosales/Listify",
-    linkText: "Ver en GitHub",
+    linkText: "View on GitHub",
     technologies: ["React", "CSS Modules", "JavaScript"],
   },
   {
     title: "DevConnect",
     description:
-      "Una red social para desarrolladores donde pueden compartir proyectos y colaborar.",
+      "A social network for developers to share projects and collaborate.",
     link: "https://github.com/francoisrosales/DevConnect",
-    linkText: "Ver en GitHub",
+    linkText: "View on GitHub",
     technologies: ["Next.js", "Tailwind CSS", "MongoDB"],
   },
   {
     title: "CryptoStats",
     description:
-      "Dashboard en tiempo real para seguimiento de criptomonedas con gráficos interactivos.",
+      "A real-time dashboard for tracking cryptocurrencies with interactive charts.",
     link: "https://cryptostats-live.com",
-    linkText: "Ver Proyecto",
+    linkText: "View Project",
     technologies: ["React", "Recharts", "Node.js"],
   },
   {
     title: "TaskFlow",
     description:
-      "Gestor de proyectos con tablero Kanban y colaboración en equipo.",
+      "Project management tool with Kanban board and team collaboration.",
     link: "https://github.com/francoisrosales/TaskFlow",
-    linkText: "Ver en GitHub",
+    linkText: "View on GitHub",
     technologies: ["React", "Redux", "Firebase"],
   },
   {
     title: "WeatherNow",
     description:
-      "Aplicación web para consultar el clima en tiempo real con integración de APIs externas.",
+      "A web application to check real-time weather with external API integration.",
     link: "https://weathernow-app.com",
-    linkText: "Ver Proyecto",
+    linkText: "View Project",
     technologies: ["Vue.js", "CSS Modules", "OpenWeather API"],
   },
 ];
@@ -57,7 +57,7 @@ const projectData = [
 const Projects = () => {
   return (
     <section id="projects" className={styles.projectsSection}>
-      <h2 className={styles.title}>My Projects</h2>
+      <h2 className="globalTitle">Projects</h2>
       <div className={styles.cardsContainer}>
         <div className={styles.projectsGrid}>
           {projectData.map((project, index) => (

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import styles from "../../styles/utils/ContactMe.module.css";
+import styles from "../../../styles/utils/ContactMe.module.css";
 
 const ContactMe: React.FC = () => {
   const [formData, setFormData] = useState({

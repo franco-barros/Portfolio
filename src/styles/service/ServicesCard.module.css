@@ -1,13 +1,12 @@
 .serviceCard {
   background: var(--project-card-bg);
-  padding: 20px;
-  border-radius: 12px; /* Más redondeado */
-  min-width: 350px; /* Evita que se reduzcan demasiado */
-  max-width: 380px; /* Evita que crezcan demasiado */
+  padding: 10px;
+  border-radius: 12px;
+  width: 100%; /* Ocupará el ancho total de la celda */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   backdrop-filter: blur(8px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  margin: 0 auto; /* Centra en columnas individuales */
+  margin: 0; /* Sin auto-centro */
 }
 
 .serviceTitle {

@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "../../styles/Hero.module.css";
 import AnimatedSphere from "../animations/animatedsphere";
-import DownloadCV from "../pdf";
+import DownloadCV from "../utils/pdf/DownloadCV";
 
 const Hero: React.FC = () => {
   return (
@@ -10,22 +10,22 @@ const Hero: React.FC = () => {
       <div className={styles.backgroundEffect}></div>
 
       <div className={styles.heroContainer}>
-        {/* Columna izquierda: Esfera con foto */}
+        {/*Columna izquierda: Sphere with photo */}
         <div className={styles.leftColumn}>
           <AnimatedSphere />
         </div>
 
-        {/* Columna central: Contenido */}
+        {/* Columna centro: Content */}
         <div className={styles.centerColumn}>
-          <h1 className={styles.title}>Desarrollador Fullstack</h1>
+          <h1 className={styles.title}>Fullstack Developer</h1>
           <p className={styles.description}>Franco Barros</p>
-          {/* Convertimos el botón en un enlace para hacer scroll */}
+          {/* Turn the button into a link for scrolling */}
           <a href="#projects" className={styles.ctaButton}>
-            Ver proyectos
+            View Projects
           </a>
         </div>
 
-        {/* Columna derecha: Descargar CV */}
+        {/* Columna derecha: Download CV */}
         <div className={styles.rightColumn}>
           <DownloadCV />
         </div>

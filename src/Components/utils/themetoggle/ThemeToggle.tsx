@@ -1,8 +1,8 @@
 "use client";
 import { useContext } from "react";
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
-import { ThemeContext } from "../../Context/ThemeContext";
-import styles from "../../styles/utils/ThemeToggle.module.css";
+import { ThemeContext } from "../../../Context/ThemeContext";
+import styles from "../../../styles/utils/ThemeToggle.module.css";
 import { motion } from "framer-motion";
 
 const ThemeToggle = () => {

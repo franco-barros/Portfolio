@@ -1,6 +1,7 @@
 .projectsSection {
   position: relative;
-  padding: 6rem 2rem;
+  /* Reducimos la distancia vertical de 6rem a 4rem */
+  padding: 2rem 2rem;
   background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(8px);
   color: var(--foreground);
@@ -10,49 +11,34 @@
 }
 
 .projectsContent {
-  max-width: 100%;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0; /* Quita cualquier centrado automático */
+  padding: 0 2rem; /* O ajusta según lo necesites */
   text-align: left;
 }
 
-.title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--foreground);
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  position: relative;
-  text-align: left;
-  width: fit-content; /* Ajuste del ancho para que se adapte al contenido */
-  padding: 0.5rem 1rem; /* Espacio interno */
-  background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
-  border: 2px solid var(--foreground); /* Borde con el color del foreground */
-  border-radius: 15px; /* Bordes redondeados */
-}
-
+/* Si tienes un contenedor para las tarjetas, opcional */
 .cardsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  padding: 2rem;
+  padding: 2rem 0;
 }
 
+/* Grilla de proyectos */
 .projectsGrid {
+  margin: 0; /* Elimina márgenes */
+  padding: 0; /* Usa el padding del contenedor padre */
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  /* Aumenta el gap */
-  gap: 80px;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 100px;
+  row-gap: 10px;
+  justify-content: start; /* Asegura que estén alineadas a la izquierda */
+  transform: translateX(-35px);
 }
 
 @media (max-width: 768px) {
-  .title {
-    font-size: 2rem;
-  }
   .projectsGrid {
+    /* En móvil, deja que se ajusten automáticamente o una sola columna */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    column-gap: 20px;
+    row-gap: 20px;
   }
 }

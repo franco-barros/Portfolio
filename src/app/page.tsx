@@ -6,7 +6,7 @@ import Hero from "../Components/hero";
 import AboutMe from "../Components/aboutme";
 import Projects from "../Components/projects";
 import Skills from "../Components/skills/Skills";
-import ContactMe from "../Components/contactme";
+import ContactMe from "../Components/utils/contactme";
 import Service from "../Components/service";
 
 const HomePage: React.FC = () => {

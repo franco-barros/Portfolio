@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ThemeProvider } from "../Context/ThemeContext";
 import Navbar from "../Components/navbar";
 import Footer from "../Components/footer";
-import ThemeToggle from "../Components/themetoggle";
+import ThemeToggle from "../Components/utils/themetoggle";
 import ChatbotModal from "../Components/chatbot/ChatBotModal";
 import Greeting from "../Components/animations/greeting/Greeting";
 import MouseEffect from "../Components/mouseeffect";

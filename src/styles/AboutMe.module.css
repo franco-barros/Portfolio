@@ -14,24 +14,6 @@
   z-index: 5; /* Puede ajustarse según la estructura global */
 }
 
-.aboutSection .heading {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  color: var(--foreground);
-  text-align: left;
-  padding: 0.5rem 1rem; /* Espacio interno para el texto */
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.2
-  ); /* Color de fondo dentro del borde */
-  border: 2px solid var(--foreground); /* Borde con el color del foreground */
-  border-radius: 15px; /* Bordes redondeados */
-}
-
 .textContainer {
   flex: 1;
   max-width: 600px;

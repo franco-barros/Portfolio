@@ -1,18 +1,18 @@
 "use client";
 import React from "react";
-import styles from "../../styles/utils/DownloadCV.module.css";
-import { FaDownload } from "react-icons/fa"; // Ícono de descarga
+import styles from "../../../styles/utils/DownloadCV.module.css";
+import { FaDownload } from "react-icons/fa"; // Download icon
 
 const DownloadCV: React.FC = () => {
   return (
     <div className={styles.cvContainer}>
       <a
         href="/cv.pdf"
-        download="Mi_Curriculum.pdf"
+        download="My_Resume.pdf"
         className={styles.downloadButton}
       >
         <FaDownload className={styles.icon} />
-        Descargar CV
+        Download Resume
       </a>
     </div>
   );

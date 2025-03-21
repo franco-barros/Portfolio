@@ -7,76 +7,74 @@ const skillsData = [
   {
     name: "Node.js",
     category: "backend",
-    description: "Uso Node.js para construir servicios escalables.",
-    usage: "Lo utilizo para crear APIs REST y microservicios robustos.",
+    description: "I use Node.js to build scalable services.",
+    usage: "I use it to create robust REST APIs and microservices.",
   },
   {
     name: "Express.js",
     category: "backend",
-    description:
-      "Express proporciona un framework minimalista para el backend.",
-    usage: "Lo uso para estructurar y simplificar la lógica de mis servidores.",
+    description: "Express provides a minimalist framework for the backend.",
+    usage: "I use it to structure and simplify the logic of my servers.",
   },
   {
     name: "NestJS",
     category: "backend",
     description:
-      "NestJS me ayuda a estructurar aplicaciones de backend con decoradores.",
-    usage: "Prefiero NestJS para organizar proyectos complejos.",
+      "NestJS helps me structure backend applications with decorators.",
+    usage: "I prefer NestJS to organize complex projects.",
   },
   {
     name: "Java",
     category: "backend",
-    description: "Java se usa para soluciones empresariales robustas.",
-    usage: "Utilizo Java en proyectos donde se requiere gran escalabilidad.",
+    description: "Java is used for robust enterprise solutions.",
+    usage: "I use Java in projects that require high scalability.",
   },
   {
     name: "JavaScript",
     category: "frontend",
-    description: "JavaScript es la base para páginas web dinámicas.",
-    usage: "Lo uso para crear interacciones en el cliente.",
+    description: "JavaScript is the foundation for dynamic web pages.",
+    usage: "I use it to create client-side interactions.",
   },
   {
     name: "TypeScript",
     category: "frontend",
-    description: "TypeScript agrega tipado estático a JavaScript.",
-    usage: "Prefiero TypeScript para evitar errores en tiempo de compilación.",
+    description: "TypeScript adds static typing to JavaScript.",
+    usage: "I prefer TypeScript to avoid compile-time errors.",
   },
   {
     name: "React",
     category: "frontend",
-    description: "React se usa para construir interfaces interactivas.",
-    usage: "Utilizo React para desarrollar aplicaciones web reactivas.",
+    description: "React is used to build interactive user interfaces.",
+    usage: "I use React to develop reactive web applications.",
   },
   {
     name: "Next.js",
     category: "frontend",
-    description:
-      "Next.js permite renderizado del lado del servidor en aplicaciones React.",
-    usage: "Lo uso para optimizar el SEO y el rendimiento en proyectos React.",
+    description: "Next.js enables server-side rendering in React applications.",
+    usage: "I use it to optimize SEO and performance in React projects.",
   },
   {
     name: "CSS",
     category: "frontend",
-    description: "CSS se utiliza para estilizar páginas web.",
-    usage: "Utilizo CSS para dar el toque visual a mis aplicaciones.",
+    description: "CSS is used to style web pages.",
+    usage: "I use CSS to add the visual touch to my applications.",
   },
   {
     name: "Tailwind CSS",
     category: "frontend",
     description:
-      "Tailwind CSS ofrece utilidades para un estilo rápido y consistente.",
-    usage: "Prefiero Tailwind para agilizar el desarrollo de estilos.",
+      "Tailwind CSS offers utilities for quick and consistent styling.",
+    usage: "I prefer Tailwind to speed up style development.",
   },
   {
     name: "HTML",
     category: "frontend",
-    description: "HTML estructura el contenido de las páginas web.",
-    usage: "Es la base de todas mis páginas web.",
+    description: "HTML structures the content of web pages.",
+    usage: "It is the foundation of all my web pages.",
   },
 ];
 
-// Mapeo de tecnologías a clases de Devicon
+// Technology-to-Devicon class mapping
 const deviconMap: Record<string, string> = {
   "Node.js": "devicon-nodejs-plain colored",
   "Express.js": "devicon-express-original colored",
@@ -95,9 +93,10 @@ const Skills = () => {
   return (
     <section id="skills" className={styles.skillsSection}>
       <div className={styles.backgroundEffect}></div>
-      <h2 className={styles.heading}>Tools</h2>
+      <h2 className="globalTitle">Tools</h2>
+
       <div className={styles.skillsLayout}>
-        {/* Lista de tecnologías */}
+        {/* Technology list */}
         <div className={styles.skillsList}>
           {skillsData.map((skill, index) => (
             <span
@@ -116,7 +115,7 @@ const Skills = () => {
             </span>
           ))}
         </div>
-        {/* Carrusel de tarjetas */}
+        {/* Skill carousel */}
         <div className={styles.skillCarouselContainer}>
           <SkillCarousel skills={skillsData} autoRotateInterval={3000} />
         </div>
