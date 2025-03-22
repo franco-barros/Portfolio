@@ -1,0 +1,16 @@
+.carouselWrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 20px 0;
+}
+
+.carousel {
+  display: flex;
+  gap: 20px; /* Espacio entre las cards */
+}
+
+.carouselItem {
+  flex: 0 0 auto;
+  width: auto; /* Se ajusta al tamaño de la tarjeta */
+}

@@ -4,7 +4,8 @@ import { ThemeProvider } from "../Context/ThemeContext";
 import Navbar from "../Components/navbar";
 import Footer from "../Components/footer";
 import ThemeToggle from "../Components/utils/themetoggle";
-import ChatbotModal from "../Components/chatbot/ChatBotModal";
+import WhatsAppButton from "../Components/utils/whatsappbutton";
+// import ChatbotModal from "../Components/chatbot/ChatBotModal"; // Comentado temporalmente
 import Greeting from "../Components/animations/greeting/Greeting";
 import MouseEffect from "../Components/mouseeffect";
 import "@/styles/globals.css";
@@ -30,7 +31,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="relative z-20">
               <Navbar />
               <ThemeToggle />
-              <ChatbotModal />
+              {/* <ChatbotModal /> */}
+              <WhatsAppButton /> {/* Botón de WhatsApp */}
               <main className="layerContent">{children}</main>
               <Footer className="layerFooter" />
             </div>

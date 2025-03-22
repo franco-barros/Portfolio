@@ -1,0 +1,28 @@
+.projectsSection {
+  position: relative;
+  padding: 2rem 4rem;
+  background: var(--navbar-scrolled-bg);
+  backdrop-filter: blur(8px);
+  color: var(--foreground);
+  text-align: left;
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Si ya tienes la clase .globalTitle en tu CSS global, úsala sólo para el título principal */
+.mainProjectsTitle {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Nuevo estilo para los subtítulos de cada categoría */
+.categorySubtitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Contenedor para cada carrusel */
+.carouselContainer {
+  width: 100%;
+  margin-bottom: 2rem;
+}
