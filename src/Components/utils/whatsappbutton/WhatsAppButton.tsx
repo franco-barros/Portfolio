@@ -6,7 +6,7 @@ import { FaWhatsapp } from "react-icons/fa"; // Usaremos react-icons para el íc
 const WhatsAppButton: React.FC = () => {
   const handleWhatsAppClick = () => {
     window.open(
-      "https://wa.me/1234567890", // Reemplaza con tu número de WhatsApp (código internacional incluido)
+      "https://wa.me/5492645878987", // Número formateado correctamente
       "_blank"
     );
   };

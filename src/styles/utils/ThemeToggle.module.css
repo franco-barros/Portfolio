@@ -3,11 +3,7 @@
   align-items: center;
   justify-content: center;
   padding: 6px;
-  position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
+  /* Se integra dentro del navbar, sin posición fija */
   cursor: pointer;
   border: none;
   background: none;
@@ -48,13 +44,13 @@
   color: #4f46e5;
 }
 
-/* Icono inactivo: usa el color de contraste con menor opacidad */
+/* Icono inactivo: menor opacidad */
 .inactiveIcon {
   color: var(--foreground);
   opacity: 0.5;
 }
 
-/* Responsividad */
+/* Responsividad para ThemeToggle en móviles */
 @media (max-width: 480px) {
   .themeToggle {
     padding: 4px;
