@@ -1,12 +1,13 @@
 "use client";
 import React from "react";
 import styles from "../../styles/projects/ProjectsOverview.module.css";
-import ProjectsCarousel from "./ProjectsCarousel";
+import FrontendProjectsCarousel from "./FrontendProjectsCarousel";
+import BackendProjectsCarousel from "./BackendProjectsCarousel";
 
 const projectData = [
   {
     title: "Market Multiverse",
-    image: "/images/market-multiverse.png",
+    image: "assets/images/MultiverMarket.png",
     link: "https://francoisdev-market-multiverse.com",
     linkText: "View Project",
     technologies: ["React", "CSS Modules", "Next.js"],
@@ -14,7 +15,7 @@ const projectData = [
   },
   {
     title: "Listify",
-    image: "/images/listify.png",
+    image: "assets/images/Listify.png",
     link: "https://github.com/francoisrosales/Listify",
     linkText: "View Project",
     technologies: ["React", "CSS Modules", "JavaScript"],
@@ -22,7 +23,7 @@ const projectData = [
   },
   {
     title: "TaskFlow",
-    image: "/images/taskflow.png",
+    image: "assets/images/MultiverMarket.png",
     link: "https://github.com/francoisrosales/TaskFlow",
     linkText: "View Project",
     technologies: ["React", "Redux", "Firebase"],
@@ -30,7 +31,7 @@ const projectData = [
   },
   {
     title: "DevConnect",
-    image: "/images/devconnect.png",
+    image: "assets/images/MultiverMarket.png",
     link: "https://github.com/francoisrosales/DevConnect",
     linkText: "View Project",
     technologies: ["Java", "Node.js", "MongoDB"],
@@ -38,7 +39,7 @@ const projectData = [
   },
   {
     title: "CryptoStats",
-    image: "/images/cryptostats.png",
+    image: "assets/images/MultiverMarket.png",
     link: "https://cryptostats-live.com",
     linkText: "View Project",
     technologies: ["Java", "Spring boot", "Node.js"],
@@ -46,7 +47,7 @@ const projectData = [
   },
   {
     title: "WeatherNow",
-    image: "/images/weathernow.png",
+    image: "assets/images/MultiverMarket.png",
     link: "https://weathernow-app.com",
     linkText: "View Project",
     technologies: ["Express", "Nest.js", "OpenWeather API"],
@@ -69,13 +70,13 @@ const Projects = () => {
       {/* Bloque para los proyectos frontend */}
       <div className={styles.categoryContainer}>
         <h3 className={styles.categoryTitle}>Frontend Projects</h3>
-        <ProjectsCarousel projects={frontendProjects} direction="right" />
+        <FrontendProjectsCarousel projects={frontendProjects} />
       </div>
 
       {/* Bloque para los proyectos backend */}
       <div className={styles.categoryContainer}>
         <h3 className={styles.categoryTitle}>Backend Projects</h3>
-        <ProjectsCarousel projects={backendProjects} direction="left" />
+        <BackendProjectsCarousel projects={backendProjects} />
       </div>
     </section>
   );

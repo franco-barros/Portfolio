@@ -11,69 +11,75 @@ interface ProjectData {
   technologies: string[];
 }
 
-interface ProjectsCarouselProps {
+interface FrontendProjectsCarouselProps {
   projects: ProjectData[];
-  direction: "left" | "right";
 }
 
-const ProjectsCarousel: React.FC<ProjectsCarouselProps> = ({
+const FrontendProjectsCarousel: React.FC<FrontendProjectsCarouselProps> = ({
   projects,
-  direction,
 }) => {
   const controls = useAnimation();
   const carouselRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const speed = 50; // velocidad en píxeles por segundo
+  // Ref para el timer que reanuda la animación
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Función para iniciar la animación automática con duración calculada
+  // Duplicamos y revertimos los proyectos para lograr el orden inverso
+  const items = useMemo(() => {
+    const reversed = [...projects].reverse();
+    return [...reversed, ...reversed];
+  }, [projects]);
+
+  // Función para iniciar la animación automática (mueve de izquierda a derecha)
   const startAnimation = useCallback(() => {
     if (carouselRef.current) {
-      const distance = carouselRef.current.offsetWidth;
-      const duration = distance / speed; // duración basada en la velocidad fija
+      const fullWidth = carouselRef.current.offsetWidth;
+      const halfWidth = fullWidth / 2;
+      const duration = halfWidth / speed;
+      // Establecer la posición inicial para que muestre el final (último proyecto)
+      controls.set({ x: -halfWidth });
       controls.start({
-        x: direction === "left" ? -distance : distance,
-        transition: { duration, ease: "linear", repeat: Infinity },
+        x: 0,
+        transition: {
+          duration,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop",
+        },
       });
     }
-  }, [controls, direction, speed]);
+  }, [controls, speed]);
 
   useEffect(() => {
     startAnimation();
-    return () => {
-      controls.stop();
-    };
+    return () => controls.stop();
   }, [startAnimation, controls]);
 
-  // Usar un useEffect para agregar un listener de 'wheel' no pasivo
+  // Listener para scroll (wheel)
   useEffect(() => {
     const element = carouselRef.current;
     if (!element) return;
-
     const wheelHandler = (e: WheelEvent) => {
       e.preventDefault();
       e.stopPropagation();
       controls.stop();
-      // Actualizar el valor de x manualmente
       x.set(x.get() - e.deltaY);
+      // Limpiar timer previo
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      // Reanudar la animación después de 2 segundos de inactividad
+      scrollTimeoutRef.current = setTimeout(() => {
+        startAnimation();
+      }, 2000);
     };
-
-    // Agregar listener con opción { passive: false }
     element.addEventListener("wheel", wheelHandler, { passive: false });
-
     return () => {
       element.removeEventListener("wheel", wheelHandler);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
     };
-  }, [controls, x]);
-
-  // Duplicar los proyectos hasta alcanzar o superar la cantidad deseada
-  const items = useMemo(() => {
-    const minItems = 12;
-    let dupItems = [...projects];
-    while (dupItems.length < minItems) {
-      dupItems = [...dupItems, ...projects];
-    }
-    return dupItems;
-  }, [projects]);
+  }, [controls, x, startAnimation]);
 
   return (
     <div className={styles.carouselWrapper}>
@@ -86,7 +92,10 @@ const ProjectsCarousel: React.FC<ProjectsCarouselProps> = ({
         drag="x"
         dragElastic={0.1}
         onMouseEnter={() => controls.stop()}
-        onMouseLeave={() => startAnimation()}
+        onMouseLeave={() => {
+          // Si el usuario sale y no está haciendo scroll, reanuda la animación
+          if (!scrollTimeoutRef.current) startAnimation();
+        }}
       >
         {items.map((project, index) => (
           <div key={index} className={styles.carouselItem}>
@@ -103,4 +112,4 @@ const ProjectsCarousel: React.FC<ProjectsCarouselProps> = ({
   );
 };
 
-export default ProjectsCarousel;
+export default FrontendProjectsCarousel;
