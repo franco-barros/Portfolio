@@ -1,7 +1,7 @@
 .projectCard {
   position: relative;
-  width: 350px; /* Tarjeta más ancha */
-  height: 150px; /* Menor altura */
+  width: 350px;
+  height: 210px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -26,14 +26,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  /* Fondo sutil para resaltar el contenido */
   background: rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-/* Contenido siempre visible: nombre y tecnologías */
+/* Contenido siempre visible: solo el título */
 .infoAlways {
   padding: 10px;
   color: #fff;
@@ -44,6 +43,7 @@
   margin: 0;
 }
 
+/* Lista de tecnologías sin fondo ni animación general */
 .techList {
   list-style: none;
   padding: 0;
@@ -53,15 +53,42 @@
   gap: 5px;
 }
 
+/* Cada item de tecnología: inicialmente oculto, con borde redondeado y fondo para resaltar */
 .techItem {
-  background: var(--background-tag);
-  color: var(--foreground);
+  background: #ff5722; /* Puedes cambiar este color por el que prefieras o asignarlo dinámicamente */
+  color: #fff;
   font-size: 0.75rem;
   padding: 4px 8px;
-  border-radius: 6px;
+  border-radius: 12px; /* Borde redondeado */
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Botón oculto por defecto */
+/* Efecto de aparición secuencial para cada tecnología */
+.projectCard:hover .techItem {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projectCard:hover .techItem:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.projectCard:hover .techItem:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.projectCard:hover .techItem:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.projectCard:hover .techItem:nth-child(4) {
+  transition-delay: 0.4s;
+}
+.projectCard:hover .techItem:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+/* Botón "View Project": oculto por defecto */
 .viewButton {
   padding: 10px;
   text-align: center;

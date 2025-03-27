@@ -5,38 +5,34 @@ import ProjectCard from "./ProjectCard";
 import styles from "../../styles/projects/ProjectsCarousel.module.css";
 
 interface ProjectData {
+  projectsId: string;
   title: string;
   image: string;
-  link: string;
   technologies: string[];
 }
 
-interface BackendProjectsCarouselProps {
+interface CarouselProps {
   projects: ProjectData[];
 }
 
-const BackendProjectsCarousel: React.FC<BackendProjectsCarouselProps> = ({
-  projects,
-}) => {
+const BackendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
   const controls = useAnimation();
   const carouselRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
-  const speed = 50; // velocidad en píxeles por segundo
+  const speed = 50;
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Duplicamos los proyectos para el loop continuo
+  // 🔄 Duplicamos los proyectos y los dejamos en su orden original para backend
   const items = useMemo(() => [...projects, ...projects], [projects]);
 
-  // Función para iniciar la animación automática (mueve de 0 a la izquierda)
+  // 🚀 Animación en sentido contrario (derecha a izquierda)
   const startAnimation = useCallback(() => {
     if (carouselRef.current) {
-      const fullWidth = carouselRef.current.offsetWidth;
-      const halfWidth = fullWidth / 2;
-      const duration = halfWidth / speed;
-      // Inicia en 0 y anima hasta -halfWidth
+      const fullWidth = carouselRef.current.scrollWidth / 2;
+      const duration = fullWidth / speed;
       controls.set({ x: 0 });
       controls.start({
-        x: -halfWidth,
+        x: -fullWidth,
         transition: {
           duration,
           ease: "linear",
@@ -52,22 +48,20 @@ const BackendProjectsCarousel: React.FC<BackendProjectsCarouselProps> = ({
     return () => controls.stop();
   }, [startAnimation, controls]);
 
-  // Listener para scroll (wheel)
+  // 🖱️ Manejo del scroll manual
   useEffect(() => {
     const element = carouselRef.current;
     if (!element) return;
+
     const wheelHandler = (e: WheelEvent) => {
       e.preventDefault();
-      e.stopPropagation();
       controls.stop();
-      x.set(x.get() - e.deltaY);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-      scrollTimeoutRef.current = setTimeout(() => {
-        startAnimation();
-      }, 2000);
+      x.set(x.get() + e.deltaY); // 🔄 Invertimos la dirección del scroll manual
+
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = setTimeout(() => startAnimation(), 2000);
     };
+
     element.addEventListener("wheel", wheelHandler, { passive: false });
     return () => {
       element.removeEventListener("wheel", wheelHandler);
@@ -85,20 +79,21 @@ const BackendProjectsCarousel: React.FC<BackendProjectsCarouselProps> = ({
         initial={false}
         drag="x"
         dragElastic={0.1}
+        whileTap={{ cursor: "grabbing" }}
         onMouseEnter={() => controls.stop()}
         onMouseLeave={() => {
           if (!scrollTimeoutRef.current) startAnimation();
         }}
       >
         {items.map((project, index) => (
-          <div key={index} className={styles.carouselItem}>
-            <ProjectCard
-              title={project.title}
-              image={project.image}
-              technologies={project.technologies}
-              link={project.link}
-            />
-          </div>
+          <motion.div
+            key={`${project.projectsId}-${index}`}
+            className={styles.carouselItem}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ProjectCard {...project} />
+          </motion.div>
         ))}
       </motion.div>
     </div>

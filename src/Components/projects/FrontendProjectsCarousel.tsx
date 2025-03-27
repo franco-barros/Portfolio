@@ -5,40 +5,35 @@ import ProjectCard from "./ProjectCard";
 import styles from "../../styles/projects/ProjectsCarousel.module.css";
 
 interface ProjectData {
+  projectsId: string;
   title: string;
   image: string;
-  link: string;
   technologies: string[];
 }
 
-interface FrontendProjectsCarouselProps {
+interface CarouselProps {
   projects: ProjectData[];
 }
 
-const FrontendProjectsCarousel: React.FC<FrontendProjectsCarouselProps> = ({
-  projects,
-}) => {
+const FrontendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
   const controls = useAnimation();
   const carouselRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
-  const speed = 50; // velocidad en píxeles por segundo
-  // Ref para el timer que reanuda la animación
+  const speed = 50;
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Duplicamos y revertimos los proyectos para lograr el orden inverso
+  // 🔄 Duplicamos los proyectos para que el carrusel sea infinito
   const items = useMemo(() => {
     const reversed = [...projects].reverse();
-    return [...reversed, ...reversed];
+    return [...reversed, ...reversed]; // Duplicación para scroll infinito
   }, [projects]);
 
-  // Función para iniciar la animación automática (mueve de izquierda a derecha)
+  // 🚀 Función para iniciar la animación continua del carrusel
   const startAnimation = useCallback(() => {
     if (carouselRef.current) {
-      const fullWidth = carouselRef.current.offsetWidth;
-      const halfWidth = fullWidth / 2;
-      const duration = halfWidth / speed;
-      // Establecer la posición inicial para que muestre el final (último proyecto)
-      controls.set({ x: -halfWidth });
+      const fullWidth = carouselRef.current.scrollWidth / 2;
+      const duration = fullWidth / speed;
+      controls.set({ x: -fullWidth });
       controls.start({
         x: 0,
         transition: {
@@ -56,24 +51,20 @@ const FrontendProjectsCarousel: React.FC<FrontendProjectsCarouselProps> = ({
     return () => controls.stop();
   }, [startAnimation, controls]);
 
-  // Listener para scroll (wheel)
+  // 🖱️ Manejo del scroll manual para pausar y reanudar
   useEffect(() => {
     const element = carouselRef.current;
     if (!element) return;
+
     const wheelHandler = (e: WheelEvent) => {
       e.preventDefault();
-      e.stopPropagation();
       controls.stop();
       x.set(x.get() - e.deltaY);
-      // Limpiar timer previo
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-      // Reanudar la animación después de 2 segundos de inactividad
-      scrollTimeoutRef.current = setTimeout(() => {
-        startAnimation();
-      }, 2000);
+
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = setTimeout(() => startAnimation(), 2000);
     };
+
     element.addEventListener("wheel", wheelHandler, { passive: false });
     return () => {
       element.removeEventListener("wheel", wheelHandler);
@@ -91,21 +82,21 @@ const FrontendProjectsCarousel: React.FC<FrontendProjectsCarouselProps> = ({
         initial={false}
         drag="x"
         dragElastic={0.1}
+        whileTap={{ cursor: "grabbing" }}
         onMouseEnter={() => controls.stop()}
         onMouseLeave={() => {
-          // Si el usuario sale y no está haciendo scroll, reanuda la animación
           if (!scrollTimeoutRef.current) startAnimation();
         }}
       >
         {items.map((project, index) => (
-          <div key={index} className={styles.carouselItem}>
-            <ProjectCard
-              title={project.title}
-              image={project.image}
-              technologies={project.technologies}
-              link={project.link}
-            />
-          </div>
+          <motion.div
+            key={`${project.projectsId}-${index}`}
+            className={styles.carouselItem}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ProjectCard {...project} />
+          </motion.div>
         ))}
       </motion.div>
     </div>
