@@ -1,0 +1,59 @@
+.card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.cardImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.cardContent {
+  text-align: center;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.cardDescription {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #555555;
+}
+
+.starRating {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  color: #f5a623; /* Color de las estrellas */
+}
+
+.cardFooter {
+  font-size: 0.9rem;
+  color: #888888;
+}
+
+/* Opcional: estilos para estrellas vacías y llenas */
+.filledStars {
+  color: #f5a623;
+}
+
+.emptyStars {
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+  }
+}

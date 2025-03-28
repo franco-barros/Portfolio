@@ -1,38 +1,48 @@
 "use client";
 import React from "react";
-import styles from "../../styles/worked/CollaboratorComments.module.css"; // Crea este archivo CSS para la sección de comentarios
+import CardCarousel from "./shared/CardCarousel";
+import Card from "./shared/Card";
 
 const commentsData = [
   {
     name: "Juan Pérez",
     comment:
-      "Trabajar contigo ha sido una experiencia enriquecedora y profesional.",
+      "Working with you has been an enriching and professional experience. I appreciate your dedication and attention to detail. It has truly made a difference in our projects.",
+    linkedin: "https://www.linkedin.com/in/juanperez",
+    rating: 5,
   },
   {
     name: "María García",
     comment:
-      "Tus soluciones son siempre creativas y efectivas. ¡Muy recomendable!",
+      "Your solutions are always creative and effective. Highly recommended! The innovative approach you bring to each project has set a new standard for quality and efficiency.",
+    linkedin: "https://www.linkedin.com/in/mariagarcia",
+    rating: 4,
   },
   {
     name: "Carlos López",
     comment:
-      "Un gran compañero de equipo, siempre dispuesto a ayudar y aportar ideas.",
+      "A great team player, always willing to help and contribute ideas. Your collaborative spirit and reliability have been key to our success.",
+    linkedin: "https://www.linkedin.com/in/carloslopez",
+    rating: 4,
   },
-  // Agrega más comentarios según lo requieras
 ];
 
 const CollaboratorComments = () => {
   return (
-    <div className={styles.commentsSection}>
-      <h3>Comentarios de Colaboradores</h3>
-      <div className={styles.commentsList}>
-        {commentsData.map((comment, index) => (
-          <div key={index} className={styles.commentCard}>
-            <p className={styles.commentText}>{comment.comment}</p>
-            <p className={styles.commentAuthor}>- {comment.name}</p>
-          </div>
-        ))}
-      </div>
+    <div>
+      <h3>Collaborator Comments</h3>
+      <CardCarousel
+        items={commentsData}
+        autoRotateInterval={5000}
+        renderItem={(comment) => (
+          <Card
+            description={comment.comment}
+            footer={comment.name}
+            footerLink={comment.linkedin}
+            rating={comment.rating}
+          />
+        )}
+      />
     </div>
   );
 };

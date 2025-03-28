@@ -1,43 +1,41 @@
 "use client";
 import React from "react";
-import styles from "../../styles/worked/CompletedApps.module.css"; // Crea este archivo CSS para la sección de apps
+import CardCarousel from "./shared/CardCarousel";
+import Card from "./shared/Card";
 
 const appsData = [
   {
     name: "App 1",
-    description: "Descripción breve de la App 1.",
-    image: "/images/app1.png", // Ruta de la imagen
+    description: "Brief description of App 1.",
+    image: "/assets/images/Listify2.png",
   },
   {
     name: "App 2",
-    description: "Descripción breve de la App 2.",
-    image: "/images/app2.png",
+    description: "Brief description of App 2.",
+    image: "/assets/images/Listify3.png",
   },
   {
     name: "App 3",
-    description: "Descripción breve de la App 3.",
-    image: "/images/app3.png",
+    description: "Brief description of App 3.",
+    image: "/assets/images/Listify2.png",
   },
-  // Agrega más apps según sea necesario
 ];
 
 const CompletedApps = () => {
   return (
-    <div className={styles.appsSection}>
-      <h3>Apps Completadas</h3>
-      <div className={styles.appsList}>
-        {appsData.map((app, index) => (
-          <div key={index} className={styles.appCard}>
-            {app.image && (
-              <img src={app.image} alt={app.name} className={styles.appImage} />
-            )}
-            <div className={styles.appInfo}>
-              <h4>{app.name}</h4>
-              <p>{app.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div>
+      <h3>Completed Apps</h3>
+      <CardCarousel
+        items={appsData}
+        autoRotateInterval={4000} // Ajusta el intervalo según necesites
+        renderItem={(app) => (
+          <Card
+            image={app.image}
+            title={app.name}
+            description={app.description}
+          />
+        )}
+      />
     </div>
   );
 };

@@ -1,0 +1,12 @@
+.appsSection {
+  flex: 1;
+  padding: 1rem;
+}
+
+.appsList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* En este caso, el carrusel (que usa CardCarousel) ya se encarga del layout */
+  width: 100%;
+}

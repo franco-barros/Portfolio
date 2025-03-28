@@ -24,6 +24,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
         alt={title}
         width={300}
         height={200}
+        loading="lazy" // Se especifica lazy loading de forma explícita
         className={styles.projectImage}
       />
       <div className={styles.overlay}>
