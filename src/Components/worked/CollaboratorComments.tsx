@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import CardCarousel from "./shared/CardCarousel";
+import InfiniteCarousel from "./shared/CarouselInfinite";
 import Card from "./shared/Card";
 
 const commentsData = [
@@ -29,11 +29,12 @@ const commentsData = [
 
 const CollaboratorComments = () => {
   return (
-    <div>
+    <div className="commentsSection">
       <h3>Collaborator Comments</h3>
-      <CardCarousel
+      <InfiniteCarousel
         items={commentsData}
-        autoRotateInterval={5000}
+        interval={2000}
+        orientation="vertical"
         renderItem={(comment) => (
           <Card
             description={comment.comment}

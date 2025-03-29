@@ -9,15 +9,9 @@
   margin: 0 auto;
 }
 
-.cardImage {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 12px;
-}
-
 .cardContent {
   text-align: center;
+  overflow: hidden;
 }
 
 .cardTitle {
@@ -30,6 +24,9 @@
   font-size: 1rem;
   margin-bottom: 12px;
   color: #555555;
+  white-space: nowrap; /* Opcional: prevenir multiline en pantallas pequeñas */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .starRating {
@@ -43,7 +40,7 @@
   color: #888888;
 }
 
-/* Opcional: estilos para estrellas vacías y llenas */
+/* Estilos para estrellas llenas y vacías */
 .filledStars {
   color: #f5a623;
 }

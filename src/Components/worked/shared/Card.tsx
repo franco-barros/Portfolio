@@ -1,19 +1,16 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import styles from "../../../styles/worked/shared/Card.module.css";
 
 interface CardProps {
-  image?: string; // Ruta de la imagen (opcional)
-  title?: string; // Título de la tarjeta (opcional)
-  description: string; // Descripción o contenido principal
-  footer?: string; // Contenido adicional o autor (opcional)
-  footerLink?: string; // URL para enlazar al perfil de LinkedIn
-  rating?: number; // Calificación de 1 a 5 (opcional)
+  title?: string;
+  description: string;
+  footer?: string;
+  footerLink?: string;
+  rating?: number;
 }
 
 const Card: React.FC<CardProps> = ({
-  image,
   title,
   description,
   footer,
@@ -35,18 +32,6 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div className={styles.card}>
-      {image && (
-        <div className={styles.cardImageWrapper}>
-          <Image
-            src={image}
-            alt={title || "Card Image"}
-            width={300}
-            height={200}
-            layout="responsive"
-            className={styles.cardImage}
-          />
-        </div>
-      )}
       <div className={styles.cardContent}>
         {title && <h4 className={styles.cardTitle}>{title}</h4>}
         <p className={styles.cardDescription}>{description}</p>

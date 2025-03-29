@@ -1,0 +1,137 @@
+.container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto desktop: capa que sigue al mouse */
+.desktopEffect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+/* Contenedor centrado para las esferas (solo mobile), desplazado más a la izquierda */
+.sphereContainer {
+  position: fixed;
+  top: 50%;
+  left: 29%; /* Más a la izquierda que el centro */
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* Estilo común para cada esfera */
+.sphere {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: background-color 0.3s ease;
+  animation-duration: 12s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+/* Todas las esferas serán algo grandes */
+.sphereOne {
+  width: 40vw;
+  height: 40vw;
+  animation-name: sphereOnePath;
+}
+
+.sphereTwo {
+  width: 40vw;
+  height: 40vw;
+  animation-name: sphereTwoPath;
+}
+
+.sphereThree {
+  width: 40vw;
+  height: 40vw;
+  animation-name: sphereThreePath;
+}
+
+.sphereFour {
+  width: 40vw;
+  height: 40vw;
+  animation-name: sphereFourPath;
+}
+
+/* --- Animaciones --- */
+
+/* Esfera 1: posicionada inicialmente en la parte superior del círculo */
+@keyframes sphereOnePath {
+  0% {
+    transform: rotate(0deg) translateY(-20vw) rotate(0deg);
+  }
+  33% {
+    /* Se mueve a la izquierda en la línea horizontal */
+    transform: translateX(-20vw);
+  }
+  66% {
+    /* Se posiciona en la parte superior en la línea vertical */
+    transform: translateY(-20vw);
+  }
+  100% {
+    transform: rotate(0deg) translateY(-20vw) rotate(0deg);
+  }
+}
+
+/* Esfera 2: inicialmente a la derecha (90°) en el círculo */
+@keyframes sphereTwoPath {
+  0% {
+    transform: rotate(90deg) translateY(-20vw) rotate(-90deg);
+  }
+  33% {
+    /* Se mueve al centro horizontal */
+    transform: translateX(0);
+  }
+  66% {
+    /* Se posiciona en el centro vertical */
+    transform: translateY(0);
+  }
+  100% {
+    transform: rotate(90deg) translateY(-20vw) rotate(-90deg);
+  }
+}
+
+/* Esfera 3: inicialmente en la parte inferior (180°) en el círculo */
+@keyframes sphereThreePath {
+  0% {
+    transform: rotate(180deg) translateY(-20vw) rotate(-180deg);
+  }
+  33% {
+    /* Se mueve a la derecha en la línea horizontal */
+    transform: translateX(20vw);
+  }
+  66% {
+    /* Se posiciona en la parte inferior en la línea vertical */
+    transform: translateY(20vw);
+  }
+  100% {
+    transform: rotate(180deg) translateY(-20vw) rotate(-180deg);
+  }
+}
+
+/* Esfera 4: inicialmente en la parte izquierda (270°) en el círculo */
+@keyframes sphereFourPath {
+  0% {
+    transform: rotate(270deg) translateY(-20vw) rotate(-270deg);
+  }
+  33% {
+    /* Se mueve aún más a la derecha en la línea horizontal */
+    transform: translateX(20vw);
+  }
+  66% {
+    /* Se posiciona en la parte inferior en la línea vertical (más abajo) */
+    transform: translateY(20vw);
+  }
+  100% {
+    transform: rotate(270deg) translateY(-20vw) rotate(-270deg);
+  }
+}

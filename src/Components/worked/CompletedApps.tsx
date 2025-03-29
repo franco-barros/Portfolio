@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import CardCarousel from "./shared/CardCarousel";
+import InfiniteCarousel from "./shared/CarouselInfinite";
 import Card from "./shared/Card";
 
 const appsData = [
@@ -23,17 +23,14 @@ const appsData = [
 
 const CompletedApps = () => {
   return (
-    <div>
+    <div className="appsSection">
       <h3>Completed Apps</h3>
-      <CardCarousel
+      <InfiniteCarousel
         items={appsData}
-        autoRotateInterval={4000} // Ajusta el intervalo según necesites
+        interval={2000} // Cada app se muestra 2 segundos
+        orientation="vertical"
         renderItem={(app) => (
-          <Card
-            image={app.image}
-            title={app.name}
-            description={app.description}
-          />
+          <Card title={app.name} description={app.description} />
         )}
       />
     </div>

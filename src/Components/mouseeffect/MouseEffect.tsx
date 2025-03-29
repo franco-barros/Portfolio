@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import styles from "../../styles/MouseEffect.module.css";
 
 interface MouseEffectProps {
   className?: string;
@@ -10,10 +11,12 @@ const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [scrollPos, setScrollPos] = useState(0);
   const [docHeight, setDocHeight] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const updateDimensions = () => {
       setDocHeight(document.documentElement.scrollHeight - window.innerHeight);
+      setIsMobile(window.innerWidth <= 768); // Umbral para mobile
     };
 
     const handleScroll = () => {
@@ -24,25 +27,25 @@ const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
 
-    // Obtener la altura del documento al cargar
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("mousemove", handleMouseMove);
+    if (!isMobile) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
 
     return () => {
       window.removeEventListener("resize", updateDimensions);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [isMobile]);
 
-  if (docHeight === 0) return null; // Evita errores de renderizado temprano
+  if (docHeight === 0) return null; // Evita renderizados tempranos
 
-  // Dividimos la página en tres secciones basadas en la altura total
+  // Dividir la página en tres secciones para elegir el color
   const firstThird = docHeight / 3;
   const secondThird = (2 * docHeight) / 3;
-
   let chosenColor = "";
   if (scrollPos < firstThird) {
     chosenColor = "var(--mouse-effect-color1)";
@@ -53,24 +56,47 @@ const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
   }
 
   return (
-    <div
-      className={className}
-      style={{ position: "relative", overflow: "hidden" }}
-    >
-      {/* Capa de gradiente que sigue el mouse pero cambia según el scroll */}
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100vw",
-          height: "100vh",
-          pointerEvents: "none",
-          background: `radial-gradient(circle 50vw at ${mousePos.x}px ${mousePos.y}px, ${chosenColor} 0%, transparent 75%)`,
-          zIndex: 10,
-          transition: "background-color 0.3s ease",
-        }}
-      />
+    <div className={`${styles.container} ${className || ""}`}>
+      {/* Versión desktop: capa que sigue al mouse */}
+      {!isMobile && (
+        <div
+          className={styles.desktopEffect}
+          style={{
+            background: `radial-gradient(circle 50vw at ${mousePos.x}px ${mousePos.y}px, ${chosenColor} 0%, transparent 75%)`,
+          }}
+        />
+      )}
+
+      {/* Versión mobile: contenedor con 4 esferas animadas */}
+      {isMobile && (
+        <div className={styles.sphereContainer}>
+          <div
+            className={`${styles.sphere} ${styles.sphereOne}`}
+            style={{
+              background: `radial-gradient(circle at center, ${chosenColor} 0%, transparent 70%)`,
+            }}
+          />
+          <div
+            className={`${styles.sphere} ${styles.sphereTwo}`}
+            style={{
+              background: `radial-gradient(circle at center, ${chosenColor} 0%, transparent 70%)`,
+            }}
+          />
+          <div
+            className={`${styles.sphere} ${styles.sphereThree}`}
+            style={{
+              background: `radial-gradient(circle at center, ${chosenColor} 0%, transparent 70%)`,
+            }}
+          />
+          <div
+            className={`${styles.sphere} ${styles.sphereFour}`}
+            style={{
+              background: `radial-gradient(circle at center, ${chosenColor} 0%, transparent 70%)`,
+            }}
+          />
+        </div>
+      )}
+
       {children}
     </div>
   );

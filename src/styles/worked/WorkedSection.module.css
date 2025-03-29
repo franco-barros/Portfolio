@@ -1,3 +1,4 @@
+/* Worked Section */
 .workedSection {
   position: relative;
   padding: 2rem;
@@ -5,23 +6,26 @@
   backdrop-filter: blur(8px);
   color: var(--foreground);
   text-align: left;
-  overflow: hidden;
+  overflow: visible; /* Cambia de 'hidden' a 'visible' para evitar cortes */
   z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-height: 100vh; /* Asegura que la sección ocupe el alto completo del viewport */
 }
 
+/* Layout grid */
 .workedLayout {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
   width: 100%;
+  height: auto; /* Asegura que el grid se ajuste al contenido */
 }
 
 @media (max-width: 768px) {
   .workedLayout {
-    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+    grid-template-columns: 1fr; /* Cambia a una columna en pantallas pequeñas */
     gap: 1rem;
   }
 }

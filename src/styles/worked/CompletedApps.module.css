@@ -1,12 +1,41 @@
+/* Sección principal de Apps */
 .appsSection {
   flex: 1;
   padding: 1rem;
+  overflow: visible; /* Cambia de 'hidden' a 'visible' para evitar cortes */
+  min-height: 100%; /* Permite que la sección crezca según el contenido */
+  max-height: 100vh; /* Limita la altura para evitar desbordamientos */
 }
 
+/* Contenedor de la lista de Apps */
 .appsList {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* En este caso, el carrusel (que usa CardCarousel) ya se encarga del layout */
+  flex-direction: column; /* Items en dirección vertical */
   width: 100%;
+  overflow-y: auto; /* Permite el scroll vertical */
+  max-height: 80vh; /* Evita que ocupe toda la pantalla */
+  gap: 1rem; /* Espaciado entre items */
+}
+
+/* Contenedor de cada Card */
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  padding: 1rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Estilo de cada Card */
+.card {
+  margin-bottom: 1rem; /* Espacio entre las cards */
+  background: var(
+    --card-bg,
+    #fff
+  ); /* Color de fondo con soporte para CSS variables */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
