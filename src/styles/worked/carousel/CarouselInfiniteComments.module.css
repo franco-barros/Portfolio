@@ -1,0 +1,23 @@
+.carousel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden; /* Evita scroll no deseado */
+  position: relative;
+}
+
+.cardContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s ease-in-out;
+}
+
+.itemVertical {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+}

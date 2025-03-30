@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import InfiniteCarousel from "./shared/CarouselInfinite";
-import Card from "./shared/Card";
+import InfiniteCarousel from "./carousel/CarouselInfiniteApp";
+import Card from "./card/CardApp";
 
 const appsData = [
   {
@@ -28,10 +28,7 @@ const CompletedApps = () => {
       <InfiniteCarousel
         items={appsData}
         interval={2000} // Cada app se muestra 2 segundos
-        orientation="vertical"
-        renderItem={(app) => (
-          <Card title={app.name} description={app.description} />
-        )}
+        renderItem={(app) => <Card title={app.name} image={app.image} />}
       />
     </div>
   );
