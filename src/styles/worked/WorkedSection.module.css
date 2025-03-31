@@ -36,14 +36,16 @@
 /* Clase común (opcional) para secciones de igual tamaño */
 .equalSection {
   width: 100%;
-  min-height: 100vh;
-  max-height: 100vh;
+  /* En vez de forzar 100vh, permitimos que el contenido determine la altura */
+  min-height: 100vh; /* Opcional: si deseas que ocupe al menos el alto de la pantalla */
+  /* Eliminamos max-height: 100vh; para evitar recortes */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Alineamos desde el inicio, de modo que el título queda visible arriba */
   align-items: center;
   padding: 1rem;
   box-sizing: border-box;
+  overflow: visible; /* Para que nada se corte */
 }
 
 @media (max-width: 768px) {

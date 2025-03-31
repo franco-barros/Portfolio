@@ -1,12 +1,19 @@
-.carousel {
+.verticalCarouselWrapper {
+  overflow: hidden;
   width: 100%;
+  position: relative;
+  /* Altura fija igual a la de la card (ajusta este valor si cambia el tamaño de la card) */
+  height: 392px;
+  padding: 20px 0;
+}
+
+.carousel {
+  position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  overflow: hidden; /* Evita scroll no deseado */
-  position: relative;
+  overflow: hidden;
 }
 
 .cardContainer {

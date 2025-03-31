@@ -101,6 +101,6 @@ const FrontendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
       </motion.div>
     </div>
   );
-}; 
+};
 
 export default FrontendProjectsCarousel;

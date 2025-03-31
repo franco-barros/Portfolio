@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import InfiniteCarousel from "./carousel/CarouselInfiniteComments";
+import InfiniteCarousel from "./carousel/CarouselComments";
 import Card from "./card/CardComments";
 
 const commentsData = [
@@ -33,7 +33,6 @@ const CollaboratorComments = () => {
       <h3>Collaborator Comments</h3>
       <InfiniteCarousel
         items={commentsData}
-        interval={2000}
         renderItem={(comment) => (
           <Card
             description={comment.comment}

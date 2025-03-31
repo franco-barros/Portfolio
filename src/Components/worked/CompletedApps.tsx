@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import InfiniteCarousel from "./carousel/CarouselInfiniteApp";
-import Card from "./card/CardApp";
+import AppsCarousel from "./carousel/CarouselApp";
+import CardApp from "./card/CardApp";
 
 const appsData = [
   {
@@ -21,14 +21,14 @@ const appsData = [
   },
 ];
 
-const CompletedApps = () => {
+const CompletedApps: React.FC = () => {
   return (
     <div className="appsSection">
       <h3>Completed Apps</h3>
-      <InfiniteCarousel
+      <AppsCarousel
         items={appsData}
         interval={2000} // Cada app se muestra 2 segundos
-        renderItem={(app) => <Card title={app.name} image={app.image} />}
+        renderItem={(app) => <CardApp title={app.name} image={app.image} />}
       />
     </div>
   );

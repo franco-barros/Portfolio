@@ -1,28 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import styles from "../../../styles/worked/card/CardApp.module.css";
 
 interface CardAppProps {
   title: string;
   image: string;
+  onClick?: () => void;
 }
 
-const CardApp: React.FC<CardAppProps> = ({ title, image }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
+const CardApp: React.FC<CardAppProps> = ({ title, image, onClick }) => {
   return (
-    <div
-      className={styles.card}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className={styles.card} onClick={onClick}>
       <img src={image} alt={title} className={styles.cardImage} />
-      {isHovered && (
-        <div className={styles.cardOverlay}>
-          <h4>{title}</h4>
-          <button className={styles.cardButton}>Ver app</button>
-        </div>
-      )}
+      <div className={styles.cardButtonContainer}>
+        <button className={styles.cardButton}>Ver app</button>
+      </div>
     </div>
   );
 };
