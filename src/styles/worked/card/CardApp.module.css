@@ -1,6 +1,7 @@
 .card {
   position: relative;
-  width: 600px;
+  width: 100%;
+  max-width: 600px; /* Se adapta hasta 600px en pantallas grandes */
   background: white;
   border-radius: 12px;
   padding: 16px;
@@ -9,17 +10,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: none; /* Se elimina el efecto de transformacion */
+  transition: none; /* Se elimina el efecto de transformación */
+  margin: auto; /* Centra la tarjeta horizontalmente */
 }
 
 .cardImage {
-  width: 600px;
-  height: 360px;
+  width: 100%;
+  height: auto; /* Ajusta el alto proporcionalmente */
   object-fit: cover;
   border-radius: 8px;
 }
 
-/* Se elimina el overlay; el botón se posiciona de forma absoluta */
+/* Botón posicionado de forma absoluta */
 .cardButtonContainer {
   position: absolute;
   bottom: 16px;
@@ -46,4 +48,14 @@
 
 .cardButton:hover {
   background-color: #e68900;
+}
+
+/* Media query para dispositivos muy pequeños */
+@media (max-width: 480px) {
+  .card {
+    padding: 12px;
+  }
+  .cardButton {
+    padding: 6px 12px;
+  }
 }

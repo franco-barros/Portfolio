@@ -22,10 +22,10 @@ const BackendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
   const speed = 50;
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // 🔄 Duplicamos los proyectos y los dejamos en su orden original para backend
+  // Duplicamos los proyectos y los dejamos en su orden original para backend
   const items = useMemo(() => [...projects, ...projects], [projects]);
 
-  // 🚀 Animación en sentido contrario (derecha a izquierda)
+  // Animación en sentido contrario (derecha a izquierda)
   const startAnimation = useCallback(() => {
     if (carouselRef.current) {
       const fullWidth = carouselRef.current.scrollWidth / 2;
@@ -43,12 +43,32 @@ const BackendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
     }
   }, [controls, speed]);
 
+  // Detiene la animación y limpia el timeout
+  const stopAnimation = useCallback(() => {
+    controls.stop();
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = null;
+    }
+  }, [controls]);
+
+  // Reanuda la animación después de 2000ms de inactividad
+  const resumeAnimation = useCallback(() => {
+    stopAnimation();
+    scrollTimeoutRef.current = setTimeout(() => {
+      startAnimation();
+    }, 2000);
+  }, [startAnimation, stopAnimation]);
+
   useEffect(() => {
     startAnimation();
-    return () => controls.stop();
+    return () => {
+      controls.stop();
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    };
   }, [startAnimation, controls]);
 
-  // 🖱️ Manejo del scroll manual
+  // Manejo del scroll manual mediante rueda del mouse
   useEffect(() => {
     const element = carouselRef.current;
     if (!element) return;
@@ -56,10 +76,13 @@ const BackendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
     const wheelHandler = (e: WheelEvent) => {
       e.preventDefault();
       controls.stop();
-      x.set(x.get() + e.deltaY); // 🔄 Invertimos la dirección del scroll manual
+      // Sumamos deltaY para desplazar manualmente en sentido inverso
+      x.set(x.get() + e.deltaY);
 
       if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-      scrollTimeoutRef.current = setTimeout(() => startAnimation(), 2000);
+      scrollTimeoutRef.current = setTimeout(() => {
+        startAnimation();
+      }, 2000);
     };
 
     element.addEventListener("wheel", wheelHandler, { passive: false });
@@ -84,6 +107,8 @@ const BackendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
         onMouseLeave={() => {
           if (!scrollTimeoutRef.current) startAnimation();
         }}
+        onDragStart={() => stopAnimation()}
+        onDragEnd={() => resumeAnimation()}
       >
         {items.map((project, index) => (
           <motion.div

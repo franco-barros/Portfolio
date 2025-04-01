@@ -32,3 +32,20 @@
   justify-content: center;
   align-items: center;
 }
+
+/* Media query para dispositivos con pantallas pequeñas */
+@media (max-width: 480px) {
+  .verticalCarouselWrapper,
+  .carousel,
+  .itemVertical {
+    height: auto; /* Se ajusta dinámicamente al contenido */
+  }
+
+  .verticalCarouselWrapper {
+    padding: 10px 0;
+  }
+
+  .cardContainer {
+    gap: 10px; /* Reduce el espacio entre elementos en móviles */
+  }
+}

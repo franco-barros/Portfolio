@@ -1,6 +1,6 @@
 .projectsSection {
   position: relative;
-  padding: 2rem 4rem;
+  padding: 2rem;
   background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(8px);
   color: var(--foreground);
@@ -9,7 +9,6 @@
   z-index: 5;
 }
 
-/* Si ya tienes la clase .globalTitle en tu CSS global, úsala sólo para el título principal */
 .mainProjectsTitle {
   font-size: 2rem;
   margin-bottom: 1.5rem;
@@ -25,4 +24,42 @@
 .carouselContainer {
   width: 100%;
   margin-bottom: 2rem;
+}
+
+/* Media queries para pantallas medianas */
+@media (max-width: 768px) {
+  .projectsSection {
+    padding: 1.5rem;
+  }
+
+  .mainProjectsTitle {
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .categorySubtitle {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 480px) {
+  .projectsSection {
+    padding: 1rem;
+  }
+
+  .mainProjectsTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .categorySubtitle {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .carouselContainer {
+    margin-bottom: 1.5rem;
+  }
 }

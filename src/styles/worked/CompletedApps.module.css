@@ -1,7 +1,20 @@
 .appsSection {
   width: 100%;
-  height: 600px; /* Altura fija que encaje con el tamaño de tus cards */
+  min-height: 400px; /* Altura mínima para mantener estructura en pantallas pequeñas */
+  height: auto; /* Se ajusta automáticamente */
   padding: 1rem;
   box-sizing: border-box;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se acomoden en varias filas */
+  justify-content: center;
+  gap: 1rem; /* Espacio entre elementos */
+}
+
+/* Media query para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .appsSection {
+    flex-direction: column; /* Acomoda los elementos en una sola columna */
+    min-height: auto; /* Elimina la altura mínima fija */
+  }
 }

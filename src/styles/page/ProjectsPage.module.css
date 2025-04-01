@@ -1,0 +1,29 @@
+.pageContainer {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 100px auto 0; /* Se añade un margen superior de 100px, ajusta este valor según el tamaño del navbar */
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.description {
+  margin-top: 1rem;
+  text-align: justify;
+}
+
+.technologies {
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.technologiesSpan {
+  font-weight: normal;
+}

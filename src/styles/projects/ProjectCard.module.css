@@ -110,3 +110,51 @@
   text-decoration: none;
   display: inline-block;
 }
+
+/* Media queries para hacerlo responsive */
+
+/* Ajustes para pantallas medianas */
+@media (max-width: 768px) {
+  .projectCard {
+    width: 280px;
+    height: 160px;
+  }
+
+  .projectTitle {
+    font-size: 1.2rem;
+  }
+
+  .techItem {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+
+  .projectLink {
+    font-size: 0.75rem;
+    padding: 5px 8px;
+  }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+  .projectCard {
+    width: 100%;
+    max-width: 280px; /* Más pequeña en mobile */
+    height: auto;
+    aspect-ratio: 350 / 200; /* Reduce la altura un poco más */
+  }
+
+  .projectTitle {
+    font-size: 1.1rem;
+  }
+
+  .techItem {
+    font-size: 0.6rem;
+    padding: 2px 5px;
+  }
+
+  .projectLink {
+    font-size: 0.7rem;
+    padding: 4px 7px;
+  }
+}

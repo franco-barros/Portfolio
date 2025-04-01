@@ -5,7 +5,7 @@
   backdrop-filter: blur(8px);
   color: var(--foreground);
   text-align: left;
-  /* Altura fija para la sección */
+  /* Altura fija para pantallas grandes */
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,16 +14,32 @@
   z-index: 5;
 }
 
+/* En móviles, en lugar de forzar 100vh, se adapta a la cantidad de contenido */
+@media (max-width: 768px) {
+  .workedSection {
+    height: auto;
+    padding: 1.5rem;
+  }
+}
+
 .workedLayout {
   display: grid;
-  /* Dos columnas, cada una ocupando el 50% del ancho */
+  /* Dos columnas, cada una ocupando el 50% del ancho en pantallas grandes */
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   width: 100%;
-  /* Ocupar el espacio restante en la sección */
+  /* Permite que el layout ocupe el espacio restante */
   flex: 1;
   align-self: stretch;
   align-items: stretch;
+}
+
+/* En móviles se apilan las columnas */
+@media (max-width: 768px) {
+  .workedLayout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .columnWrapper {
@@ -33,24 +49,24 @@
   overflow-y: hidden;
 }
 
-/* Clase común (opcional) para secciones de igual tamaño */
+/* Sección de igual tamaño para cada componente */
 .equalSection {
   width: 100%;
-  /* En vez de forzar 100vh, permitimos que el contenido determine la altura */
-  min-height: 100vh; /* Opcional: si deseas que ocupe al menos el alto de la pantalla */
-  /* Eliminamos max-height: 100vh; para evitar recortes */
+  /* Para pantallas grandes, ocupa al menos el alto de la ventana */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alineamos desde el inicio, de modo que el título queda visible arriba */
+  justify-content: flex-start;
   align-items: center;
   padding: 1rem;
   box-sizing: border-box;
-  overflow: visible; /* Para que nada se corte */
+  overflow: visible;
 }
 
+/* En móviles, se permite que la altura se ajuste al contenido */
 @media (max-width: 768px) {
-  .workedLayout {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .equalSection {
+    min-height: auto;
+    padding: 1rem;
   }
 }

@@ -1,6 +1,7 @@
 .card {
   width: 100%; /* Se adapta al contenedor */
-  height: 392px; /* Altura fija para que coincida con la appcompleted */
+  max-width: 600px; /* Limita el ancho en pantallas grandes */
+  height: 300px; /* Altura reducida */
   background: white;
   border-radius: 12px;
   padding: 16px;
@@ -10,6 +11,7 @@
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease;
+  margin: auto; /* Centra la card en su contenedor */
 }
 
 .card p {
@@ -44,4 +46,28 @@
   margin-top: 5px;
   font-size: 1rem;
   color: #fbc02d;
+}
+
+/* Media query para dispositivos pequeños */
+@media (max-width: 480px) {
+  .card {
+    height: auto; /* Se ajusta automáticamente en móviles */
+    padding: 12px;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  .footer {
+    margin-top: 5px;
+  }
+
+  .footer a {
+    font-size: 0.9rem;
+  }
+
+  .rating {
+    font-size: 0.9rem;
+  }
 }

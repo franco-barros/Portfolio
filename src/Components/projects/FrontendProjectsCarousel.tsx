@@ -19,20 +19,21 @@ const FrontendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
   const controls = useAnimation();
   const carouselRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
-  const speed = 50;
+  const speed = 50; // Velocidad del scroll infinito
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // 🔄 Duplicamos los proyectos para que el carrusel sea infinito
+  // Duplicamos los proyectos para lograr el efecto infinito y, para el frontend, invertimos el orden
   const items = useMemo(() => {
     const reversed = [...projects].reverse();
-    return [...reversed, ...reversed]; // Duplicación para scroll infinito
+    return [...reversed, ...reversed];
   }, [projects]);
 
-  // 🚀 Función para iniciar la animación continua del carrusel
+  // Función para iniciar la animación infinita: desde -fullWidth hasta 0
   const startAnimation = useCallback(() => {
     if (carouselRef.current) {
       const fullWidth = carouselRef.current.scrollWidth / 2;
       const duration = fullWidth / speed;
+      // Posición inicial para lograr el scroll infinito
       controls.set({ x: -fullWidth });
       controls.start({
         x: 0,
@@ -46,12 +47,33 @@ const FrontendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
     }
   }, [controls, speed]);
 
+  // Detiene la animación y limpia el timeout
+  const stopAnimation = useCallback(() => {
+    controls.stop();
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = null;
+    }
+  }, [controls]);
+
+  // Reanuda la animación luego de 2000ms de inactividad
+  const resumeAnimation = useCallback(() => {
+    stopAnimation();
+    scrollTimeoutRef.current = setTimeout(() => {
+      startAnimation();
+    }, 2000);
+  }, [startAnimation, stopAnimation]);
+
+  // Iniciar la animación al montar el componente
   useEffect(() => {
     startAnimation();
-    return () => controls.stop();
+    return () => {
+      controls.stop();
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    };
   }, [startAnimation, controls]);
 
-  // 🖱️ Manejo del scroll manual para pausar y reanudar
+  // Manejo del scroll manual con el mouse wheel (para web y mobile con rueda)
   useEffect(() => {
     const element = carouselRef.current;
     if (!element) return;
@@ -59,10 +81,13 @@ const FrontendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
     const wheelHandler = (e: WheelEvent) => {
       e.preventDefault();
       controls.stop();
-      x.set(x.get() - e.deltaY);
+      // Ajustamos la posición manualmente; al sumar deltaY se acerca a 0 (movimiento hacia la derecha)
+      x.set(x.get() + e.deltaY);
 
       if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-      scrollTimeoutRef.current = setTimeout(() => startAnimation(), 2000);
+      scrollTimeoutRef.current = setTimeout(() => {
+        startAnimation();
+      }, 2000);
     };
 
     element.addEventListener("wheel", wheelHandler, { passive: false });
@@ -80,13 +105,11 @@ const FrontendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
         style={{ x }}
         animate={controls}
         initial={false}
-        drag="x"
-        dragElastic={0.1}
+        drag="x" // Habilita el arrastre (drag) para interacción táctil
+        dragElastic={0.2}
         whileTap={{ cursor: "grabbing" }}
-        onMouseEnter={() => controls.stop()}
-        onMouseLeave={() => {
-          if (!scrollTimeoutRef.current) startAnimation();
-        }}
+        onDragStart={() => stopAnimation()}
+        onDragEnd={() => resumeAnimation()}
       >
         {items.map((project, index) => (
           <motion.div

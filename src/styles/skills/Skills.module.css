@@ -41,7 +41,6 @@
   box-sizing: border-box; /* Altura fija para que coincida con el carousel */
 }
 
-/* Nuevos colores para cada categoría */
 .frontend {
   background-color: rgba(160, 160, 160, 0.8);
   color: white;
@@ -87,5 +86,15 @@
   }
   .skillsList {
     align-items: center;
+  }
+}
+
+/* Asegurar mismo ancho en mobile */
+@media (max-width: 480px) {
+  .skillsList,
+  .skillCarouselContainer {
+    max-width: 280px; /* 📏 Misma anchura en mobile */
+    height: 200px; /* 📏 Misma altura */
+    padding: 0.8rem;
   }
 }

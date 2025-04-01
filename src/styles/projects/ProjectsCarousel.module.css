@@ -7,10 +7,32 @@
 
 .carousel {
   display: flex;
-  gap: 20px; /* Espacio entre las cards */
+  gap: 20px;
 }
 
 .carouselItem {
   flex: 0 0 auto;
-  width: auto; /* Se ajusta al tamaño de la tarjeta */
+  width: auto;
+}
+
+/* Media queries para dispositivos medianos */
+@media (max-width: 768px) {
+  .carouselWrapper {
+    padding: 15px 0;
+  }
+
+  .carousel {
+    gap: 15px;
+  }
+}
+
+/* Media queries para dispositivos pequeños */
+@media (max-width: 480px) {
+  .carouselWrapper {
+    padding: 10px 0;
+  }
+
+  .carousel {
+    gap: 10px;
+  }
 }
