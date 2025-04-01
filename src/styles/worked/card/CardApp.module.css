@@ -1,7 +1,7 @@
 .card {
   position: relative;
   width: 100%;
-  max-width: 600px; /* Se adapta hasta 600px en pantallas grandes */
+  max-width: 600px;
   background: white;
   border-radius: 12px;
   padding: 16px;
@@ -10,18 +10,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: none; /* Se elimina el efecto de transformación */
-  margin: auto; /* Centra la tarjeta horizontalmente */
+  transition: none;
+  margin: auto;
 }
 
 .cardImage {
   width: 100%;
-  height: auto; /* Ajusta el alto proporcionalmente */
+  height: auto;
   object-fit: cover;
   border-radius: 8px;
 }
 
-/* Botón posicionado de forma absoluta */
 .cardButtonContainer {
   position: absolute;
   bottom: 16px;
@@ -31,7 +30,6 @@
   transition: opacity 0.3s ease;
 }
 
-/* Al hacer hover en la card, aparece el botón */
 .card:hover .cardButtonContainer {
   opacity: 1;
 }

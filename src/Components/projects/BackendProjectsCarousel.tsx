@@ -22,10 +22,10 @@ const BackendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
   const speed = 50;
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Duplicamos los proyectos y los dejamos en su orden original para backend
+  // Duplicamos los proyectos
   const items = useMemo(() => [...projects, ...projects], [projects]);
 
-  // Animación en sentido contrario (derecha a izquierda)
+  // Comienza la animacion en sentido contrario
   const startAnimation = useCallback(() => {
     if (carouselRef.current) {
       const fullWidth = carouselRef.current.scrollWidth / 2;
@@ -76,7 +76,6 @@ const BackendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
     const wheelHandler = (e: WheelEvent) => {
       e.preventDefault();
       controls.stop();
-      // Sumamos deltaY para desplazar manualmente en sentido inverso
       x.set(x.get() + e.deltaY);
 
       if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);

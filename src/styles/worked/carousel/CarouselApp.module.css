@@ -2,7 +2,7 @@
   overflow: hidden;
   width: 100%;
   position: relative;
-  height: 392px; /* Mantiene altura fija en pantallas grandes */
+  height: 392px; /*Altura fija en pantallas grandes */
   padding: 20px 0;
 }
 
@@ -31,11 +31,11 @@
 /* Media query para dispositivos con pantallas pequeñas */
 @media (max-width: 480px) {
   .verticalCarouselWrapper {
-    height: auto; /* Se ajusta dinámicamente en móviles */
+    height: auto;
     padding: 10px 0;
   }
 
   .itemVertical {
-    height: auto; /* Permite que cada ítem se ajuste al contenido */
+    height: auto;
   }
 }

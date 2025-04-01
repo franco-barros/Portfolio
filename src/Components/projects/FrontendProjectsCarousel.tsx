@@ -22,7 +22,7 @@ const FrontendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
   const speed = 50; // Velocidad del scroll infinito
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Duplicamos los proyectos para lograr el efecto infinito y, para el frontend, invertimos el orden
+  // Duplicamos los proyectos para lograr el efecto infinito
   const items = useMemo(() => {
     const reversed = [...projects].reverse();
     return [...reversed, ...reversed];
@@ -56,7 +56,6 @@ const FrontendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
     }
   }, [controls]);
 
-  // Reanuda la animación luego de 2000ms de inactividad
   const resumeAnimation = useCallback(() => {
     stopAnimation();
     scrollTimeoutRef.current = setTimeout(() => {
@@ -81,7 +80,6 @@ const FrontendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
     const wheelHandler = (e: WheelEvent) => {
       e.preventDefault();
       controls.stop();
-      // Ajustamos la posición manualmente; al sumar deltaY se acerca a 0 (movimiento hacia la derecha)
       x.set(x.get() + e.deltaY);
 
       if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
@@ -110,6 +108,9 @@ const FrontendProjectsCarousel: React.FC<CarouselProps> = ({ projects }) => {
         whileTap={{ cursor: "grabbing" }}
         onDragStart={() => stopAnimation()}
         onDragEnd={() => resumeAnimation()}
+        // Agregamos estos eventos para detener y reanudar la animación en hover
+        onMouseEnter={() => stopAnimation()}
+        onMouseLeave={() => resumeAnimation()}
       >
         {items.map((project, index) => (
           <motion.div

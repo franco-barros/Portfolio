@@ -24,9 +24,9 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  max-width: 100%; /* Se asegura de que no sobrepase el tamaño de la card */
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 15px; /* Ajusta el espaciado interno para evitar desbordes */
+  padding: 0 15px;
   box-sizing: border-box;
 }
 
@@ -41,7 +41,7 @@
   color: var(--foreground);
   box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
-  box-sizing: border-box; /* Evita que el padding afecte el ancho */
+  box-sizing: border-box;
 }
 
 .inputField:focus,
@@ -86,6 +86,6 @@
   }
 
   .contactForm {
-    padding: 0 10px; /* Reduce un poco el padding en pantallas pequeñas */
+    padding: 0 10px;
   }
 }

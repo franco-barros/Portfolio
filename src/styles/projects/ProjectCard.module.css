@@ -19,7 +19,6 @@
   object-fit: cover;
 }
 
-/* Overlay que cubre la tarjeta */
 .overlay {
   position: absolute;
   top: 0;
@@ -32,7 +31,6 @@
   justify-content: space-between;
 }
 
-/* Contenido siempre visible: solo el título */
 .infoAlways {
   padding: 10px;
   color: #fff;
@@ -43,7 +41,6 @@
   margin: 0;
 }
 
-/* Lista de tecnologías sin fondo ni animación general */
 .techList {
   list-style: none;
   padding: 0;
@@ -53,20 +50,18 @@
   gap: 5px;
 }
 
-/* Cada item de tecnología: inicialmente oculto, con borde redondeado y fondo para resaltar */
 .techItem {
-  background: #ff5722; /* Puedes cambiar este color por el que prefieras o asignarlo dinámicamente */
+  background: #ff5722;
   color: #fff;
   font-size: 0.75rem;
   padding: 4px 8px;
-  border-radius: 12px; /* Borde redondeado */
+  border-radius: 12px;
 
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Efecto de aparición secuencial para cada tecnología */
 .projectCard:hover .techItem {
   opacity: 1;
   transform: translateY(0);
@@ -88,7 +83,6 @@
   transition-delay: 0.5s;
 }
 
-/* Botón "View Project": oculto por defecto */
 .viewButton {
   padding: 10px;
   text-align: center;
@@ -96,7 +90,6 @@
   transition: opacity 0.3s ease;
 }
 
-/* Al hacer hover, aparece el botón */
 .projectCard:hover .viewButton {
   opacity: 1;
 }
@@ -110,8 +103,6 @@
   text-decoration: none;
   display: inline-block;
 }
-
-/* Media queries para hacerlo responsive */
 
 /* Ajustes para pantallas medianas */
 @media (max-width: 768px) {
@@ -139,9 +130,9 @@
 @media (max-width: 480px) {
   .projectCard {
     width: 100%;
-    max-width: 280px; /* Más pequeña en mobile */
+    max-width: 280px;
     height: auto;
-    aspect-ratio: 350 / 200; /* Reduce la altura un poco más */
+    aspect-ratio: 350 / 200;
   }
 
   .projectTitle {

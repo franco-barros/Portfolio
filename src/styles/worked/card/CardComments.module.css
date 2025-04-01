@@ -1,7 +1,7 @@
 .card {
-  width: 100%; /* Se adapta al contenedor */
-  max-width: 600px; /* Limita el ancho en pantallas grandes */
-  height: 300px; /* Altura reducida */
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
   background: white;
   border-radius: 12px;
   padding: 16px;
@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease;
-  margin: auto; /* Centra la card en su contenedor */
+  margin: auto;
 }
 
 .card p {
@@ -51,7 +51,7 @@
 /* Media query para dispositivos pequeños */
 @media (max-width: 480px) {
   .card {
-    height: auto; /* Se ajusta automáticamente en móviles */
+    height: auto;
     padding: 12px;
   }
 

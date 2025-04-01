@@ -82,7 +82,7 @@ const AppsCarousel = <T,>({
           {items.map((item, index) => (
             <div
               key={index}
-              ref={index === 0 ? cardRef : null} // Asignamos la ref solo a la primera card para medir su altura
+              ref={index === 0 ? cardRef : null}
               className={styles.itemVertical}
             >
               {renderItem(item, index)}

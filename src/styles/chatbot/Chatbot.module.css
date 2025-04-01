@@ -1,7 +1,7 @@
 .chatbotContainer {
   position: fixed;
   right: 20px;
-  bottom: 80px; /* Se deja espacio para el botón flotante */
+  bottom: 80px;
   z-index: 1000;
   width: 320px;
   max-width: 90%;
@@ -12,14 +12,12 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Contenedor de input y botón */
 .chatContent {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* Input de usuario */
 .input {
   flex: 1;
   padding: 0.5rem;
@@ -28,7 +26,6 @@
   font-size: 1rem;
 }
 
-/* Botón de enviar */
 .sendButton {
   padding: 0.5rem 1rem;
   background-color: var(--accent-color);
@@ -43,7 +40,6 @@
   background-color: darken(var(--accent-color), 10%);
 }
 
-/* Botón flotante */
 .floatingButton {
   position: fixed;
   right: 20px;

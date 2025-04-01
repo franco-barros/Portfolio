@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: center;
   padding: 6px;
-  /* Se integra dentro del navbar, sin posición fija */
   cursor: pointer;
   border: none;
   background: none;
@@ -34,17 +33,14 @@
   color: var(--foreground);
 }
 
-/* En modo light, el activo (activeLight) se muestra en amarillo */
 :global(html:not(.dark)) .activeLight {
   color: #f59e0b !important;
 }
 
-/* En modo dark, el activo (activeDark) se muestra en morado */
 :global(html.dark) .activeDark {
   color: #4f46e5;
 }
 
-/* Icono inactivo: menor opacidad */
 .inactiveIcon {
   color: var(--foreground);
   opacity: 0.5;

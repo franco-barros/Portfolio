@@ -3,7 +3,7 @@
   overflow: hidden;
 }
 
-/* Efecto desktop: capa que sigue al mouse */
+/* Efecto desktop */
 .desktopEffect {
   position: fixed;
   top: 0;
@@ -19,7 +19,7 @@
 .sphereContainer {
   position: fixed;
   top: 40%;
-  left: 29%; /* Ajustado a la izquierda */
+  left: 29%;
   width: 0;
   height: 0;
   transform: translate(-50%, -50%);
@@ -35,20 +35,11 @@
   animation-duration: 12s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
-  /* Todas las esferas serán de 40vw de ancho y alto */
   width: 40vw;
   height: 40vw;
 }
 
 /* Animaciones para transformar la disposición */
-
-/*
-    Las posiciones están definidas en vw (viewport width) respecto al contenedor central.
-    Usamos 3 etapas:
-    - 0% y 100%: disposición circular (usando ángulos 45°, 135°, 225° y 315°)
-    - 33%: cuadrado (esquinas: top-left, top-right, bottom-right y bottom-left)
-    - 66%: rombo (lado superior, derecho, inferior y izquierdo)
-  */
 
 /* Esfera 1 */
 @keyframes sphereOnePath {
@@ -114,7 +105,7 @@
   }
 }
 
-/* Asignamos las animaciones a cada esfera */
+/*Animaciones a cada esfera */
 .sphereOne {
   animation-name: sphereOnePath;
 }

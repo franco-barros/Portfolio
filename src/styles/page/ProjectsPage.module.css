@@ -1,29 +1,38 @@
 .pageContainer {
   padding: 2rem;
   max-width: 800px;
-  margin: 100px auto 0; /* Se añade un margen superior de 100px, ajusta este valor según el tamaño del navbar */
+  margin: 100px auto 0;
 }
 
-.title {
-  text-align: center;
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   margin-bottom: 1rem;
 }
 
-.imageContainer {
-  display: flex;
-  justify-content: center;
+.pageTitle {
+  text-align: center;
+  font-size: 1.8rem;
 }
 
-.description {
-  margin-top: 1rem;
-  text-align: justify;
+.backButton {
+  position: absolute;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.technologies {
-  font-weight: bold;
-  margin-top: 1rem;
-}
-
-.technologiesSpan {
-  font-weight: normal;
+.backButton:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
 }

@@ -14,13 +14,11 @@
   margin-bottom: 1.5rem;
 }
 
-/* Nuevo estilo para los subtítulos de cada categoría */
 .categorySubtitle {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
-/* Contenedor para cada carrusel */
 .carouselContainer {
   width: 100%;
   margin-bottom: 2rem;

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem; /* Ajusta el margen según lo requieras */
+  margin-top: 1rem;
 }
 
 .phrase {

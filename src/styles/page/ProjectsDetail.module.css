@@ -1,8 +1,12 @@
 .detailsContainer {
-  padding: 16px;
+  background: white;
+  padding: 24px;
   text-align: center;
   margin: 16px auto;
   max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
 }
 
 .title {
@@ -13,13 +17,14 @@
 
 .description {
   font-size: 1rem;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   color: #555;
 }
 
 .technologies {
   font-size: 1rem;
   color: #007bff;
+  margin-top: 12px;
 }
 
 .label {
@@ -28,12 +33,20 @@
 }
 
 .techList {
-  flex: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  border-radius: 8px;
+}
+
+.techList span {
+  background-color: #f0f4ff;
+  color: #0056b3;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid #b3d4fc;
 }

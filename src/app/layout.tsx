@@ -30,7 +30,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="relative z-20">
               <Navbar />
               {/* <ChatbotModal /> */}
-              <WhatsAppButton /> {/* Botón de WhatsApp */}
+              <WhatsAppButton />
               <main className="layerContent">{children}</main>
               <Footer className="layerFooter" />
             </div>

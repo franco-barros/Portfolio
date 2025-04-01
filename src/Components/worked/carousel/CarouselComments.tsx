@@ -60,7 +60,6 @@ const CommentsCarousel = <T,>({
     return () => container.removeEventListener("wheel", handleWheel);
   }, [items.length]);
 
-  // Gap que se ha definido en el CSS (en este ejemplo 12px)
   const gap = 15;
   const effectiveCardHeight = cardHeight || 392;
   const animateProp = { y: -activeIndex * (effectiveCardHeight + gap) };

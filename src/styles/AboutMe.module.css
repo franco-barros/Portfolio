@@ -1,8 +1,7 @@
-/* AboutSection.module.css */
 .aboutSection {
   position: relative;
   padding: 6rem 2rem;
-  background: var(--navbar-scrolled-bg); /* Mismo fondo del navbar */
+  background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(8px);
   color: var(--foreground);
   display: flex;
@@ -11,14 +10,14 @@
   justify-content: center;
   gap: 3rem;
   overflow: visible;
-  z-index: 5; /* Puede ajustarse según la estructura global */
+  z-index: 5;
 }
 
 .textContainer {
   flex: 1;
   max-width: 600px;
   text-align: left;
-  z-index: 20; /* Mantiene el contenido por encima del efecto */
+  z-index: 20;
 }
 
 .paragraph {

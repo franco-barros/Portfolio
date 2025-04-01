@@ -6,7 +6,7 @@ import Hero from "../Components/hero";
 import AboutMe from "../Components/aboutme";
 import Projects from "../Components/projects";
 import Skills from "../Components/skills";
-import WorkedSection from "../Components/worked"; // Importa el componente WorkedSection
+import WorkedSection from "../Components/worked";
 import Service from "../Components/service";
 import ContactMe from "../Components/utils/contactme";
 

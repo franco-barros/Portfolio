@@ -3,7 +3,7 @@
   margin-left: calc(50% - 50vw);
   padding: 2rem;
   text-align: center;
-  background: rgba(0, 0, 0, 0.8); /* Fondo más opaco para el footer */
+  background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
   transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
   color: var(--foreground);
@@ -17,10 +17,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: -1; /* Coloca la capa de fondo detrás del contenido */
+  z-index: -1;
 }
 
-/* Íconos en el footer */
 .iconContainer {
   display: flex;
   justify-content: center;

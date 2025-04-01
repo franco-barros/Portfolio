@@ -1,17 +1,17 @@
 .navbar {
   position: fixed;
-  top: 10px; /* Para desktop */
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%; /* Ancho para apreciar bordes redondeados */
-  max-width: 1200px; /* Ancho máximo */
+  width: 90%;
+  max-width: 1200px;
   height: 60px;
   background: transparent;
   transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
   display: flex;
   align-items: center;
   z-index: 1001;
-  border-radius: 50px; /* Bordes redondeados */
+  border-radius: 50px;
   padding: 0.3rem 0.8rem;
   backdrop-filter: blur(8px);
 }
@@ -91,8 +91,8 @@
     padding: 0.25rem 0.6rem;
   }
   .navbar {
-    top: 0; /* Desliza desde arriba */
-    height: 50px; /* Altura reducida para mobile */
+    top: 0;
+    height: 50px;
     animation: slideDown 0.5s ease forwards;
   }
 }

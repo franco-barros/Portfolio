@@ -38,7 +38,7 @@
   .verticalCarouselWrapper,
   .carousel,
   .itemVertical {
-    height: auto; /* Se ajusta dinámicamente al contenido */
+    height: auto;
   }
 
   .verticalCarouselWrapper {
@@ -46,6 +46,6 @@
   }
 
   .cardContainer {
-    gap: 10px; /* Reduce el espacio entre elementos en móviles */
+    gap: 10px;
   }
 }

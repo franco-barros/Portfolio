@@ -5,7 +5,6 @@
   backdrop-filter: blur(8px);
   color: var(--foreground);
   text-align: left;
-  /* Altura fija para pantallas grandes */
   height: 100vh;
   display: flex;
   flex-direction: column;

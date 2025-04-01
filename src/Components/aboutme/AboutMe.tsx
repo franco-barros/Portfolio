@@ -19,7 +19,6 @@ const AboutMe: React.FC = () => {
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <h2 className="globalTitle">About Me</h2>
-        {/* Aquí se agrega el componente de frases animadas */}
         <AnimatedPhrases />
         <p className={styles.paragraph}>
           I am a full-stack developer committed to innovation and continuous

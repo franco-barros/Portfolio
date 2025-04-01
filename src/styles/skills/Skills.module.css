@@ -25,7 +25,6 @@
   gap: 2rem;
 }
 
-/* Caja para la lista de tecnologías con altura fija */
 .skillsList {
   flex: 1;
   display: flex;
@@ -38,7 +37,7 @@
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(4px);
   height: 250px;
-  box-sizing: border-box; /* Altura fija para que coincida con el carousel */
+  box-sizing: border-box;
 }
 
 .frontend {
@@ -57,10 +56,9 @@
   justify-content: center;
   align-items: center;
   min-width: 300px;
-  height: 250px; /* Altura fija para igualar a la skillsList */
+  height: 250px;
 }
 
-/* Alineación horizontal para ícono y texto en cada tag */
 .skillTag {
   display: flex;
   align-items: center;
@@ -93,8 +91,8 @@
 @media (max-width: 480px) {
   .skillsList,
   .skillCarouselContainer {
-    max-width: 280px; /* 📏 Misma anchura en mobile */
-    height: 200px; /* 📏 Misma altura */
+    max-width: 280px;
+    height: 200px;
     padding: 0.8rem;
   }
 }

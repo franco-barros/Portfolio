@@ -1,34 +1,37 @@
-import Image from "next/image";
-import styles from "../../../styles/page/ProjectCard.module.css";
+import React from "react";
+import ProjectMedia from "./ProjectsMedia";
+import styles from "../../../styles/page/projectscard/ProjectCard.module.css";
 
 interface ProjectCardProps {
   projectsId: string;
+  images: string[];
+  video?: string;
+  subtitle?: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ projectsId }) => {
-  const imagePath = `/assets/images/${projectsId}.png`;
-  const videoPath = `/assets/videos/${projectsId}.mp4`;
-
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  projectsId,
+  images,
+  video,
+  subtitle,
+}) => {
   return (
     <div className={styles.card}>
-      <Image
-        src={imagePath}
-        alt={projectsId}
-        width={600}
-        height={400}
-        className={styles.image}
-      />
-      <video className={styles.video} controls>
-        <source src={videoPath} type="video/mp4" />
-        <track
-          src={`/assets/subtitles/${projectsId}.vtt`}
-          kind="captions"
-          srcLang="en"
-          label="English Captions"
-          default
+      {images.length > 0 ? (
+        <ProjectMedia
+          projectsId={projectsId}
+          images={images}
+          video={video}
+          subtitle={subtitle}
         />
-        Your browser does not support the video tag.
-      </video>
+      ) : (
+        <p className={styles.noMedia}>No hay imágenes disponibles.</p>
+      )}
+
+      {/* Aquí se puede agregar otros elementos de la tarjeta, como título y descripción */}
+      <div className={styles.cardDetails}>
+        <h3 className={styles.title}>{projectsId}</h3>
+      </div>
     </div>
   );
 };
