@@ -1,6 +1,6 @@
 .pageContainer {
   padding: 2rem;
-  max-width: 800px;
+  max-width: 900px;
   margin: 100px auto 0;
 }
 
@@ -15,24 +15,4 @@
 .pageTitle {
   text-align: center;
   font-size: 1.8rem;
-}
-
-.backButton {
-  position: absolute;
-  left: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.backButton:hover {
-  background-color: #0056b3;
-  transform: scale(1.02);
 }

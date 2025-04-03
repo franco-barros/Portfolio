@@ -17,8 +17,8 @@ export default async function ProjectPage({
 
   return (
     <div className={styles.pageContainer}>
+      <BackButton />
       <div className={styles.headerContainer}>
-        <BackButton />
         <h1 className={styles.pageTitle}>{project.title}</h1>
       </div>
 

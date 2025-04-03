@@ -3,57 +3,28 @@ import React from "react";
 import styles from "../../styles/projects/ProjectsOverview.module.css";
 import FrontendProjectsCarousel from "./FrontendProjectsCarousel";
 import BackendProjectsCarousel from "./BackendProjectsCarousel";
+import { projectsData, ProjectData } from "../../data/ProjectsData";
 
-const projectData = [
-  {
-    projectsId: "market-multiverse",
-    title: "Market Multiverse",
-    image: "/assets/images/MultiverMarket.png",
-    technologies: ["React", "CSS Modules", "Next.js"],
-    category: "frontend",
-  },
-  {
-    projectsId: "listify",
-    title: "Listify",
-    image: "/assets/images/Listify.png",
-    technologies: ["React", "CSS Modules", "JavaScript"],
-    category: "frontend",
-  },
-  {
-    projectsId: "taskflow",
-    title: "TaskFlow",
-    image: "/assets/images/MultiverMarket.png",
-    technologies: ["React", "Redux", "Firebase"],
-    category: "frontend",
-  },
-  {
-    projectsId: "devconnect",
-    title: "DevConnect",
-    image: "/assets/images/MultiverMarket.png",
-    technologies: ["Java", "Node.js", "MongoDB"],
-    category: "backend",
-  },
-  {
-    projectsId: "cryptostats",
-    title: "CryptoStats",
-    image: "/assets/images/MultiverMarket.png",
-    technologies: ["Java", "Spring Boot", "Node.js"],
-    category: "backend",
-  },
-  {
-    projectsId: "weathernow",
-    title: "WeatherNow",
-    image: "/assets/images/MultiverMarket.png",
-    technologies: ["Express", "Nest.js", "OpenWeather API"],
-    category: "backend",
-  },
-];
+const projectsArray = Object.values(projectsData).map(
+  (project: ProjectData) => ({
+    projectsId: project.id,
+    ...project,
+    category: [
+      "market-multiverse",
+      "listify",
+      "lt-estetica-vehicular-landing-page",
+    ].includes(project.id)
+      ? "frontend"
+      : "backend",
+    image: `/assets/images/${project.images[0]}`,
+  })
+);
 
 const ProjectsOverview = () => {
-  const frontendProjects = projectData.filter(
+  const frontendProjects = projectsArray.filter(
     (proj) => proj.category === "frontend"
   );
-  const backendProjects = projectData.filter(
+  const backendProjects = projectsArray.filter(
     (proj) => proj.category === "backend"
   );
 

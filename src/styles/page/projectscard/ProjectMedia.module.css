@@ -1,28 +1,40 @@
 .mediaContainer {
   display: flex;
+  flex-direction: column;
   gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   width: 100%;
+  align-items: center;
 }
 
 .images {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
   justify-content: center;
 }
 
+/* Estilo para cada imagen */
 .image {
-  width: 300px;
+  flex: 1 1 300px;
+  max-width: 300px;
   height: auto;
   border-radius: 12px;
   object-fit: cover;
 }
 
+/* Estilo para el video */
 .video {
-  width: 500px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 500px;
   border-radius: 12px;
+  align-self: center;
+}
+
+@media (max-width: 480px) {
+  .image {
+    max-width: 100%;
+  }
+  .video {
+    max-width: 100%;
+  }
 }

@@ -18,6 +18,16 @@
   --foreground: var(--text-light);
   --navbar-scrolled-bg: rgba(255, 255, 255, 0.6);
 
+  /* Colores del botón */
+  --button-bg-light: #6a0dad;
+  --button-bg-dark: #d4af37;
+  --button-text-light: #ffffff;
+  --button-text-dark: #000000;
+
+  /* Asignación global */
+  --button-bg: var(--button-bg-light);
+  --button-text: var(--button-text-light);
+
   /* Fondos para Tarjetas de Proyecto */
   --project-card-bg-light: rgba(255, 255, 255, 0.9);
   --project-card-bg-dark: rgba(20, 20, 20, 0.9);
@@ -60,6 +70,37 @@ html.dark {
   --mobile-menu-bg: #121212;
   --accent-color: #d4af37;
   --secondary-bg: #ececec;
+
+  --button-bg: var(--button-bg-dark);
+  --button-text: var(--button-text-dark);
+
+  /* Botón de GitHub */
+  --github-bg-light: #24292e;
+  --github-bg-dark: #d4af37;
+  --github-hover-light: #0366d6;
+  --github-hover-dark: #b8860b;
+
+  /* Tarjetas de tecnologías */
+  --tech-bg-light: #f0f4ff;
+  --tech-border-light: #b3d4fc;
+  --tech-text-light: #0056b3;
+
+  --tech-bg-dark: #222;
+  --tech-border-dark: #444;
+  --tech-text-dark: #d4af37;
+
+  /* Asignación dinámica github button */
+  --github-bg: var(--github-bg-light);
+  --github-hover: var(--github-hover-light);
+  --tech-bg: var(--tech-bg-light);
+  --tech-border: var(--tech-border-light);
+  --tech-text: var(--tech-text-light);
+
+  --github-bg: var(--github-bg-dark);
+  --github-hover: var(--github-hover-dark);
+  --tech-bg: var(--tech-bg-dark);
+  --tech-border: var(--tech-border-dark);
+  --tech-text: var(--tech-text-dark);
 
   /* Variables para MouseEffect en modo dark */
   --mouse-effect-color1: rgba(212, 175, 55, 0.62);

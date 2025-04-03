@@ -1,27 +1,47 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+} from "react";
 import { motion } from "framer-motion";
 import styles from "../../../styles/worked/carousel/CarouselApp.module.css";
+import { useAutoPlay } from "../../../hooks/useAppAutoPlay";
+import { useWheelScrollImmediate } from "../../../hooks/useWheelScrollDebounced";
 
-interface AppsCarouselProps<T> {
+interface CarouselItem {
+  name: string;
+}
+
+interface AppsCarouselProps<T extends CarouselItem> {
   items: T[];
   renderItem: (item: T, index: number) => React.ReactNode;
   interval?: number;
+  syncIndex?: number;
+  setSyncIndex?: (index: number) => void;
 }
 
-const AppsCarousel = <T,>({
+const AppsCarousel = <T extends CarouselItem>({
   items,
   renderItem,
   interval = 2000,
+  syncIndex,
+  setSyncIndex,
 }: AppsCarouselProps<T>) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  // Ref para medir el alto real de la card (todas deben tener el mismo tamaño)
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [cardHeight, setCardHeight] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState(syncIndex ?? 0);
+  const [cardHeight, setCardHeight] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [isTouching, setIsTouching] = useState(false);
 
-  // Mide el alto de la card y actualiza el valor en cada resize
+  const containerRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const startY = useRef(0);
+
+  const originalLength = items.length;
+  const duplicatedItems = useMemo(() => [...items, ...items], [items]);
+
   useEffect(() => {
     const handleResize = () => {
       if (cardRef.current) {
@@ -33,38 +53,74 @@ const AppsCarousel = <T,>({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Auto-play que se pausa al pasar el cursor sobre el carousel
+  const handleWheelUpdate = useCallback(
+    (delta: number) => {
+      const newIndex = (activeIndex + delta + originalLength) % originalLength;
+      setActiveIndex(newIndex);
+      if (setSyncIndex) setSyncIndex(newIndex);
+    },
+    [activeIndex, originalLength, setSyncIndex]
+  );
+
+  const isUserScrolling = useWheelScrollImmediate(
+    containerRef,
+    handleWheelUpdate,
+    300
+  );
+
+  const direction = 1; // o -1, según lo que desees
+
+  useAutoPlay(
+    activeIndex,
+    (value: React.SetStateAction<number>) => {
+      setActiveIndex((prev) => {
+        const newValue =
+          typeof value === "function"
+            ? (value as (prev: number) => number)(prev)
+            : value;
+        if (setSyncIndex) setSyncIndex(newValue);
+        return newValue;
+      });
+    },
+    interval,
+    isHovered,
+    isUserScrolling || isTouching,
+    direction
+  );
+
   useEffect(() => {
-    if (!isHovered) {
-      const timer = setInterval(() => {
-        setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
-      }, interval);
-      return () => clearInterval(timer);
+    if (syncIndex !== undefined && syncIndex !== activeIndex) {
+      setActiveIndex(syncIndex);
     }
-  }, [items.length, interval, isHovered]);
+  }, [syncIndex, activeIndex]);
 
-  // Permite scroll manual con el ratón cuando el usuario está sobre el carousel
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      if (e.deltaY > 0) {
-        setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
-      } else if (e.deltaY < 0) {
-        setActiveIndex(
-          (prevIndex) => (prevIndex - 1 + items.length) % items.length
-        );
-      }
-    };
-    container.addEventListener("wheel", handleWheel, { passive: false });
-    return () => container.removeEventListener("wheel", handleWheel);
-  }, [items.length]);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    startY.current = e.touches[0].clientY;
+    setIsTouching(true);
+  };
 
-  // En caso de no haber medido la altura, usamos un valor por defecto (392px en este ejemplo)
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const deltaY = e.touches[0].clientY - startY.current;
+
+    if (Math.abs(deltaY) > 30) {
+      const newIndex =
+        deltaY < 0
+          ? (activeIndex + 1) % originalLength
+          : (activeIndex - 1 + originalLength) % originalLength;
+      setActiveIndex(newIndex);
+      if (setSyncIndex) setSyncIndex(newIndex);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setTimeout(() => setIsTouching(false), 300);
+  };
+
   const effectiveCardHeight = cardHeight || 392;
-  // Calcula el desplazamiento vertical para la animación
-  const animateProp = { y: -activeIndex * effectiveCardHeight };
+  const animateProp = {
+    y: -activeIndex * effectiveCardHeight,
+    transition: { duration: 1.5, ease: "easeInOut" },
+  };
 
   return (
     <div className={styles.verticalCarouselWrapper}>
@@ -72,20 +128,20 @@ const AppsCarousel = <T,>({
         ref={containerRef}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
         className={styles.carousel}
+        aria-label="Aplicaciones en carrusel"
       >
-        <motion.div
-          animate={animateProp}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className={styles.cardContainer}
-        >
-          {items.map((item, index) => (
+        <motion.div animate={animateProp} className={styles.cardContainer}>
+          {duplicatedItems.map((item, index) => (
             <div
-              key={index}
+              key={`${index}-${item.name}`}
               ref={index === 0 ? cardRef : null}
               className={styles.itemVertical}
             >
-              {renderItem(item, index)}
+              {renderItem(item, index % originalLength)}
             </div>
           ))}
         </motion.div>

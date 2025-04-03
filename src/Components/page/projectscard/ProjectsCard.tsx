@@ -29,9 +29,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       )}
 
       {/* Aquí se puede agregar otros elementos de la tarjeta, como título y descripción */}
-      <div className={styles.cardDetails}>
-        <h3 className={styles.title}>{projectsId}</h3>
-      </div>
+      <div className={styles.cardDetails}></div>
     </div>
   );
 };

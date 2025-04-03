@@ -1,8 +1,7 @@
 .verticalCarouselWrapper {
-  overflow: hidden;
   width: 100%;
   position: relative;
-  height: 392px; /*Altura fija en pantallas grandes */
+  height: 392px;
   padding: 20px 0;
 }
 
@@ -12,30 +11,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .cardContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
-  transition: transform 0.5s ease-in-out;
+  margin: 0;
+  padding: 0;
 }
 
 .itemVertical {
   flex-shrink: 0;
   width: 100%;
-  height: 100%;
-}
-
-/* Media query para dispositivos con pantallas pequeñas */
-@media (max-width: 480px) {
-  .verticalCarouselWrapper {
-    height: auto;
-    padding: 10px 0;
-  }
-
-  .itemVertical {
-    height: auto;
-  }
+  height: 392px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

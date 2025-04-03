@@ -26,6 +26,19 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
           {project.technologies.join(", ")}
         </span>
       </div>
+
+      {project.github && (
+        <div className={styles.githubLink}>
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.githubButton}
+          >
+            Ver en GitHub
+          </a>
+        </div>
+      )}
     </div>
   );
 };

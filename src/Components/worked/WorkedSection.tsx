@@ -9,9 +9,12 @@ const WorkedSection = () => {
     <section id="worked" className={styles.workedSection}>
       <h2 className="globalTitle">Apps and Collaborators</h2>
       <div className={styles.workedLayout}>
+        {/* Carrusel de Aplicaciones */}
         <div className={`${styles.columnWrapper} ${styles.equalSection}`}>
           <CompletedApps />
         </div>
+
+        {/* Carrusel de Comentarios */}
         <div className={`${styles.columnWrapper} ${styles.equalSection}`}>
           <CollaboratorComments />
         </div>

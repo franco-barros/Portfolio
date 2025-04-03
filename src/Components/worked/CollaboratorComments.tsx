@@ -1,33 +1,23 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import InfiniteCarousel from "./carousel/CarouselComments";
 import Card from "./card/CardComments";
-
-const commentsData = [
-  {
-    name: "Juan Pérez",
-    comment:
-      "Working with you has been an enriching and professional experience. I appreciate your dedication and attention to detail. It has truly made a difference in our projects.",
-    linkedin: "https://www.linkedin.com/in/juanperez",
-    rating: 5,
-  },
-  {
-    name: "María García",
-    comment:
-      "Your solutions are always creative and effective. Highly recommended! The innovative approach you bring to each project has set a new standard for quality and efficiency.",
-    linkedin: "https://www.linkedin.com/in/mariagarcia",
-    rating: 4,
-  },
-  {
-    name: "Carlos López",
-    comment:
-      "A great team player, always willing to help and contribute ideas. Your collaborative spirit and reliability have been key to our success.",
-    linkedin: "https://www.linkedin.com/in/carloslopez",
-    rating: 4,
-  },
-];
+import { useCommentsAutoPlay } from "../../hooks/useCommentsAutoPlay";
+import { commentsData } from "../../data/CommentsData";
 
 const CollaboratorComments = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const interval = 2000;
+
+  // Se usa el hook para controlar el autoplay, usando la cantidad de comentarios de la data importada
+  useCommentsAutoPlay(
+    activeIndex,
+    setActiveIndex,
+    interval,
+    false,
+    commentsData.length
+  );
+
   return (
     <div className="commentsSection">
       <h3>Collaborator Comments</h3>

@@ -27,7 +27,6 @@ const CompletedApps: React.FC = () => {
       <h3>Completed Apps</h3>
       <AppsCarousel
         items={appsData}
-        interval={2000} // Cada app se muestra 2 segundos
         renderItem={(app) => <CardApp title={app.name} image={app.image} />}
       />
     </div>

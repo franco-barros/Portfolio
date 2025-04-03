@@ -2,6 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import styles from "../../../styles/worked/carousel/CarouselComments.module.css";
+import { useCommentsAutoPlay } from "../../../hooks/useCommentsAutoPlay";
 
 interface CommentsCarouselProps<T> {
   items: T[];
@@ -20,7 +21,6 @@ const CommentsCarousel = <T,>({
   const [cardHeight, setCardHeight] = useState<number>(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Mide el alto de la tarjeta y actualiza el valor en cada resize
   useEffect(() => {
     const handleResize = () => {
       if (cardRef.current) {
@@ -32,17 +32,14 @@ const CommentsCarousel = <T,>({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Auto-play que se pausa al pasar el cursor sobre el carousel
-  useEffect(() => {
-    if (!isHovered) {
-      const timer = setInterval(() => {
-        setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
-      }, interval);
-      return () => clearInterval(timer);
-    }
-  }, [items.length, interval, isHovered]);
+  useCommentsAutoPlay(
+    activeIndex,
+    setActiveIndex,
+    interval,
+    isHovered,
+    items.length
+  );
 
-  // Scroll manual con el ratón
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -80,7 +77,7 @@ const CommentsCarousel = <T,>({
           {items.map((item, index) => (
             <div
               key={index}
-              ref={index === 0 ? cardRef : null} // Se asigna la ref solo a la primera tarjeta
+              ref={index === 0 ? cardRef : null}
               className={styles.itemVertical}
             >
               {renderItem(item, index)}
