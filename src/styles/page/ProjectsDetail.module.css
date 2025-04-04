@@ -1,5 +1,5 @@
 .detailsContainer {
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--card-bg);
   padding: 22px;
   text-align: left;
   margin: 14px auto;
@@ -7,33 +7,48 @@
   max-width: 900px;
   border-radius: 12px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e0e0e0;
+  border: 1px solid transparent;
 }
 
 .title {
+  font-family: "Poppins", sans-serif;
   font-size: 2rem;
   margin-bottom: 12px;
-  color: #333;
+  color: var(--foreground);
 }
 
 .description {
+  font-family: "Poppins", sans-serif;
   font-size: 1rem;
   margin-bottom: 16px;
-  color: #555;
+  color: var(--description-color);
 }
 
 .technologies {
   font-size: 1rem;
-  color: #007bff;
+  color: var(--accent-color);
   margin-top: 12px;
 }
 
 .label {
   font-weight: bold;
   margin-right: 4px;
+  color: var(--technologies-label-color);
 }
 
-.techList span {
+/* Nueva clase para alinear ícono y texto */
+.techList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   background-color: var(--tech-bg);
   color: var(--tech-text);
   padding: 10px 20px;
@@ -44,7 +59,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.techList span:hover {
+.techItem:hover {
   transform: scale(1.05);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -57,7 +72,7 @@
 .githubButton {
   display: inline-block;
   background-color: var(--github-bg);
-  color: white;
+  color: var(--button-text);
   padding: 12px 24px;
   border-radius: 50px;
   text-decoration: none;
@@ -66,6 +81,32 @@
 }
 
 .githubButton:hover {
+  background-color: var(--github-hover);
+  transform: scale(1.05);
+}
+
+.linksWrapper {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.linkButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--github-bg);
+  color: var(--button-text);
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.linkButton:hover {
   background-color: var(--github-hover);
   transform: scale(1.05);
 }

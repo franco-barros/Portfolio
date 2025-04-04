@@ -1,5 +1,6 @@
 import styles from "../../../styles/page/ProjectsDetail.module.css";
 import { projectsData } from "../../../data/ProjectsData";
+import deviconMap from "../../../data/DevIconsMap";
 
 export interface ProjectDetailsProps {
   projectsId: string;
@@ -21,22 +22,42 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
       {showTitle && <h1 className={styles.title}>{project.title}</h1>}
       <p className={styles.description}>{project.description}</p>
       <div className={styles.technologies}>
-        <span className={styles.label}>Tecnologías:</span>
-        <span className={styles.techList}>
-          {project.technologies.join(", ")}
-        </span>
+        <span className={styles.label}></span>
+        <div className={styles.techList}>
+          {project.technologies.map((tech) => {
+            const iconClass = deviconMap[tech] || "default-icon-class";
+            return (
+              <div key={tech} className={styles.techItem}>
+                <i className={iconClass}></i>
+                <span>{tech}</span>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      {project.github && (
-        <div className={styles.githubLink}>
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.githubButton}
-          >
-            Ver en GitHub
-          </a>
+      {(project.github || project.deploy) && (
+        <div className={styles.linksWrapper}>
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.linkButton}
+            >
+              <i className="devicon-github-original"></i> GitHub
+            </a>
+          )}
+          {project.deploy && (
+            <a
+              href={project.deploy}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.linkButton}
+            >
+              <i className="fas fa-link"></i> Look online
+            </a>
+          )}
         </div>
       )}
     </div>

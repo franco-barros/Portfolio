@@ -34,20 +34,20 @@
   align-items: center;
   padding: 1rem;
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--skills-list-bg, rgba(255, 255, 255, 0.1));
   backdrop-filter: blur(4px);
   height: 250px;
   box-sizing: border-box;
 }
 
 .frontend {
-  background-color: rgba(160, 160, 160, 0.8);
-  color: white;
+  background-color: var(--frontend-bg, rgba(160, 160, 160, 0.8));
+  color: var(--frontend-text, white);
 }
 
 .backend {
-  background-color: rgba(199, 226, 154, 0.8);
-  color: white;
+  background-color: var(--backend-bg, rgba(199, 226, 154, 0.8));
+  color: var(--backend-text, white);
 }
 
 .skillCarouselContainer {
@@ -68,7 +68,9 @@
   font-weight: bold;
   white-space: nowrap;
   transition: transform 0.2s ease, background-color 0.2s ease;
-  border: 1px solid var(--accent-color);
+  border: 2px solid var(--global-title-bg-light); /* Usando la variable global */
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--foreground);
 }
 
 .skillTag:hover {

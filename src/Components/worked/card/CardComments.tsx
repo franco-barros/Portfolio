@@ -17,12 +17,16 @@ const CardComment: React.FC<CardCommentProps> = ({
 }) => {
   return (
     <div className={styles.card}>
-      <p>{description}</p>
-      <div className={styles.footer}>
-        <a href={footerLink} target="_blank" rel="noopener noreferrer">
-          {footer}
-        </a>
-        <span className={styles.rating}>⭐ {rating}</span>
+      <div className={styles.content}>
+        <p>{description}</p>
+        <div className={styles.footer}>
+          <a href={footerLink} target="_blank" rel="noopener noreferrer">
+            {footer}
+          </a>
+          <span className={styles.rating}>
+            <span className={styles.star}>⭐</span> {rating}
+          </span>
+        </div>
       </div>
     </div>
   );

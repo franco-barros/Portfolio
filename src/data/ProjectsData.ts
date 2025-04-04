@@ -9,6 +9,7 @@ export interface ProjectData {
   video?: string;
   subtitle?: string;
   github?: string;
+  deploy?: string;
 }
 
 export const projectsData: Record<string, ProjectData> = {
@@ -17,19 +18,21 @@ export const projectsData: Record<string, ProjectData> = {
     id: "market-multiverse",
     title: "Market Multiverse",
     description: projectDescriptions["market-multiverse"],
-    technologies: ["React", "CSS Modules", "Next.js"],
+    technologies: ["React", "CSS", "Next.js"],
     images: ["MultiverMarket.png", "MultiverseMarket2.png"],
     video: "market-multiverse.mp4",
     subtitle: "market-multiverse.vtt",
     github: "https://github.com/franco-barros/Market-multiverse",
+    deploy: "https://mi-proyecto.vercel.app",
   },
   listify: {
     id: "listify",
     title: "Listify",
     description: projectDescriptions["listify"],
-    technologies: ["React", "CSS Modules", "JavaScript"],
+    technologies: ["React", "CSS", "JavaScript"],
     images: ["Listify.png", "Listify2.png", "Listify3.png", "Listify4.png"],
     github: "https://github.com/franco-barros/Listify",
+    deploy: "https://mi-proyecto.vercel.app",
   },
   "lt-estetica-vehicular-landing-page": {
     id: "lt-estetica-vehicular-landing-page",
@@ -38,6 +41,7 @@ export const projectsData: Record<string, ProjectData> = {
     technologies: ["React", "Next.js", "Typescript"],
     images: ["AutomotiveLanding1.png", "AutomotiveLanding2.png"],
     github: "https://github.com/franco-barros/LT-estetica",
+    deploy: "https://mi-proyecto.vercel.app",
   },
   // Proyectos Backend
   "express-api": {

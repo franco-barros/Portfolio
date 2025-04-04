@@ -1,8 +1,11 @@
 .phraseContainer {
+  font-family: "Poppins", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 1rem;
+  height: 50px;
+  overflow: hidden;
 }
 
 .phrase {
@@ -11,10 +14,131 @@
   opacity: 1;
 }
 
-.fadeIn {
-  opacity: 1;
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .phrase {
+    font-size: 1.2rem; /* Reducir el tamaño de fuente en dispositivos móviles */
+  }
 }
 
-.fadeOut {
+@media (max-width: 480px) {
+  .phrase {
+    font-size: 1rem;
+  }
+}
+
+/* Contenedor para animación letra por letra */
+.letterContainer {
+  font-size: 1.5rem;
+  text-align: center;
+  white-space: pre;
+}
+
+.letterContainer span {
+  display: inline-block;
   opacity: 0;
+  margin-right: 2px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .letterContainer {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .letterContainer {
+    font-size: 1rem;
+  }
+}
+
+/* Animación vertical: dropIn (de arriba hacia abajo) */
+.dropIn {
+  animation: dropIn 0.5s forwards;
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación horizontal: slideInLtr (de izquierda a derecha) */
+.slideInLtr {
+  animation: slideInLtr 0.5s forwards;
+}
+
+@keyframes slideInLtr {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animación horizontal: slideInRtl (de derecha a izquierda) */
+.slideInRtl {
+  animation: slideInRtl 0.5s forwards;
+}
+
+@keyframes slideInRtl {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Ajustar animaciones en móviles para que sean más suaves */
+@media (max-width: 768px) {
+  @keyframes dropIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLtr {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRtl {
+    from {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+/* Efecto de desvanecimiento */
+.fadeOutLetter {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }

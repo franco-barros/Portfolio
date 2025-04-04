@@ -1,4 +1,5 @@
 @import url("/devicon/devicon.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 :root {
   /* Colores base */
@@ -18,20 +19,42 @@
   --foreground: var(--text-light);
   --navbar-scrolled-bg: rgba(255, 255, 255, 0.6);
 
-  /* Colores del botón */
-  --button-bg-light: #6a0dad;
-  --button-bg-dark: #d4af37;
-  --button-text-light: #ffffff;
-  --button-text-dark: #000000;
+  /* Variables para el botón de GitHub */
+  --github-bg-light: #24292e;
+  --github-bg-dark: #d4af37;
+  --github-hover-light: #0366d6;
+  --github-hover-dark: #b8860b;
 
   /* Asignación global */
-  --button-bg: var(--button-bg-light);
-  --button-text: var(--button-text-light);
+  --github-bg: var(--github-bg-light);
+  --github-hover: var(--github-hover-light);
+
+  /* Variables para las tarjetas de tecnologías */
+  --tech-bg-light: #f0f4ff;
+  --tech-border-light: #b3d4fc;
+  --tech-text-light: #0056b3;
+  --tech-bg-dark: #222;
+  --tech-border-dark: #444;
+  --tech-text-dark: #d4af37;
+  --tech-bg: var(--tech-bg-light);
+  --tech-border: var(--tech-border-light);
+  --tech-text: var(--tech-text-light);
 
   /* Fondos para Tarjetas de Proyecto */
   --project-card-bg-light: rgba(255, 255, 255, 0.9);
   --project-card-bg-dark: rgba(20, 20, 20, 0.9);
   --project-card-bg: var(--project-card-bg-light);
+
+  /* Page */
+  /* Variables para los textos de descripción  */
+  --description-color-light: #000000;
+  --description-color: var(--description-color-light);
+  --technologies-label-color-light: #000000;
+  --technologies-label-color: var(--technologies-label-color-light);
+
+  /*Card page*/
+  --card-bg-light: rgba(255, 255, 255, 0.7);
+  --card-bg: var(--card-bg-light);
 
   /* Glow para Hover */
   --hover-glow: rgba(255, 255, 255, 0.8);
@@ -40,6 +63,11 @@
   --mouse-effect-color1: rgba(0, 0, 255, 0.62);
   --mouse-effect-color2: rgba(206, 10, 10, 0.62);
   --mouse-effect-color3: rgba(128, 0, 128, 0.62);
+
+  /* Asignación de bordes global */
+  --border-color: var(--border-light);
+  --border-light: #6a0dad; /* Morado */
+  --border-dark: #d4af37; /* Dorado */
 
   /* Variables para el título global */
   --global-title-bg-light: #6a0dad;
@@ -65,42 +93,26 @@ html.dark {
   --navbar-scrolled-bg: rgba(0, 0, 0, 0.6);
   --project-card-bg: var(--project-card-bg-dark);
 
-  --primary-bg: #1a1a1a;
-  --secondary-bg: #2a2a2a;
-  --mobile-menu-bg: #121212;
-  --accent-color: #d4af37;
-  --secondary-bg: #ececec;
+  /*Page*/
+  /* Variables para los textos en modo dark */
+  --description-color-dark: #ffffff;
+  --description-color: var(--description-color-dark);
+  --technologies-label-color-dark: #ffffff;
+  --technologies-label-color: var(--technologies-label-color-dark);
 
-  --button-bg: var(--button-bg-dark);
-  --button-text: var(--button-text-dark);
+  /* Fondo para tarjeta de page */
+  --card-bg-dark: rgba(20, 20, 20, 0.7);
+  --card-bg: var(--card-bg-dark);
 
-  /* Botón de GitHub */
-  --github-bg-light: #24292e;
-  --github-bg-dark: #d4af37;
-  --github-hover-light: #0366d6;
-  --github-hover-dark: #b8860b;
-
-  /* Tarjetas de tecnologías */
-  --tech-bg-light: #f0f4ff;
-  --tech-border-light: #b3d4fc;
-  --tech-text-light: #0056b3;
-
-  --tech-bg-dark: #222;
-  --tech-border-dark: #444;
-  --tech-text-dark: #d4af37;
-
-  /* Asignación dinámica github button */
-  --github-bg: var(--github-bg-light);
-  --github-hover: var(--github-hover-light);
-  --tech-bg: var(--tech-bg-light);
-  --tech-border: var(--tech-border-light);
-  --tech-text: var(--tech-text-light);
-
+  /* Asignación dinámica para GitHub y tecnologías en modo oscuro */
   --github-bg: var(--github-bg-dark);
   --github-hover: var(--github-hover-dark);
   --tech-bg: var(--tech-bg-dark);
   --tech-border: var(--tech-border-dark);
   --tech-text: var(--tech-text-dark);
+
+  /* Bordes de Skills */
+  --border-color: var(--border-dark);
 
   /* Variables para MouseEffect en modo dark */
   --mouse-effect-color1: rgba(212, 175, 55, 0.62);
