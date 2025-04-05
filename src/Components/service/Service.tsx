@@ -59,20 +59,51 @@ const servicesData = [
 ];
 
 const Services: React.FC = () => {
+  const handleScrollTo = (id: string) => {
+    const section = document.getElementById(id);
+    section?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleWhatsApp = () => {
+    window.open("https://wa.me/1234567890", "_blank"); // Reemplaza con tu número real
+  };
+
   return (
     <section id="services" className={styles.servicesSection}>
       <h2 className="globalTitle">Services</h2>
       <div className={styles.servicesContainer}>
-        {servicesData.map((service, index) => (
-          <ServiceCard
-            key={index}
-            title={service.title}
-            subtitle={service.subtitle}
-            description={service.description}
-            features={service.features}
-            cta={service.cta}
-          />
-        ))}
+        {servicesData.map((service, index) => {
+          let onClick;
+
+          switch (service.cta) {
+            case "Get a quote":
+              onClick = () => handleScrollTo("contact");
+              break;
+            case "Let’s talk":
+              onClick = handleWhatsApp;
+              break;
+            case "See portfolio":
+              onClick = () => handleScrollTo("projects");
+              break;
+            case "Explore solutions":
+              onClick = () => handleScrollTo("contact");
+              break;
+            default:
+              onClick = undefined;
+          }
+
+          return (
+            <ServiceCard
+              key={index}
+              title={service.title}
+              subtitle={service.subtitle}
+              description={service.description}
+              features={service.features}
+              cta={service.cta}
+              onClick={onClick}
+            />
+          );
+        })}
       </div>
     </section>
   );

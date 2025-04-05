@@ -70,9 +70,21 @@
 }
 
 .submitButton:hover {
-  background: #35eb25e5;
+  background: #6a0dad;
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 255, 0, 0.3);
+  box-shadow: 0 8px 20px rgba(68, 0, 255, 0.3);
+}
+
+.successMessage {
+  color: green;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.errorMessage {
+  color: red;
+  margin-top: 1rem;
+  font-weight: bold;
 }
 
 /* Responsividad */

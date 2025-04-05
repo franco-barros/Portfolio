@@ -6,7 +6,7 @@
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
   transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
-  color: var(--foreground);
+  color: whitesmoke;
   position: relative;
   z-index: 1001;
 }

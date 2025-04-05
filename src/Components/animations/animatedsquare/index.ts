@@ -1,1 +1,1 @@
-export { default } from "./AnimatedSquare";
+export { default } from "./AnimatedAbout";

@@ -25,7 +25,7 @@
 
 .serviceDescription {
   font-size: 1rem;
-  color: var(--secondary-text);
+  color: var(--foreground);
   margin-bottom: 15px;
 }
 
@@ -58,5 +58,5 @@
 }
 
 .ctaButton:hover {
-  background-color: #174ead;
+  background-color: #6a0dad;
 }

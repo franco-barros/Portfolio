@@ -19,8 +19,9 @@
 }
 
 .downloadButton:hover {
-  background: #35eb25e5;
+  background: #6a0dad;
   transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(68, 0, 255, 0.3);
 }
 
 .icon {

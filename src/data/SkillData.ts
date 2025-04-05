@@ -4,7 +4,7 @@ export const skillsData = [
   {
     name: "Node.js",
     category: "backend",
-    description: "I use Node.js to build scalable services.",
+    description: "I use Node.js to build scalable services Its good.",
     usage: "I use it to create robust REST APIs and microservices.",
     icon: deviconMap["Node.js"],
   },

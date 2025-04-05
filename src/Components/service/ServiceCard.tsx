@@ -9,6 +9,7 @@ interface ServiceCardProps {
   description: string;
   features?: string[];
   cta?: string;
+  onClick?: () => void;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -17,6 +18,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   description,
   features,
   cta,
+  onClick,
 }) => {
   return (
     <div className={styles.serviceCard}>
@@ -33,7 +35,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           ))}
         </ul>
       )}
-      {cta && <button className={styles.ctaButton}>{cta}</button>}
+      {cta && (
+        <button onClick={onClick} className={styles.ctaButton}>
+          {cta}
+        </button>
+      )}
     </div>
   );
 };

@@ -8,16 +8,27 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
   overflow: visible;
   z-index: 5;
+  flex-wrap: wrap;
 }
 
 .textContainer {
-  flex: 1;
-  max-width: 600px;
+  flex: 1 1 500px; /* Nuevo: más flexible y con mínimo deseado */
   text-align: left;
   z-index: 20;
+}
+
+.textCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  font-weight: bold;
+  margin: 1rem 0;
 }
 
 .paragraph {
@@ -27,11 +38,11 @@
 }
 
 .squareContainer {
-  flex: 1;
+  flex: 1 1 250px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 400px;
+  height: 250px;
   z-index: 20;
 }
 

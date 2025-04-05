@@ -20,9 +20,9 @@
   --navbar-scrolled-bg: rgba(255, 255, 255, 0.6);
 
   /* Variables para el botón de GitHub */
-  --github-bg-light: #24292e;
+  --github-bg-light: #4687c9;
   --github-bg-dark: #d4af37;
-  --github-hover-light: #0366d6;
+  --github-hover-light: #d67403;
   --github-hover-dark: #b8860b;
 
   /* Asignación global */
@@ -64,10 +64,10 @@
   --mouse-effect-color2: rgba(206, 10, 10, 0.62);
   --mouse-effect-color3: rgba(128, 0, 128, 0.62);
 
-  /* Asignación de bordes global */
-  --border-color: var(--border-light);
+  /* Bordes globales */
   --border-light: #6a0dad; /* Morado */
   --border-dark: #d4af37; /* Dorado */
+  --border-color: var(--border-light);
 
   /* Variables para el título global */
   --global-title-bg-light: #6a0dad;
