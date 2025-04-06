@@ -8,42 +8,51 @@ interface MouseEffectProps {
 }
 
 const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [mousePos, setMousePos] = useState({
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+  });
   const [scrollPos, setScrollPos] = useState(0);
-  const [docHeight, setDocHeight] = useState<number>(0);
+  const [docHeight, setDocHeight] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Set dimensiones y tipo de dispositivo al inicio y cuando resize
   useEffect(() => {
-    const updateDimensions = () => {
+    const updateLayout = () => {
       setDocHeight(document.documentElement.scrollHeight - window.innerHeight);
-      setIsMobile(window.innerWidth <= 768); // Umbral para mobile
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    const handleScroll = () => {
-      setScrollPos(window.scrollY);
-    };
+    updateLayout(); // llamada inicial
+    window.addEventListener("resize", updateLayout);
 
+    return () => window.removeEventListener("resize", updateLayout);
+  }, []);
+
+  // Scroll + mousemove handlers
+  useEffect(() => {
+    const handleScroll = () => setScrollPos(window.scrollY);
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
 
-    updateDimensions();
-    window.addEventListener("resize", updateDimensions);
     window.addEventListener("scroll", handleScroll);
     if (!isMobile) {
       window.addEventListener("mousemove", handleMouseMove);
     }
 
+    // Forzar una posición inicial para evitar visual vacío
+    setMousePos({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+
     return () => {
-      window.removeEventListener("resize", updateDimensions);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, [isMobile]);
 
-  if (docHeight === 0) return null; // Evita renderizados tempranos
+  if (docHeight === 0) return null;
 
-  // Dividir la página en tres secciones para elegir el color
+  // Selección del color según scroll
   const firstThird = docHeight / 3;
   const secondThird = (2 * docHeight) / 3;
   let chosenColor = "";
@@ -57,7 +66,6 @@ const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
 
   return (
     <div className={`${styles.container} ${className || ""}`}>
-      {/* Versión desktop: capa que sigue al mouse */}
       {!isMobile && (
         <div
           className={styles.desktopEffect}
@@ -67,33 +75,17 @@ const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
         />
       )}
 
-      {/* Versión mobile: contenedor con 4 esferas animadas */}
       {isMobile && (
         <div className={styles.sphereContainer}>
-          <div
-            className={`${styles.sphere} ${styles.sphereOne}`}
-            style={{
-              background: `radial-gradient(circle at center, ${chosenColor} 0%, transparent 70%)`,
-            }}
-          />
-          <div
-            className={`${styles.sphere} ${styles.sphereTwo}`}
-            style={{
-              background: `radial-gradient(circle at center, ${chosenColor} 0%, transparent 70%)`,
-            }}
-          />
-          <div
-            className={`${styles.sphere} ${styles.sphereThree}`}
-            style={{
-              background: `radial-gradient(circle at center, ${chosenColor} 0%, transparent 70%)`,
-            }}
-          />
-          <div
-            className={`${styles.sphere} ${styles.sphereFour}`}
-            style={{
-              background: `radial-gradient(circle at center, ${chosenColor} 0%, transparent 70%)`,
-            }}
-          />
+          {[1, 2, 3, 4].map((i) => (
+            <div
+              key={i}
+              className={`${styles.sphere} ${styles[`sphere${i}`]}`}
+              style={{
+                background: `radial-gradient(circle at center, ${chosenColor} 0%, transparent 70%)`,
+              }}
+            />
+          ))}
         </div>
       )}
 

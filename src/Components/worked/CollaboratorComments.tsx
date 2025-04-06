@@ -28,7 +28,6 @@ const CollaboratorComments = () => {
             description={comment.comment}
             footer={comment.name}
             footerLink={comment.linkedin}
-            rating={comment.rating}
           />
         )}
       />

@@ -76,21 +76,21 @@ const AnimatedMenuOverlay: React.FC<AnimatedMenuOverlayProps> = ({
           </button>
           <button
             onClick={() => {
-              scrollToSection("service");
-              handleClose();
-            }}
-            className={styles.menuItem}
-          >
-            Service
-          </button>
-          <button
-            onClick={() => {
               scrollToSection("worked");
               handleClose();
             }}
             className={styles.menuItem}
           >
             Apps and Collaborators
+          </button>
+          <button
+            onClick={() => {
+              scrollToSection("service");
+              handleClose();
+            }}
+            className={styles.menuItem}
+          >
+            Service
           </button>
           <button
             onClick={() => {

@@ -21,7 +21,6 @@
   pointer-events: none;
 }
 
-/* Contenedor principal con tres columnas */
 .heroContainer {
   position: relative;
   z-index: 20;
@@ -32,20 +31,6 @@
   align-items: flex-start;
 }
 
-/* Animación de flotación para columnas laterales */
-@keyframes floatUpDown {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-/* Columna izquierda: Animación */
 .leftColumn {
   flex: 1;
   display: flex;
@@ -53,10 +38,8 @@
   align-items: center;
   position: relative;
   top: 100px;
-  animation: floatUpDown 3s ease-in-out infinite;
 }
 
-/* Columna central: Contenido del hero */
 .centerColumn {
   flex: 2;
   text-align: center;
@@ -65,7 +48,6 @@
   top: -50px;
 }
 
-/* Columna derecha: Animación */
 .rightColumn {
   flex: 1;
   display: flex;
@@ -73,57 +55,19 @@
   align-items: center;
   position: relative;
   top: 170px;
-  animation: floatUpDown 3s ease-in-out infinite;
 }
 
-/* Animación para el título: Pop In desde arriba */
-@keyframes popIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px) scale(0.8);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(10px) scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Animación para la descripción: Pop In desde abajo */
-@keyframes popInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(0.8);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-10px) scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Estilos del título y descripción con la nueva animación */
 .title {
   font-size: 3rem;
   font-weight: bold;
   margin: 0;
-  animation: popIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 
 .description {
   font-size: 1.5rem;
   margin-top: 10px;
-  animation: popInUp 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-  animation-delay: 0.5s;
 }
 
-/* Botón "View Projects" */
 .ctaButton {
   margin-top: 20px;
   padding: 10px 20px;
@@ -142,29 +86,30 @@
   transform: scale(1.1);
 }
 
-/* Ajustes para la esfera animada */
 .animatedSphere {
   width: 100%;
   max-width: 300px;
 }
 
-/* Mobile adjustments para el hero */
+/* Responsive */
 @media (max-width: 768px) {
   .hero {
     padding-top: 60px;
   }
+
   .heroContainer {
     flex-direction: column;
     align-items: center;
   }
+
   .leftColumn,
   .centerColumn,
   .rightColumn {
     top: 0;
     flex: none;
     margin-bottom: 20px;
-    animation: none;
   }
+
   .centerColumn {
     text-align: center;
   }

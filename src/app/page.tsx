@@ -1,5 +1,6 @@
+// src/pages/HomePage.tsx
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Greeting from "../Components/animations/greeting/Greeting";
 import Hero from "../Components/hero";
@@ -11,10 +12,25 @@ import Service from "../Components/service";
 import ContactMe from "../Components/utils/contactme";
 
 const HomePage: React.FC = () => {
-  const [showGreeting, setShowGreeting] = useState(true);
+  const [showGreeting, setShowGreeting] = useState(false);
+
+  useEffect(() => {
+    const alreadyVisited = localStorage.getItem("alreadyVisited");
+    if (!alreadyVisited) {
+      setShowGreeting(true);
+    }
+  }, []);
 
   const handleGreetingComplete = () => {
+    localStorage.setItem("alreadyVisited", "true");
     setShowGreeting(false);
+  };
+
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -43,7 +59,7 @@ const HomePage: React.FC = () => {
       </AnimatePresence>
 
       <section id="home">
-        <Hero />
+        <Hero scrollToSection={scrollToSection} />
       </section>
       <section id="about">
         <AboutMe />

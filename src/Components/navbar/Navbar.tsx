@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation"; // Importamos el hook
 import AnimatedMenuOverlay from "../animations/animatedmenuoverlay";
 import ThemeToggle from "../utils/themetoggle/ThemeToggle";
 import styles from "../../styles/Navbar.module.css";
@@ -8,6 +9,10 @@ import { motion } from "framer-motion";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname(); // Obtenemos la ruta actual
+
+  // Detectamos si estamos en una página de proyecto
+  const isProjectPage = pathname.startsWith("/projects/");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,35 +47,37 @@ const Navbar = () => {
       transition={{ delay: 1, duration: 0.5 }}
     >
       <div className={styles.navContainer}>
-        {/* Logo del navbar */}
+        {/* Logo */}
         <div className={styles.logo}>Franco Barros</div>
 
-        {/* Botón de menú y toggle de tema */}
         <div className={styles.menuWrapper}>
-          <ThemeToggle /> {/* Agregando el botón de cambio de tema */}
-          {/* Botón de menú en escritorio */}
-          <button
-            className={styles.desktopMenuButton}
-            onClick={toggleMenu}
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-          >
-            Menu
-          </button>
-          {/* Botón de menú en móvil */}
-          <button
-            className={styles.mobileMenuButton}
-            onClick={toggleMenu}
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-          >
-            ☰
-          </button>
+          <ThemeToggle />
+          {/* Solo mostrar el menú si NO estamos en una página de proyecto */}
+          {!isProjectPage && (
+            <>
+              <button
+                className={styles.desktopMenuButton}
+                onClick={toggleMenu}
+                aria-expanded={menuOpen}
+                aria-label={menuOpen ? "Close menu" : "Open menu"}
+              >
+                Menu
+              </button>
+              <button
+                className={styles.mobileMenuButton}
+                onClick={toggleMenu}
+                aria-expanded={menuOpen}
+                aria-label={menuOpen ? "Close menu" : "Open menu"}
+              >
+                ☰
+              </button>
+            </>
+          )}
         </div>
       </div>
 
-      {/* Menú desplegable en mobile */}
-      {menuOpen && (
+      {/* Menú desplegable solo se muestra en la página principal */}
+      {menuOpen && !isProjectPage && (
         <AnimatedMenuOverlay
           onClose={() => setMenuOpen(false)}
           scrollToSection={scrollToSection}
