@@ -5,11 +5,13 @@ import BackButton from "../../../Components/page/backbutton";
 import { projectsData } from "../../../data/ProjectsData";
 import styles from "../../../styles/page/ProjectsPage.module.css";
 
-export default async function ProjectPage({
-  params,
-}: {
-  params: { projectsId: string };
-}) {
+interface ProjectPageProps {
+  readonly params: {
+    readonly projectsId: string;
+  };
+}
+
+export default async function ProjectPage({ params }: ProjectPageProps) {
   const { projectsId } = params;
   const project = projectsData[projectsId];
 
