@@ -8,53 +8,43 @@ interface MouseEffectProps {
 }
 
 const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
-  const [mousePos, setMousePos] = useState({
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2,
-  });
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [scrollPos, setScrollPos] = useState(0);
-  const [docHeight, setDocHeight] = useState(0);
+  const [docHeight, setDocHeight] = useState<number>(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Set dimensiones y tipo de dispositivo al inicio y cuando resize
   useEffect(() => {
-    const updateLayout = () => {
+    // Solo se ejecuta en el cliente
+    const updateDimensions = () => {
       setDocHeight(document.documentElement.scrollHeight - window.innerHeight);
       setIsMobile(window.innerWidth <= 768);
     };
 
-    updateLayout(); // llamada inicial
-    window.addEventListener("resize", updateLayout);
+    const handleScroll = () => {
+      setScrollPos(window.scrollY);
+    };
 
-    return () => window.removeEventListener("resize", updateLayout);
-  }, []);
-
-  // Scroll + mousemove handlers
-  useEffect(() => {
-    const handleScroll = () => setScrollPos(window.scrollY);
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
 
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
     window.addEventListener("scroll", handleScroll);
-    if (!isMobile) {
-      window.addEventListener("mousemove", handleMouseMove);
-    }
-
-    // Forzar una posición inicial para evitar visual vacío
-    setMousePos({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+    window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
+      window.removeEventListener("resize", updateDimensions);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [isMobile]);
+  }, []);
 
   if (docHeight === 0) return null;
 
-  // Selección del color según scroll
   const firstThird = docHeight / 3;
   const secondThird = (2 * docHeight) / 3;
+
   let chosenColor = "";
   if (scrollPos < firstThird) {
     chosenColor = "var(--mouse-effect-color1)";
@@ -77,10 +67,10 @@ const MouseEffect: React.FC<MouseEffectProps> = ({ children, className }) => {
 
       {isMobile && (
         <div className={styles.sphereContainer}>
-          {[1, 2, 3, 4].map((i) => (
+          {[1, 2, 3, 4].map((n) => (
             <div
-              key={i}
-              className={`${styles.sphere} ${styles[`sphere${i}`]}`}
+              key={n}
+              className={`${styles.sphere} ${styles[`sphere${n}`]}`}
               style={{
                 background: `radial-gradient(circle at center, ${chosenColor} 0%, transparent 70%)`,
               }}

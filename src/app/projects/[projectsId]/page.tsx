@@ -1,3 +1,4 @@
+// src/app/projects/[projectsId]/page.tsx
 import { notFound } from "next/navigation";
 import ProjectCard from "../../../Components/page/projectscard/ProjectsCard";
 import ProjectDetails from "../../../Components/page/projectdetails/ProjectDetails";
@@ -6,12 +7,12 @@ import { projectsData } from "../../../data/ProjectsData";
 import styles from "../../../styles/page/ProjectsPage.module.css";
 
 interface ProjectPageProps {
-  readonly params: {
-    readonly projectsId: string;
+  params: {
+    projectsId: string;
   };
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
+export default function ProjectPage({ params }: ProjectPageProps) {
   const { projectsId } = params;
   const project = projectsData[projectsId];
 
