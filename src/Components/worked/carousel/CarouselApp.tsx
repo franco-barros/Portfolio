@@ -1,121 +1,84 @@
 "use client";
-import React, {
-  useRef,
-  useState,
-  useMemo,
-  useCallback,
-  useEffect,
-} from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import styles from "../../../styles/worked/carousel/CarouselApp.module.css";
-import { useAutoPlay } from "../../../hooks/CarouselApp/useAppAutoPlay";
-import { useWheelScrollImmediate } from "../../../hooks/useWheelScrollDebounced";
-import { useCardHeight } from "../../../hooks/CarouselApp/useCardHeight";
 import { useTouchNavigation } from "../../../hooks/CarouselApp/useTouchNavigation";
+import { useCardHeight } from "../../../hooks/CarouselApp/useCardHeight";
 
-interface CarouselItem {
-  name: string;
-}
-
-interface AppsCarouselProps<T extends CarouselItem> {
+interface CompletedAppsCarouselProps<T> {
   items: T[];
   renderItem: (item: T, index: number) => React.ReactNode;
-  interval?: number;
-  syncIndex?: number;
-  setSyncIndex?: (index: number) => void;
+  activeIndex?: number;
+  setActiveIndex?: React.Dispatch<React.SetStateAction<number>>;
+  setIsPaused?: React.Dispatch<React.SetStateAction<boolean>>; // agregado
 }
 
-const AppsCarousel = <T extends CarouselItem>({
+const CompletedAppsCarousel = <T,>({
   items,
   renderItem,
-  interval = 2000,
-  syncIndex,
-  setSyncIndex,
-}: AppsCarouselProps<T>) => {
-  const [activeIndex, setActiveIndex] = useState(syncIndex ?? 0);
-  const [isHovered, setIsHovered] = useState(false);
+  activeIndex: externalIndex,
+  setActiveIndex: setExternalIndex,
+  setIsPaused, // agregado
+}: CompletedAppsCarouselProps<T>) => {
+  const [internalIndex, setInternalIndex] = useState(0);
+  const activeIndex = externalIndex ?? internalIndex;
+  const setActiveIndex = setExternalIndex ?? setInternalIndex;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-
-  const originalLength = items.length;
-  const duplicatedItems = useMemo(() => [...items, ...items], [items]);
-
   const cardHeight = useCardHeight(cardRef);
 
-  const { isTouching, handleTouchStart, handleTouchMove, handleTouchEnd } =
-    useTouchNavigation(activeIndex, originalLength, (newIndex) => {
-      setActiveIndex(newIndex);
-      if (setSyncIndex) setSyncIndex(newIndex);
-    });
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null); // para restaurar autoplay
 
-  const handleWheelUpdate = useCallback(
-    (delta: number) => {
-      const newIndex = (activeIndex + delta + originalLength) % originalLength;
-      setActiveIndex(newIndex);
-      if (setSyncIndex) setSyncIndex(newIndex);
-    },
-    [activeIndex, originalLength, setSyncIndex]
-  );
-
-  const isUserScrolling = useWheelScrollImmediate(
-    containerRef,
-    handleWheelUpdate,
-    300
-  );
-
-  const direction = 1;
-
-  useAutoPlay(
-    activeIndex,
-    (value: React.SetStateAction<number>) => {
-      setActiveIndex((prev) => {
-        const newValue =
-          typeof value === "function"
-            ? (value as (prev: number) => number)(prev)
-            : value;
-        if (setSyncIndex) setSyncIndex(newValue);
-        return newValue;
-      });
-    },
-    interval,
-    isHovered,
-    isUserScrolling || isTouching,
-    direction
-  );
+  useTouchNavigation(containerRef, setActiveIndex, items.length);
 
   useEffect(() => {
-    if (syncIndex !== undefined && syncIndex !== activeIndex) {
-      setActiveIndex(syncIndex);
-    }
-  }, [syncIndex, activeIndex]);
+    const container = containerRef.current;
+    if (!container) return;
 
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+
+      // Pausar autoplay temporalmente
+      setIsPaused?.(true);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => setIsPaused?.(false), 2000);
+
+      // Navegación
+      if (e.deltaY > 0) {
+        setActiveIndex((prev) => (prev + 1) % items.length);
+      } else {
+        setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
+      }
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: false });
+    return () => container.removeEventListener("wheel", handleWheel);
+  }, [items.length, setActiveIndex, setIsPaused]);
+
+  const gap = 15;
   const effectiveCardHeight = cardHeight || 392;
   const animateProp = {
-    y: -activeIndex * effectiveCardHeight,
-    transition: { duration: 1.5, ease: "easeInOut" },
+    y: -activeIndex * (effectiveCardHeight + gap),
+    transition: { duration: 0.5, ease: "easeInOut" },
   };
 
   return (
     <div className={styles.verticalCarouselWrapper}>
       <section
         ref={containerRef}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
         className={styles.carousel}
-        aria-label="Aplicaciones en carrusel"
+        onMouseEnter={() => setIsPaused?.(true)}
+        onMouseLeave={() => setIsPaused?.(false)}
       >
         <motion.div animate={animateProp} className={styles.cardContainer}>
-          {duplicatedItems.map((item, index) => (
+          {items.map((item, index) => (
             <div
-              key={`${index}-${item.name}`}
+              key={index}
               ref={index === 0 ? cardRef : null}
               className={styles.itemVertical}
             >
-              {renderItem(item, index % originalLength)}
+              {renderItem(item, index)}
             </div>
           ))}
         </motion.div>
@@ -124,4 +87,4 @@ const AppsCarousel = <T extends CarouselItem>({
   );
 };
 
-export default AppsCarousel;
+export default CompletedAppsCarousel;

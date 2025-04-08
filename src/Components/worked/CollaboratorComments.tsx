@@ -1,28 +1,28 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import InfiniteCarousel from "./carousel/CarouselComments";
 import Card from "./card/CardComments";
-import { useCommentsAutoPlay } from "../../hooks/useCommentsAutoPlay";
 import { commentsData } from "../../data/CommentsData";
 
-const CollaboratorComments = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const interval = 2000;
+interface Props {
+  activeIndex: number;
+  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
+  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>; // agregado
+}
 
-  // Se usa el hook para controlar el autoplay, usando la cantidad de comentarios de la data importada
-  useCommentsAutoPlay(
-    activeIndex,
-    setActiveIndex,
-    interval,
-    false,
-    commentsData.length
-  );
-
+const CollaboratorComments: React.FC<Props> = ({
+  activeIndex,
+  setActiveIndex,
+  setIsPaused, // agregado
+}) => {
   return (
     <div className="commentsSection">
       <h3>Collaborator Comments</h3>
       <InfiniteCarousel
         items={commentsData}
+        activeIndex={activeIndex}
+        setActiveIndex={setActiveIndex}
+        setIsPaused={setIsPaused} // agregado
         renderItem={(comment) => (
           <Card
             description={comment.comment}

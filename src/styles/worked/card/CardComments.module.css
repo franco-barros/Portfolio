@@ -17,6 +17,10 @@
   overflow: hidden;
   backdrop-filter: blur(5px);
   font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
 }
 
 @keyframes gradientShift {
@@ -33,7 +37,7 @@
 
 .content {
   position: relative;
-  z-index: 1; /* Contenido por encima del fondo */
+  z-index: 1;
 }
 
 .card p {
@@ -62,16 +66,16 @@
     height: auto;
     padding: 12px;
   }
+
   .card p {
     font-size: 0.9rem;
   }
+
   .footer {
     margin-top: 5px;
   }
+
   .footer a {
-    font-size: 0.9rem;
-  }
-  .rating {
     font-size: 0.9rem;
   }
 }

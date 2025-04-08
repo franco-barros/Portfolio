@@ -2,32 +2,30 @@
 import React from "react";
 import AppsCarousel from "./carousel/CarouselApp";
 import CardApp from "./card/CardApp";
+import { completedAppsData } from "../../data/CompletedAppsData";
 
-const appsData = [
-  {
-    name: "App 1",
-    description: "Brief description of App 1.",
-    image: "/assets/images/Listify2.png",
-  },
-  {
-    name: "App 2",
-    description: "Brief description of App 2.",
-    image: "/assets/images/Listify3.png",
-  },
-  {
-    name: "App 3",
-    description: "Brief description of App 3.",
-    image: "/assets/images/Listify2.png",
-  },
-];
+interface Props {
+  activeIndex: number;
+  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
+  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>; // agregado
+}
 
-const CompletedApps: React.FC = () => {
+const CompletedApps: React.FC<Props> = ({
+  activeIndex,
+  setActiveIndex,
+  setIsPaused, // agregado
+}) => {
   return (
     <div className="appsSection">
       <h3>Completed Apps</h3>
       <AppsCarousel
-        items={appsData}
-        renderItem={(app) => <CardApp title={app.name} image={app.image} />}
+        items={completedAppsData}
+        activeIndex={activeIndex}
+        setActiveIndex={setActiveIndex}
+        setIsPaused={setIsPaused} // agregado
+        renderItem={(app) => (
+          <CardApp title={app.name} image={app.image} link={app.link} />
+        )}
       />
     </div>
   );

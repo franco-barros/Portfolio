@@ -1,21 +1,42 @@
 "use client";
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 import styles from "../../../styles/worked/card/CardApp.module.css";
 
 interface CardAppProps {
   title: string;
   image: string;
-  onClick?: () => void;
+  link: string;
 }
 
-const CardApp: React.FC<CardAppProps> = ({ title, image, onClick }) => {
-  return (
-    <div className={styles.card} onClick={onClick}>
-      <img src={image} alt={title} className={styles.cardImage} />
+const CardApp: React.FC<CardAppProps> = ({ title, image, link }) => {
+  const cardContent = (
+    <div className={styles.card}>
+      <Image
+        src={image}
+        alt={title}
+        width={600}
+        height={400}
+        className={styles.cardImage}
+        quality={100}
+        loading="lazy"
+      />
       <div className={styles.cardButtonContainer}>
         <button className={styles.cardButton}>Ver app</button>
       </div>
     </div>
+  );
+
+  // Verificar si el enlace es externo
+  const isExternal = link.startsWith("http");
+
+  return isExternal ? (
+    <a href={link} target="_blank" rel="noopener noreferrer">
+      {cardContent}
+    </a>
+  ) : (
+    <Link href={link}>{cardContent}</Link>
   );
 };
 

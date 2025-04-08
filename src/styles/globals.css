@@ -93,6 +93,10 @@ html.dark {
   --navbar-scrolled-bg: rgba(0, 0, 0, 0.6);
   --project-card-bg: var(--project-card-bg-dark);
 
+  /*Menu overlay*/
+  --overlay-bg: rgba(255, 255, 255, 0.8);
+  --mobile-menu-bg: #121212;
+
   /*Page*/
   /* Variables para los textos en modo dark */
   --description-color-dark: #ffffff;

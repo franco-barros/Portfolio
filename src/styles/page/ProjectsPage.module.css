@@ -4,6 +4,24 @@
   margin: 100px auto 0;
 }
 
+/* Ajustes para tablets */
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: 1.5rem;
+    max-width: 90%;
+    margin: 80px auto 0;
+  }
+}
+
+/* Ajustes para móviles pequeños */
+@media (max-width: 480px) {
+  .pageContainer {
+    padding: 1rem;
+    max-width: 95%;
+    margin: 60px auto 0;
+  }
+}
+
 .headerContainer {
   display: flex;
   align-items: center;
@@ -15,4 +33,17 @@
 .pageTitle {
   text-align: center;
   font-size: 1.8rem;
+}
+
+/* Reducir el tamaño del título en tablets y móviles */
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 1.4rem;
+  }
 }

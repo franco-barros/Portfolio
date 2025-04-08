@@ -3,7 +3,6 @@
   overflow: hidden;
 }
 
-/* Efecto desktop */
 .desktopEffect {
   position: fixed;
   top: 0;
@@ -15,7 +14,6 @@
   transition: background-color 0.3s ease;
 }
 
-/* Contenedor centrado para las esferas (solo mobile), desplazado hacia la izquierda */
 .sphereContainer {
   position: fixed;
   top: 40%;
@@ -26,7 +24,6 @@
   z-index: 10;
 }
 
-/* Estilo común para cada esfera */
 .sphere {
   position: absolute;
   border-radius: 50%;
@@ -39,35 +36,35 @@
   height: 40vw;
 }
 
-/* Animaciones para transformar la disposición */
+/* Animaciones */
 
 /* Esfera 1 */
 @keyframes sphereOnePath {
   0% {
     transform: translate(14.14vw, 14.14vw);
-  } /* Círculo: ángulo 45° */
+  }
   33% {
     transform: translate(-20vw, 20vw);
-  } /* Cuadrado: top-left */
+  }
   66% {
     transform: translate(0, 20vw);
-  } /* Rombo: top */
+  }
   100% {
     transform: translate(14.14vw, 14.14vw);
-  } /* Regresa al círculo */
+  }
 }
 
 /* Esfera 2 */
 @keyframes sphereTwoPath {
   0% {
     transform: translate(-14.14vw, 14.14vw);
-  } /* Círculo: ángulo 135° */
+  }
   33% {
     transform: translate(20vw, 20vw);
-  } /* Cuadrado: top-right */
+  }
   66% {
     transform: translate(20vw, 0);
-  } /* Rombo: derecho */
+  }
   100% {
     transform: translate(-14.14vw, 14.14vw);
   }
@@ -77,13 +74,13 @@
 @keyframes sphereThreePath {
   0% {
     transform: translate(-14.14vw, -14.14vw);
-  } /* Círculo: ángulo 225° */
+  }
   33% {
     transform: translate(20vw, -20vw);
-  } /* Cuadrado: bottom-right */
+  }
   66% {
     transform: translate(0, -20vw);
-  } /* Rombo: inferior */
+  }
   100% {
     transform: translate(-14.14vw, -14.14vw);
   }
@@ -93,19 +90,19 @@
 @keyframes sphereFourPath {
   0% {
     transform: translate(14.14vw, -14.14vw);
-  } /* Círculo: ángulo 315° */
+  }
   33% {
     transform: translate(-20vw, -20vw);
-  } /* Cuadrado: bottom-left */
+  }
   66% {
     transform: translate(-20vw, 0);
-  } /* Rombo: izquierdo */
+  }
   100% {
     transform: translate(14.14vw, -14.14vw);
   }
 }
 
-/*Animaciones a cada esfera */
+/* Asignar animaciones */
 .sphereOne {
   animation-name: sphereOnePath;
 }

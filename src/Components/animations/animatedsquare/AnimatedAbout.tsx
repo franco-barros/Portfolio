@@ -46,6 +46,7 @@ const YinYangAnimation: React.FC = () => {
         <motion.circle
           cx="100"
           r="10"
+          initial={{ cy: 55, fill: "#000", opacity: 0.4 }}
           animate={{
             cy: [55, 100, 145, 100, 55],
             fill: ["#000", "#000", "#000", "#7f8c8d", "#000"],
@@ -65,6 +66,7 @@ const YinYangAnimation: React.FC = () => {
         <motion.circle
           cx="100"
           r="10"
+          initial={{ cy: 145, fill: "#fff", opacity: 0.4 }}
           animate={{
             cy: [145, 100, 55, 100, 145],
             fill: ["#fff", "#fff", "#fff", "#7f8c8d", "#fff"],
@@ -84,6 +86,7 @@ const YinYangAnimation: React.FC = () => {
         <motion.circle
           cx="100"
           r="10"
+          initial={{ cy: 55, fill: "#000" }}
           animate={{
             cy: [55, 100, 145, 100, 55],
             fill: ["#000", "#000", "#000", "#7f8c8d", "#000"],
@@ -101,6 +104,7 @@ const YinYangAnimation: React.FC = () => {
         <motion.circle
           cx="100"
           r="10"
+          initial={{ cy: 145, fill: "#fff" }}
           animate={{
             cy: [145, 100, 55, 100, 145],
             fill: ["#fff", "#fff", "#fff", "#7f8c8d", "#fff"],

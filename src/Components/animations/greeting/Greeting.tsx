@@ -1,4 +1,3 @@
-// src/Components/animations/greeting/Greeting.tsx
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -25,23 +24,27 @@ const Greeting: React.FC<GreetingProps> = ({
   shortVersion = false,
 }) => {
   const [index, setIndex] = useState(0);
+  const [hasCompleted, setHasCompleted] = useState(false);
   const displayTime = shortVersion ? 125 : 250;
 
   useEffect(() => {
     if (index < greetings.length - 1) {
       const timer = setTimeout(() => {
-        setIndex(index + 1);
+        setIndex((prev) => prev + 1);
       }, displayTime);
       return () => clearTimeout(timer);
-    } else {
+    } else if (!hasCompleted) {
       const timer = setTimeout(() => {
+        setHasCompleted(true);
         if (onComplete) {
           onComplete();
         }
-      }, displayTime);
+      }, displayTime + 200);
       return () => clearTimeout(timer);
     }
-  }, [index, displayTime, onComplete]);
+  }, [index, displayTime, onComplete, hasCompleted]);
+
+  if (hasCompleted) return null;
 
   return (
     <motion.div

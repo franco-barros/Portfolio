@@ -1,4 +1,3 @@
-// src/pages/HomePage.tsx
 "use client";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -12,12 +11,28 @@ import Service from "../Components/service";
 import ContactMe from "../Components/utils/contactme";
 
 const HomePage: React.FC = () => {
-  const [showGreeting, setShowGreeting] = useState(false);
+  const [showGreeting, setShowGreeting] = useState<boolean | null>(null);
 
   useEffect(() => {
     const alreadyVisited = localStorage.getItem("alreadyVisited");
+    const fromProjects = sessionStorage.getItem("scrollToProjects");
+
     if (!alreadyVisited) {
       setShowGreeting(true);
+    } else {
+      setShowGreeting(false);
+    }
+
+    if (fromProjects) {
+      const waitThenScroll = setTimeout(() => {
+        const section = document.getElementById("projects");
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+        sessionStorage.removeItem("scrollToProjects");
+      }, 1000);
+
+      return () => clearTimeout(waitThenScroll);
     }
   }, []);
 
@@ -35,13 +50,13 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {showGreeting && (
           <motion.div
             key="greetingOverlay"
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "100%" }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 1 }}
             style={{
               position: "fixed",
@@ -50,7 +65,7 @@ const HomePage: React.FC = () => {
               width: "100%",
               height: "100%",
               zIndex: 10000,
-              backgroundColor: "#f9f9f9",
+              backgroundColor: "#000",
             }}
           >
             <Greeting onComplete={handleGreetingComplete} />
@@ -58,27 +73,31 @@ const HomePage: React.FC = () => {
         )}
       </AnimatePresence>
 
-      <section id="home">
-        <Hero scrollToSection={scrollToSection} />
-      </section>
-      <section id="about">
-        <AboutMe />
-      </section>
-      <section id="skills">
-        <Skills />
-      </section>
-      <section id="projects">
-        <Projects />
-      </section>
-      <section id="worked">
-        <WorkedSection />
-      </section>
-      <section id="service">
-        <Service />
-      </section>
-      <section id="contactme">
-        <ContactMe />
-      </section>
+      {showGreeting === false && (
+        <>
+          <section id="home">
+            <Hero scrollToSection={scrollToSection} />
+          </section>
+          <section id="about">
+            <AboutMe />
+          </section>
+          <section id="skills">
+            <Skills />
+          </section>
+          <section id="projects">
+            <Projects />
+          </section>
+          <section id="worked">
+            <WorkedSection />
+          </section>
+          <section id="service">
+            <Service />
+          </section>
+          <section id="contactme">
+            <ContactMe />
+          </section>
+        </>
+      )}
     </>
   );
 };

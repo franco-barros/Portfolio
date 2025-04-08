@@ -33,7 +33,7 @@
   align-items: center;
 }
 
-/* Media query para dispositivos con pantallas pequeñas */
+/* 📱 Responsivo para pantallas chicas */
 @media (max-width: 480px) {
   .verticalCarouselWrapper,
   .carousel,

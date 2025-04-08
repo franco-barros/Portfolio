@@ -6,9 +6,29 @@
   padding: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: row;
+  flex-direction: row; /* En pantallas grandes se muestra en fila */
   align-items: center;
   justify-content: center;
   width: 98%;
   max-width: 900px;
+  margin: 0 auto; /* Centrado horizontal */
+}
+
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  .card {
+    padding: 20px; /* Reduce el padding */
+    flex-direction: column; /* Pasa a columna para mayor adaptación */
+    max-width: 95%;
+  }
+}
+
+/* Móviles pequeños (max-width: 480px) */
+@media (max-width: 480px) {
+  .card {
+    padding: 15px; /* Ajusta aún más el padding */
+    flex-direction: column; /* En columna para facilitar lectura */
+    width: 100%;
+    max-width: 100%;
+  }
 }

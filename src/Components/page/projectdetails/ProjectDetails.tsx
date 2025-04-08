@@ -1,5 +1,5 @@
 import styles from "../../../styles/page/ProjectsDetail.module.css";
-import { projectsData } from "../../../data/ProjectsData";
+import { projectsData } from "../../../data/Project/ProjectsData";
 import deviconMap from "../../../data/DevIconsMap";
 
 export interface ProjectDetailsProps {

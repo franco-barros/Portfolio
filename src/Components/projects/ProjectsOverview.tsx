@@ -3,7 +3,7 @@ import React from "react";
 import styles from "../../styles/projects/ProjectsOverview.module.css";
 import FrontendProjectsCarousel from "./FrontendProjectsCarousel";
 import BackendProjectsCarousel from "./BackendProjectsCarousel";
-import { projectsData, ProjectData } from "../../data/ProjectsData";
+import { projectsData, ProjectData } from "../../data/Project/ProjectsData";
 
 const projectsArray = Object.values(projectsData).map(
   (project: ProjectData) => ({

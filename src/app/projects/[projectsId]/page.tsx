@@ -1,19 +1,19 @@
-// src/app/projects/[projectsId]/page.tsx
 import { notFound } from "next/navigation";
 import ProjectCard from "../../../Components/page/projectscard/ProjectsCard";
 import ProjectDetails from "../../../Components/page/projectdetails/ProjectDetails";
 import BackButton from "../../../Components/page/backbutton";
-import { projectsData } from "../../../data/ProjectsData";
+import { projectsData } from "../../../data/Project/ProjectsData";
 import styles from "../../../styles/page/ProjectsPage.module.css";
 
-interface ProjectPageProps {
-  params: {
-    projectsId: string;
+type Props = {
+  readonly params: {
+    readonly projectsId: string;
   };
-}
+};
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const { projectsId } = params;
+export default async function ProjectPage(props: Props) {
+  const resolvedParams = await Promise.resolve(props.params);
+  const projectsId = resolvedParams.projectsId;
   const project = projectsData[projectsId];
 
   if (!project) notFound();

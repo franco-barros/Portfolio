@@ -1,46 +1,65 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import styles from "../../../styles/utils/DownloadCV.module.css";
 import { FaDownload } from "react-icons/fa";
 
 const DownloadCV: React.FC = () => {
-  const verticalControls = useAnimation();
+  const controls = useAnimation();
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    verticalControls.start({
-      y: [0, -20, 0],
-      transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-    });
-  }, [verticalControls]);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 480);
+    };
 
-  const handleMouseEnter = () => {
-    verticalControls.stop();
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const startAnimation = () => {
+    if (isMobile) {
+      controls.start({
+        x: [0, -20, 0],
+        y: 0,
+        transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+      });
+    } else {
+      controls.start({
+        y: [0, -20, 0],
+        x: 0,
+        transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+      });
+    }
   };
 
-  const handleMouseLeave = () => {
-    verticalControls.start({
-      y: [0, -20, 0],
-      transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-    });
+  useEffect(() => {
+    startAnimation();
+  }, [isMobile]);
+
+  const stopAnimation = () => {
+    controls.stop();
   };
 
   return (
     <motion.div
-      animate={verticalControls}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      animate={controls}
+      onMouseEnter={stopAnimation}
+      onMouseLeave={startAnimation}
+      onTouchStart={stopAnimation}
+      onTouchEnd={startAnimation}
       style={{
         position: "absolute",
         width: "100%",
         height: "100%",
-        top: "20px", // mismo offset que la esfera
+        top: "20px",
         left: 0,
       }}
     >
       <div className={styles.cvContainer}>
         <a
-          href="/pdf/Curriculum.pdf"
+          href="/pdf/Franco-Barros-CV(01).pdf"
           download="Franco-Barros-CV.pdf"
           className={styles.downloadButton}
         >
