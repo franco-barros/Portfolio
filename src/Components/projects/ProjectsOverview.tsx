@@ -3,7 +3,8 @@ import React from "react";
 import styles from "../../styles/projects/ProjectsOverview.module.css";
 import FrontendProjectsCarousel from "./FrontendProjectsCarousel";
 import BackendProjectsCarousel from "./BackendProjectsCarousel";
-import { projectsData, ProjectData } from "../../data/Project/ProjectsData";
+import { projectsData } from "../../data/Project/ProjectsData";
+import type { ProjectData } from "../../data/Project/types"; // ✅ Import correcto del tipo
 
 const projectsArray = Object.values(projectsData).map(
   (project: ProjectData) => ({
