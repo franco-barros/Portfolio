@@ -5,6 +5,7 @@ import BackButton from "../../../Components/page/backbutton";
 import { projectsData } from "../../../data/Project/ProjectsData";
 import styles from "../../../styles/page/ProjectsPage.module.css";
 
+// Tipado correcto y compatible con SonarQube
 type PageProps = {
   readonly params: {
     readonly projectsId: string;
@@ -12,8 +13,7 @@ type PageProps = {
 };
 
 export default function ProjectPage({ params }: PageProps) {
-  const { projectsId } = params;
-  const project = projectsData[projectsId];
+  const project = projectsData[params.projectsId];
 
   if (!project) notFound();
 
@@ -25,13 +25,13 @@ export default function ProjectPage({ params }: PageProps) {
       </div>
 
       <ProjectCard
-        projectsId={projectsId}
+        projectsId={params.projectsId}
         images={project.images}
         video={project.video}
         subtitle={project.subtitle}
       />
 
-      <ProjectDetails projectsId={projectsId} showTitle={false} />
+      <ProjectDetails projectsId={params.projectsId} showTitle={false} />
     </div>
   );
 }
