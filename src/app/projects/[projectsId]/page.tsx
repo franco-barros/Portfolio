@@ -5,15 +5,14 @@ import BackButton from "../../../Components/page/backbutton";
 import { projectsData } from "../../../data/Project/ProjectsData";
 import styles from "../../../styles/page/ProjectsPage.module.css";
 
-// Tipado correcto compatible con Next.js 15 y SonarQube
-export default async function ProjectPage({
-  params,
-}: Readonly<{
-  params: {
+type PageProps = Readonly<{
+  params: Promise<{
     projectsId: string;
-  };
-}>) {
-  const { projectsId } = params;
+  }>;
+}>;
+
+export default async function ProjectPage({ params }: PageProps) {
+  const { projectsId } = await params;
   const project = projectsData[projectsId];
 
   if (!project) notFound();
