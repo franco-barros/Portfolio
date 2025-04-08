@@ -11,9 +11,8 @@ type Props = {
   };
 };
 
-export default async function ProjectPage(props: Props) {
-  const resolvedParams = await Promise.resolve(props.params);
-  const projectsId = resolvedParams.projectsId;
+export default function ProjectPage({ params }: Props) {
+  const { projectsId } = params;
   const project = projectsData[projectsId];
 
   if (!project) notFound();
