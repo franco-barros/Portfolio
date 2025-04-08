@@ -5,15 +5,16 @@ import BackButton from "../../../Components/page/backbutton";
 import { projectsData } from "../../../data/Project/ProjectsData";
 import styles from "../../../styles/page/ProjectsPage.module.css";
 
-// Tipado correcto y compatible con SonarQube
-type PageProps = {
-  readonly params: {
-    readonly projectsId: string;
+// Tipado correcto compatible con Next.js 15 y SonarQube
+export default async function ProjectPage({
+  params,
+}: Readonly<{
+  params: {
+    projectsId: string;
   };
-};
-
-export default function ProjectPage({ params }: PageProps) {
-  const project = projectsData[params.projectsId];
+}>) {
+  const { projectsId } = params;
+  const project = projectsData[projectsId];
 
   if (!project) notFound();
 
@@ -25,13 +26,13 @@ export default function ProjectPage({ params }: PageProps) {
       </div>
 
       <ProjectCard
-        projectsId={params.projectsId}
+        projectsId={projectsId}
         images={project.images}
         video={project.video}
         subtitle={project.subtitle}
       />
 
-      <ProjectDetails projectsId={params.projectsId} showTitle={false} />
+      <ProjectDetails projectsId={projectsId} showTitle={false} />
     </div>
   );
 }
