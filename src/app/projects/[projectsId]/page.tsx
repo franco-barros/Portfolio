@@ -5,13 +5,13 @@ import BackButton from "../../../Components/page/backbutton";
 import { projectsData } from "../../../data/Project/ProjectsData";
 import styles from "../../../styles/page/ProjectsPage.module.css";
 
-type Props = {
+type PageProps = {
   readonly params: {
     readonly projectsId: string;
   };
 };
 
-export default function ProjectPage({ params }: Props) {
+export default function ProjectPage({ params }: PageProps) {
   const { projectsId } = params;
   const project = projectsData[projectsId];
 
