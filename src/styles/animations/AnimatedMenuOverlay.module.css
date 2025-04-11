@@ -76,6 +76,7 @@
   background: none;
   border: none;
   color: var(--foreground);
+  font-family: "Poppins", sans-serif;
   font-size: 2rem;
   margin: 1rem 0;
   cursor: pointer;

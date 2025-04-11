@@ -1,15 +1,33 @@
 .servicesSection {
   position: relative;
-  padding: 2rem 2rem;
+  padding: 6rem 2rem;
   background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(8px);
   color: var(--foreground);
-  text-align: left;
+  text-align: center;
   overflow: hidden;
   z-index: 5;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  color: var(--foreground);
+  margin: 0 auto 1rem auto;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  max-width: fit-content;
+  padding: 0.5rem 1rem;
+  background-color: var(--global-title-bg);
+  border: 2px solid var(--foreground);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .servicesContent {
@@ -21,19 +39,17 @@
 .servicesContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 40px;
-  row-gap: 20px;
-
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  justify-content: start;
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  justify-items: center;
 }
 
 @media (max-width: 768px) {
   .servicesContainer {
     grid-template-columns: 1fr;
-    column-gap: 20px;
-    row-gap: 20px;
+    gap: 20px;
+    padding: 0 1rem;
   }
 }

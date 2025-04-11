@@ -1,60 +1,49 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, useMotionValue, useAnimationFrame } from "framer-motion";
 import styles from "../../../styles/utils/DownloadCV.module.css";
 import { FaDownload } from "react-icons/fa";
 
 const DownloadCV: React.FC = () => {
-  const controls = useAnimation();
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 480);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth <= 480);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const startAnimation = () => {
+  let direction = 1;
+  let offset = 0;
+
+  useAnimationFrame((t, delta) => {
+    offset += (delta / 1000) * 10 * direction;
+    if (offset >= 20) direction = -1;
+    if (offset <= 0) direction = 1;
+
     if (isMobile) {
-      controls.start({
-        x: [0, -20, 0],
-        y: 0,
-        transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-      });
+      x.set(0);
+      y.set(0);
     } else {
-      controls.start({
-        y: [0, -20, 0],
-        x: 0,
-        transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-      });
+      y.set(-offset);
+      x.set(0);
     }
-  };
-
-  useEffect(() => {
-    startAnimation();
-  }, [isMobile]);
-
-  const stopAnimation = () => {
-    controls.stop();
-  };
+  });
 
   return (
     <motion.div
-      animate={controls}
-      onMouseEnter={stopAnimation}
-      onMouseLeave={startAnimation}
-      onTouchStart={stopAnimation}
-      onTouchEnd={startAnimation}
       style={{
-        position: "absolute",
+        // En mobile usamos posición estática para respetar el tamaño y que se rompa la animacion
+        position: isMobile ? "static" : "absolute",
         width: "100%",
         height: "100%",
-        top: "20px",
+        top: isMobile ? "0" : "20px",
         left: 0,
+        x,
+        y,
       }}
     >
       <div className={styles.cvContainer}>

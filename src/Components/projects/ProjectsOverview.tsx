@@ -1,10 +1,8 @@
-"use client";
-import React from "react";
 import styles from "../../styles/projects/ProjectsOverview.module.css";
 import FrontendProjectsCarousel from "./FrontendProjectsCarousel";
 import BackendProjectsCarousel from "./BackendProjectsCarousel";
 import { projectsData } from "../../data/Project/ProjectsData";
-import type { ProjectData } from "../../data/Project/types"; // ✅ Import correcto del tipo
+import type { ProjectData } from "../../data/Project/types";
 
 const projectsArray = Object.values(projectsData).map(
   (project: ProjectData) => ({
@@ -17,7 +15,7 @@ const projectsArray = Object.values(projectsData).map(
     ].includes(project.id)
       ? "frontend"
       : "backend",
-    image: `/assets/images/${project.images[0]}`,
+    image: project.images[0],
   })
 );
 
@@ -31,7 +29,7 @@ const ProjectsOverview = () => {
 
   return (
     <section id="projects" className={styles.projectsSection}>
-      <h2 className="globalTitle">Projects</h2>
+      <h2 className={styles.projectsTitle}>Projects</h2>
 
       {/* Sección de proyectos frontend */}
       <div className={styles.categoryContainer}>

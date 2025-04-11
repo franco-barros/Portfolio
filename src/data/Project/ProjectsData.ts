@@ -1,6 +1,5 @@
 import type { ProjectData } from "./types";
 
-// Importar cada proyecto individual
 import marketMultiverse from "./Projects/market-multiverse";
 import listify from "./Projects/listify";
 import ltEstetica from "./Projects/lt-estetica-vehicular-landing-page";

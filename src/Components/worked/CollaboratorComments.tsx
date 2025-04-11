@@ -2,27 +2,26 @@
 import React from "react";
 import InfiniteCarousel from "./carousel/CarouselComments";
 import Card from "./card/CardComments";
-import { commentsData } from "../../data/CommentsData";
+import { commentsData } from "../../data/worked/CommentsData";
 
 interface Props {
   activeIndex: number;
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
-  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>; // agregado
+  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CollaboratorComments: React.FC<Props> = ({
   activeIndex,
   setActiveIndex,
-  setIsPaused, // agregado
+  setIsPaused,
 }) => {
   return (
     <div className="commentsSection">
-      <h3>Collaborator Comments</h3>
       <InfiniteCarousel
         items={commentsData}
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
-        setIsPaused={setIsPaused} // agregado
+        setIsPaused={setIsPaused}
         renderItem={(comment) => (
           <Card
             description={comment.comment}

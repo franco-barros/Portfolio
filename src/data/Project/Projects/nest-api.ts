@@ -7,14 +7,14 @@ const nestApi: ProjectData = {
   description: projectDescriptions["nest-api"],
   technologies: ["Node.js", "Nest.js"],
   images: [
-    "nest/Nest.png",
-    "nest/Nest1.png",
-    "nest/Nest2.png",
-    "nest/Nest3.png",
-    "nest/Nest4.png",
-    "nest/Nest5.png",
+    "/assets/images/nest/Nest.png",
+    "/assets/images/nest/Nest1.png",
+    "/assets/images/nest/Nest2.png",
+    "/assets/images/nest/Nest3.png",
+    "/assets/images/nest/Nest4.png",
+    "/assets/images/nest/Nest5.png",
   ],
-  video: "Nest.webm",
+  video: "/assets/videos/Nest.webm",
   github: "https://github.com/franco-barros/Node-Nest",
 };
 

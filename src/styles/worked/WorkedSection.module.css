@@ -1,6 +1,6 @@
 .workedSection {
   position: relative;
-  padding: 2rem;
+  padding: 6rem 2rem;
   background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(8px);
   color: var(--foreground);
@@ -13,7 +13,43 @@
   z-index: 5;
 }
 
-/* En móviles, en lugar de forzar 100vh, se adapta a la cantidad de contenido */
+.workedTitle {
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  color: var(--foreground);
+  margin: 0 auto 1rem auto;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  max-width: fit-content;
+  padding: 0.5rem 1rem;
+  background-color: var(--global-title-bg);
+  border: 2px solid var(--foreground);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.workedSubTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: var(--foreground);
+  text-align: center;
+  margin: 1.5rem 0 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.workedSubTitle::after {
+  content: "";
+  display: block;
+  margin: 0.5rem auto 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--foreground);
+}
+
 @media (max-width: 768px) {
   .workedSection {
     height: auto;
@@ -23,17 +59,14 @@
 
 .workedLayout {
   display: grid;
-  /* Dos columnas, cada una ocupando el 50% del ancho en pantallas grandes */
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   width: 100%;
-  /* Permite que el layout ocupe el espacio restante */
   flex: 1;
   align-self: stretch;
   align-items: stretch;
 }
 
-/* En móviles se apilan las columnas */
 @media (max-width: 768px) {
   .workedLayout {
     grid-template-columns: 1fr;
@@ -51,7 +84,6 @@
 /* Sección de igual tamaño para cada componente */
 .equalSection {
   width: 100%;
-  /* Para pantallas grandes, ocupa al menos el alto de la ventana */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -62,7 +94,6 @@
   overflow: visible;
 }
 
-/* En móviles, se permite que la altura se ajuste al contenido */
 @media (max-width: 768px) {
   .equalSection {
     min-height: auto;

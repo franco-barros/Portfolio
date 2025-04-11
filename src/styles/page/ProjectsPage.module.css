@@ -1,49 +1,91 @@
 .pageContainer {
-  padding: 2rem;
+  padding: 20px;
+  padding-top: 9rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.projectCard {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid transparent;
+  margin: 14px auto;
+  width: 100%;
   max-width: 900px;
-  margin: 100px auto 0;
-}
-
-/* Ajustes para tablets */
-@media (max-width: 768px) {
-  .pageContainer {
-    padding: 1.5rem;
-    max-width: 90%;
-    margin: 80px auto 0;
-  }
-}
-
-/* Ajustes para móviles pequeños */
-@media (max-width: 480px) {
-  .pageContainer {
-    padding: 1rem;
-    max-width: 95%;
-    margin: 60px auto 0;
-  }
 }
 
 .headerContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  margin-bottom: 1rem;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .pageTitle {
-  text-align: center;
-  font-size: 1.8rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0;
+  color: var(--foreground);
 }
 
-/* Reducir el tamaño del título en tablets y móviles */
+.detailsSection {
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.gallerySection {
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 5px;
+}
+
 @media (max-width: 768px) {
+  .pageContainer {
+    padding: 16px;
+    padding-top: 7rem;
+  }
+
+  .projectCard {
+    padding: 18px;
+    margin: 12px auto;
+  }
+
   .pageTitle {
     font-size: 1.6rem;
+  }
+
+  .detailsSection {
+    padding: 0 6px;
+  }
+
+  .gallerySection {
+    margin-top: 16px;
+    padding-top: 4px;
   }
 }
 
 @media (max-width: 480px) {
+  .pageContainer {
+    padding: 14px;
+    padding-top: 6rem;
+  }
+
+  .projectCard {
+    padding: 14px;
+    border-radius: 10px;
+  }
+
   .pageTitle {
     font-size: 1.4rem;
+  }
+
+  .detailsSection {
+    padding: 0 4px;
+  }
+
+  .gallerySection {
+    margin-top: 14px;
+    padding-top: 3px;
   }
 }

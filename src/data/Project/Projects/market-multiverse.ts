@@ -7,12 +7,12 @@ const marketMultiverse: ProjectData = {
   description: projectDescriptions["market-multiverse"],
   technologies: ["React", "CSS", "Next.js"],
   images: [
-    "marketmultiverse/MarketMultiverse.png",
-    "marketmultiverse/MarketMultiverse1.png",
-    "marketmultiverse/MarketMultiverse2.png",
+    "/assets/images/marketmultiverse/MarketMultiverse.png",
+    "/assets/images/marketmultiverse/MarketMultiverse1.png",
+    "/assets/images/marketmultiverse/MarketMultiverse.png",
   ],
-  video: "MarketMultiverse.webm",
-  subtitle: "market-multiverse.vtt",
+  video: "/assets/videos/MarketMultiverse.webm",
+  subtitle: "/assets/subtitles/market-multiverse.vtt",
   github: "https://github.com/franco-barros/Market-multiverse",
   deploy: "https://franco-barros.github.io/Market-multiverse/",
 };

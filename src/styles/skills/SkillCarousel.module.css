@@ -7,7 +7,6 @@
   flex-wrap: wrap;
 }
 
-/* Mostrar flechas solo en hover (desktop) */
 .carouselContainer:hover .navButton {
   opacity: 1;
 }
@@ -18,8 +17,10 @@
   border-radius: 8px;
   padding: 2rem;
   text-align: center;
-  max-width: 400px;
-  height: 300px;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  height: 320px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -27,6 +28,8 @@
   overflow: hidden;
   position: relative;
   font-weight: bold;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 /* Contenedor del ícono */
@@ -60,9 +63,6 @@
   right: 0.5rem;
 }
 
-/* 📱 Responsive Design */
-
-/* Tablets */
 @media (max-width: 768px) {
   .card {
     max-width: 360px;
@@ -76,7 +76,6 @@
   }
 }
 
-/* Móviles pequeños */
 @media (max-width: 480px) {
   .carouselContainer {
     justify-content: center;
@@ -87,14 +86,19 @@
   .card {
     max-width: 320px;
     width: 100%;
-    min-height: 240px;
     padding: 1.2rem;
-    height: auto;
+    font-size: 0.9rem;
+    overflow: hidden;
   }
 
   .navButton {
     opacity: 1;
     font-size: 0.9rem;
     padding: 0.6rem;
+  }
+
+  .iconContainer {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
   }
 }

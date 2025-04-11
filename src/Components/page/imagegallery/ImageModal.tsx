@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-import styles from "../../../styles/page/projectscard/ImageModal.module.css";
+import styles from "../../../styles/page/imagegallery/ImageModal.module.css";
 
 interface ImageModalProps {
   src: string;

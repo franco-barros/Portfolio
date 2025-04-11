@@ -13,14 +13,10 @@ const Hero: React.FC<HeroProps> = ({ scrollToSection }) => {
   return (
     <section className={styles.hero}>
       <div className={styles.backgroundEffect}></div>
-
       <div className={styles.heroContainer}>
-        {/* Columna izquierda: Sphere animada */}
         <div className={styles.leftColumn}>
           <AnimatedSphere />
         </div>
-
-        {/* Columna central: Título, descripción, botón */}
         <div className={styles.centerColumn}>
           <motion.h1
             className={styles.title}
@@ -33,7 +29,6 @@ const Hero: React.FC<HeroProps> = ({ scrollToSection }) => {
           >
             Fullstack Developer
           </motion.h1>
-
           <motion.p
             className={styles.description}
             initial={{ opacity: 0, y: 30, scale: 0.8 }}
@@ -46,8 +41,6 @@ const Hero: React.FC<HeroProps> = ({ scrollToSection }) => {
           >
             Franco Barros
           </motion.p>
-
-          {/* ✅ Botón que navega con scrollToSection */}
           <motion.button
             onClick={() => scrollToSection("projects")}
             className={styles.ctaButton}
@@ -58,8 +51,6 @@ const Hero: React.FC<HeroProps> = ({ scrollToSection }) => {
             View Projects
           </motion.button>
         </div>
-
-        {/* Columna derecha: CV */}
         <div className={styles.rightColumn}>
           <DownloadCV />
         </div>

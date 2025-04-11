@@ -4,18 +4,16 @@ import styles from "../../../styles/utils/WhatsAppButton.module.css";
 import { FaWhatsapp } from "react-icons/fa";
 
 const WhatsAppButton: React.FC = () => {
-  const handleWhatsAppClick = () => {
-    window.open("https://wa.me/5492645878987", "_blank");
-  };
-
   return (
-    <div
+    <a
+      href="https://wa.me/5492645878987"
+      target="_blank"
+      rel="noopener noreferrer"
       className={styles.whatsappButton}
-      onClick={handleWhatsAppClick}
-      title="Contáctanos por WhatsApp"
+      title="Contact me by whatsapp"
     >
       <FaWhatsapp className={styles.whatsappIcon} />
-    </div>
+    </a>
   );
 };
 

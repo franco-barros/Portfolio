@@ -1,35 +1,36 @@
 @import url("/devicon/devicon.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+/*  Variables globales */
 
 :root {
   /* Colores base */
-  --background-dark: #121212;
   --background-light: #f0f0f0;
-  --text-dark: #ffffff;
+  --background-dark: #121212;
   --text-light: #000000;
-  --accent-color: #35eb25e5;
+  --text-dark: #ffffff;
   --secondary-text: #d1d5db;
+  --accent-color: #35eb25e5;
 
-  /* Fondos Globales */
+  /* Fondos globales */
   --global-bg-light: #f0f0f0;
   --global-bg-dark: #121212;
-
-  /* Asignación de fondo global */
   --background: var(--global-bg-light);
   --foreground: var(--text-light);
+
+  /* Navbar */
   --navbar-scrolled-bg: rgba(255, 255, 255, 0.6);
 
-  /* Variables para el botón de GitHub */
-  --github-bg-light: #4687c9;
+  /* GitHub Button */
+  --github-bg-light: #6246c9;
+  --github-hover-light: #8cd603e1;
   --github-bg-dark: #d4af37;
-  --github-hover-light: #d67403;
-  --github-hover-dark: #b8860b;
-
-  /* Asignación global */
+  --github-hover-dark: #6246c9;
   --github-bg: var(--github-bg-light);
   --github-hover: var(--github-hover-light);
 
-  /* Variables para las tarjetas de tecnologías */
+  /* Tarjetas de tecnologías */
   --tech-bg-light: #f0f4ff;
   --tech-border-light: #b3d4fc;
   --tech-text-light: #0056b3;
@@ -40,39 +41,82 @@
   --tech-border: var(--tech-border-light);
   --tech-text: var(--tech-text-light);
 
-  /* Fondos para Tarjetas de Proyecto */
+  /* Tarjetas de proyectos */
   --project-card-bg-light: rgba(255, 255, 255, 0.9);
   --project-card-bg-dark: rgba(20, 20, 20, 0.9);
   --project-card-bg: var(--project-card-bg-light);
 
-  /* Page */
-  /* Variables para los textos de descripción  */
+  /* Textos informativos */
   --description-color-light: #000000;
-  --description-color: var(--description-color-light);
   --technologies-label-color-light: #000000;
+  --description-color: var(--description-color-light);
   --technologies-label-color: var(--technologies-label-color-light);
 
-  /*Card page*/
+  /* Tarjetas de page */
   --card-bg-light: rgba(255, 255, 255, 0.7);
   --card-bg: var(--card-bg-light);
 
-  /* Glow para Hover */
+  /* Hover Glow */
   --hover-glow: rgba(255, 255, 255, 0.8);
 
-  /* Variables para MouseEffect en modo light */
+  /* MouseEffect (light) */
   --mouse-effect-color1: rgba(0, 0, 255, 0.62);
   --mouse-effect-color2: rgba(206, 10, 10, 0.62);
   --mouse-effect-color3: rgba(128, 0, 128, 0.62);
 
   /* Bordes globales */
-  --border-light: #6a0dad; /* Morado */
-  --border-dark: #d4af37; /* Dorado */
+  --border-light: #6a0dad;
+  --border-dark: #d4af37;
   --border-color: var(--border-light);
 
-  /* Variables para el título global */
-  --global-title-bg-light: #6a0dad;
+  /* Título global */
+  --global-title-bg-light: #35eb25e5;
   --global-title-bg-dark: #d4af37;
+  --global-title-bg: var(--global-title-bg-light);
 }
+
+html.dark {
+  --background: var(--global-bg-dark);
+  --foreground: var(--text-dark);
+  --navbar-scrolled-bg: rgba(0, 0, 0, 0.6);
+
+  /* ✨ Títulos y tarjetas */
+  --global-title-bg: var(--global-title-bg-dark);
+  --project-card-bg: var(--project-card-bg-dark);
+  --card-bg-dark: rgba(20, 20, 20, 0.7);
+  --card-bg: var(--card-bg-dark);
+
+  /* Textos */
+  --description-color-dark: #ffffff;
+  --technologies-label-color-dark: #ffffff;
+  --description-color: var(--description-color-dark);
+  --technologies-label-color: var(--technologies-label-color-dark);
+
+  /* GitHub & tecnologías dark */
+  --github-bg: var(--github-bg-dark);
+  --github-hover: var(--github-hover-dark);
+  --tech-bg: var(--tech-bg-dark);
+  --tech-border: var(--tech-border-dark);
+  --tech-text: var(--tech-text-dark);
+
+  /* Bordes */
+  --border-color: var(--border-dark);
+
+  /* MouseEffect (dark) */
+  --mouse-effect-color1: rgba(212, 175, 55, 0.62);
+  --mouse-effect-color2: rgba(255, 100, 0, 0.62);
+  --mouse-effect-color3: rgba(128, 0, 128, 0.62);
+
+  /* Menú móvil */
+  --overlay-bg: rgba(255, 255, 255, 0.8);
+  --mobile-menu-bg: #121212;
+}
+
+html.dark .hero {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+/*Estilos base*/
 
 html,
 body {
@@ -87,51 +131,14 @@ body {
   overflow-x: hidden;
 }
 
-html.dark {
-  --background: var(--global-bg-dark);
-  --foreground: var(--text-dark);
-  --navbar-scrolled-bg: rgba(0, 0, 0, 0.6);
-  --project-card-bg: var(--project-card-bg-dark);
-
-  /*Menu overlay*/
-  --overlay-bg: rgba(255, 255, 255, 0.8);
-  --mobile-menu-bg: #121212;
-
-  /*Page*/
-  /* Variables para los textos en modo dark */
-  --description-color-dark: #ffffff;
-  --description-color: var(--description-color-dark);
-  --technologies-label-color-dark: #ffffff;
-  --technologies-label-color: var(--technologies-label-color-dark);
-
-  /* Fondo para tarjeta de page */
-  --card-bg-dark: rgba(20, 20, 20, 0.7);
-  --card-bg: var(--card-bg-dark);
-
-  /* Asignación dinámica para GitHub y tecnologías en modo oscuro */
-  --github-bg: var(--github-bg-dark);
-  --github-hover: var(--github-hover-dark);
-  --tech-bg: var(--tech-bg-dark);
-  --tech-border: var(--tech-border-dark);
-  --tech-text: var(--tech-text-dark);
-
-  /* Bordes de Skills */
-  --border-color: var(--border-dark);
-
-  /* Variables para MouseEffect en modo dark */
-  --mouse-effect-color1: rgba(212, 175, 55, 0.62);
-  --mouse-effect-color2: rgba(255, 100, 0, 0.62);
-  --mouse-effect-color3: rgba(128, 0, 128, 0.62);
-}
-
-html.dark .hero {
-  background-color: rgba(0, 0, 0, 0.85);
-}
+/*Layout principal*/
 
 .layoutBody {
   position: relative;
   overflow-x: hidden;
 }
+
+/*Capas visuales*/
 
 .layerBackground {
   position: fixed;
@@ -139,8 +146,8 @@ html.dark .hero {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
   background-color: var(--background);
+  z-index: 0;
 }
 
 .layerMouseEffect {
@@ -149,8 +156,8 @@ html.dark .hero {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 10;
   pointer-events: none;
+  z-index: 10;
 }
 
 .layerContent,
@@ -165,9 +172,11 @@ html.dark .hero {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10;
   pointer-events: none;
+  z-index: 10;
 }
+
+/*Componentes*/
 
 .heading {
   font-size: 2.5rem;
@@ -193,33 +202,9 @@ html.dark .hero {
   border: 1px solid var(--secondary-text);
 }
 
-.aboutSection .heading {
-  text-align: left;
-}
+/*Secciones*/
 
+.aboutSection .heading,
 .contactSection .heading {
   text-align: center;
-}
-
-.globalTitle {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--foreground);
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-align: left;
-  width: 100%;
-  max-width: fit-content;
-  padding: 0.5rem 1rem;
-  background-color: var(--global-title-bg-light);
-  border: 2px solid var(--foreground);
-  border-radius: 50px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-html.dark .globalTitle {
-  background-color: var(--global-title-bg-dark);
 }

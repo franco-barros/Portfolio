@@ -7,12 +7,12 @@ const listify: ProjectData = {
   description: projectDescriptions["listify"],
   technologies: ["React", "CSS", "JavaScript"],
   images: [
-    "listify/Listify.png",
-    "listify/Listify1.png",
-    "listify/Listify2.png",
-    "listify/Listify3.png",
+    "/assets/images/listify/Listify1.png",
+    "/assets/images/listify/Listify.png",
+    "/assets/images/listify/Listify2.png",
+    "/assets/images/listify/Listify3.png",
   ],
-  video: "Listify.webm",
+  video: "/assets/videos/Listify.webm",
   github: "https://github.com/franco-barros/Listify",
   deploy: "https://franco-barros.github.io/Listify/",
 };

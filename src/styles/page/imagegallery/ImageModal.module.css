@@ -53,10 +53,9 @@
   object-fit: contain;
   border-radius: 12px;
   background-color: transparent;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* marco sutil */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-/* Botón de cierre */
 .closeButton {
   position: absolute;
   top: 10px;
@@ -74,7 +73,6 @@
   align-items: center;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .modalContent {
     max-width: 95%;

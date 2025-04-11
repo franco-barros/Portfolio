@@ -1,6 +1,6 @@
 .projectsSection {
   position: relative;
-  padding: 2rem;
+  padding: 6rem 2rem;
   background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(8px);
   color: var(--foreground);
@@ -8,10 +8,39 @@
   overflow: hidden;
   z-index: 5;
 }
+.projectsTitle {
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  color: var(--foreground);
+  margin: 0 auto 1.5rem auto;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  max-width: fit-content;
+  padding: 0.5rem 1rem;
+  background-color: var(--global-title-bg);
+  border: 2px solid var(--foreground);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .mainProjectsTitle {
   font-size: 2rem;
   margin-bottom: 1.5rem;
+}
+
+.categoryTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: var(--foreground);
+  text-align: center;
+  margin: 2rem 0 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .categorySubtitle {
@@ -24,7 +53,6 @@
   margin-bottom: 2rem;
 }
 
-/* Media queries para pantallas medianas */
 @media (max-width: 768px) {
   .projectsSection {
     padding: 1.5rem;
@@ -41,7 +69,6 @@
   }
 }
 
-/* Media queries para pantallas pequeñas */
 @media (max-width: 480px) {
   .projectsSection {
     padding: 1rem;

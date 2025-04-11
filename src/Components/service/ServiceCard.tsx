@@ -25,16 +25,18 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       <h3 className={styles.serviceTitle}>{title}</h3>
       {subtitle && <h4 className={styles.serviceSubtitle}>{subtitle}</h4>}
       <p className={styles.serviceDescription}>{description}</p>
+
       {features && (
         <ul className={styles.featuresList}>
-          {features.map((feature, idx) => (
-            <li key={idx} className={styles.featureItem}>
+          {features.map((feature) => (
+            <li key={`${title}-${feature}`} className={styles.featureItem}>
               <FaCheck className={styles.checkIcon} />
               {feature}
             </li>
           ))}
         </ul>
       )}
+
       {cta && (
         <button onClick={onClick} className={styles.ctaButton}>
           {cta}

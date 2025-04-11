@@ -8,14 +8,13 @@ const Skills = () => {
   return (
     <section id="skills" className={styles.skillsSection}>
       <div className={styles.backgroundEffect}></div>
-      <h2 className="globalTitle">Tools</h2>
-
+      <h2 className={styles.skillsTitle}>Tools & Skills</h2>
       <div className={styles.skillsLayout}>
         {/* Lista de tecnologías */}
         <div className={styles.skillsList}>
-          {skillsData.map((skill, index) => (
+          {skillsData.map((skill) => (
             <span
-              key={index}
+              key={skill.name}
               className={`${styles.skillTag} ${
                 skill.category === "frontend" ? styles.frontend : styles.backend
               }`}

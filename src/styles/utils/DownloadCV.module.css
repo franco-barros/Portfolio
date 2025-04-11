@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  height: 100%; /* Asegura que el contenido se mantenga centrado verticalmente también */
+  height: 100%;
 }
 
 .downloadButton {
@@ -11,6 +11,7 @@
   align-items: center;
   gap: 10px;
   padding: 12px 20px;
+  font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
   color: white;
@@ -18,7 +19,10 @@
   border-radius: 8px;
   text-decoration: none;
   transition: background 0.3s ease, transform 0.2s ease;
-  white-space: nowrap; /* Previene saltos de línea en mobile si el espacio es chico */
+  white-space: nowrap;
+  line-height: 1;
+  width: auto;
+  max-width: 100%;
 }
 
 .downloadButton:hover {
@@ -37,6 +41,7 @@
     font-size: 1rem;
     padding: 10px 16px;
     gap: 8px;
+    line-height: 1;
   }
 
   .icon {
@@ -45,6 +50,8 @@
 
   .cvContainer {
     margin-top: 10px;
-    padding: 0 10px; /* Previene overflow horizontal en pantallas muy chicas */
+    padding: 0 10px;
+    min-height: 50px;
+    overflow: hidden;
   }
 }

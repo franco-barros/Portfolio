@@ -1,9 +1,8 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import styles from "../../styles/skills/SkillCarousel.module.css";
 
-// Tipado de habilidad con icono incluido
 interface Skill {
   name: string;
   category: string;
@@ -23,23 +22,22 @@ const SkillCarousel: React.FC<SkillCarouselProps> = ({
 }) => {
   const [current, setCurrent] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const [maxHeight, setMaxHeight] = useState<number | undefined>(undefined);
 
-  // Iniciar rotación automática
-  const startRotation = () => {
-    timerRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % skills.length);
-    }, autoRotateInterval);
-  };
-
-  // Detener rotación
-  const stopRotation = () => {
+  const stopRotation = useCallback(() => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
-  };
+  }, []);
 
-  // Navegación manual
+  const startRotation = useCallback(() => {
+    stopRotation();
+    timerRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % skills.length);
+    }, autoRotateInterval);
+  }, [skills.length, autoRotateInterval, stopRotation]);
+
   const handlePrev = () =>
     setCurrent((prev) => (prev - 1 + skills.length) % skills.length);
   const handleNext = () => setCurrent((prev) => (prev + 1) % skills.length);
@@ -47,23 +45,58 @@ const SkillCarousel: React.FC<SkillCarouselProps> = ({
   useEffect(() => {
     startRotation();
     return () => stopRotation();
-  }, [skills, autoRotateInterval]);
+  }, [startRotation, stopRotation]);
+
+  // Cálculo dinámico de altura máxima para las tarjetas
+  useEffect(() => {
+    const container = document.createElement("div");
+    container.style.visibility = "hidden";
+    container.style.position = "absolute";
+    container.style.top = "-9999px";
+    container.style.left = "-9999px";
+    container.style.width = "320px";
+    container.style.padding = "1.2rem";
+    container.style.boxSizing = "border-box";
+    container.style.fontSize = "0.9rem";
+    container.style.lineHeight = "1.4";
+    container.style.fontWeight = "bold";
+
+    document.body.appendChild(container);
+
+    let max = 0;
+    skills.forEach((skill) => {
+      container.innerHTML = `
+        <h3>${skill.name}</h3>
+        <p>${skill.description}</p>
+        ${skill.usage ? `<p>${skill.usage}</p>` : ""}
+      `;
+      max = Math.max(max, container.offsetHeight);
+    });
+
+    const paddingExtra = 110;
+    setMaxHeight(max + paddingExtra);
+    document.body.removeChild(container);
+  }, [skills]);
 
   return (
-    <div
+    <section
       className={styles.carouselContainer}
+      aria-label="Carrusel de habilidades"
       onMouseEnter={stopRotation}
       onMouseLeave={startRotation}
     >
       <button
         className={`${styles.navButton} ${styles.left}`}
         onClick={handlePrev}
+        aria-label="Habilidad anterior"
       >
         <FaArrowLeft />
       </button>
 
-      <div className={styles.card}>
-        {/* Ícono Devicon */}
+      <div
+        className={styles.card}
+        style={{ height: maxHeight ? `${maxHeight}px` : "auto" }}
+      >
         <div className={styles.iconContainer}>
           {skills[current].icon && <i className={skills[current].icon}></i>}
         </div>
@@ -75,10 +108,11 @@ const SkillCarousel: React.FC<SkillCarouselProps> = ({
       <button
         className={`${styles.navButton} ${styles.right}`}
         onClick={handleNext}
+        aria-label="Habilidad siguiente"
       >
         <FaArrowRight />
       </button>
-    </div>
+    </section>
   );
 };
 

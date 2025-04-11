@@ -60,7 +60,6 @@ export function useTouchNavigation(
     };
   }, [containerRef, setActiveIndex, totalItems, setDirection]);
 
-  // Este efecto sincroniza el índice actual
   useEffect(() => {
     activeIndexRef.current = 0;
   }, []);

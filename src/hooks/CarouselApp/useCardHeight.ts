@@ -1,4 +1,3 @@
-// hooks/CarouselApp/useCardHeight.ts
 import { useState, useEffect } from "react";
 
 export function useCardHeight(cardRef: React.RefObject<HTMLElement>) {

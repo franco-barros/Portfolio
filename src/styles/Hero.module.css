@@ -59,19 +59,29 @@
 
 .title {
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 800;
   margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: var(--foreground);
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
 }
 
 .description {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
   margin-top: 10px;
+  font-family: "Intel", sans-serif;
+  color: var(--foreground);
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 6px rgba(255, 255, 255, 0.12);
 }
 
 .ctaButton {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
   background: var(--text-dark);
   color: var(--text-light);
   border: none;

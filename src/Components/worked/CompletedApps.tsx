@@ -2,27 +2,26 @@
 import React from "react";
 import AppsCarousel from "./carousel/CarouselApp";
 import CardApp from "./card/CardApp";
-import { completedAppsData } from "../../data/CompletedAppsData";
+import { completedAppsData } from "../../data/worked/CompletedAppsData";
 
 interface Props {
   activeIndex: number;
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
-  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>; // agregado
+  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CompletedApps: React.FC<Props> = ({
   activeIndex,
   setActiveIndex,
-  setIsPaused, // agregado
+  setIsPaused,
 }) => {
   return (
     <div className="appsSection">
-      <h3>Completed Apps</h3>
       <AppsCarousel
         items={completedAppsData}
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
-        setIsPaused={setIsPaused} // agregado
+        setIsPaused={setIsPaused}
         renderItem={(app) => (
           <CardApp title={app.name} image={app.image} link={app.link} />
         )}

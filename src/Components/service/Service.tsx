@@ -2,61 +2,7 @@
 import React from "react";
 import styles from "../../styles/service/Services.module.css";
 import ServiceCard from "./ServiceCard";
-
-const servicesData = [
-  {
-    title: "Web Development",
-    subtitle: "Custom Solutions",
-    description:
-      "Need a modern web app, a sleek marketing site, or a cross-platform solution? Let’s chat and create something tailored to your needs.",
-    features: [
-      "Unique, modern designs",
-      "Fully responsive & accessible",
-      "Optimized for performance",
-      "Smooth animations & interactions",
-      "Scalable backend solutions (or integrate your own)",
-      "Multi-platform compatibility",
-    ],
-    cta: "Get a quote",
-  },
-  {
-    title: "Tech Consulting",
-    subtitle: "Expert Advice",
-    description:
-      "Get guidance on modern technologies, best practices, and strategies to take your project to the next level.",
-    features: [
-      "Personalized recommendations",
-      "Process optimization",
-      "Strategic tech solutions",
-    ],
-    cta: "Let’s talk",
-  },
-  {
-    title: "UI/UX Design",
-    subtitle: "User-Centered Approach",
-    description:
-      "Creating beautiful, intuitive, and user-friendly designs that enhance user experience and engagement.",
-    features: [
-      "Intuitive interfaces",
-      "Optimized user experience",
-      "Modern, sleek design",
-    ],
-    cta: "See portfolio",
-  },
-  {
-    title: "Mobile Development",
-    subtitle: "Cross-Platform & Native",
-    description:
-      "Build high-performance native or hybrid mobile apps for iOS and Android that provide a seamless user experience.",
-    features: [
-      "Native & hybrid development",
-      "Optimized for speed & performance",
-      "API & backend integration",
-      "Smooth, fluid experience",
-    ],
-    cta: "Explore solutions",
-  },
-];
+import { servicesData } from "../../data/service/ServiceData";
 
 const Services: React.FC = () => {
   const handleScrollTo = (id: string) => {
@@ -65,14 +11,15 @@ const Services: React.FC = () => {
   };
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/1234567890", "_blank"); // Reemplaza con tu número real
+    window.open("https://wa.me/5492645878987", "_blank");
   };
 
   return (
     <section id="services" className={styles.servicesSection}>
-      <h2 className="globalTitle">Services</h2>
+      <h2 className={styles.sectionTitle}>Services</h2>
+
       <div className={styles.servicesContainer}>
-        {servicesData.map((service, index) => {
+        {servicesData.map((service) => {
           let onClick;
 
           switch (service.cta) {
@@ -94,7 +41,7 @@ const Services: React.FC = () => {
 
           return (
             <ServiceCard
-              key={index}
+              key={service.title}
               title={service.title}
               subtitle={service.subtitle}
               description={service.description}

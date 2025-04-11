@@ -1,7 +1,5 @@
 .footer {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  padding: 2rem;
+  padding: 2rem 1rem;
   text-align: center;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
@@ -9,6 +7,10 @@
   color: whitesmoke;
   position: relative;
   z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .backgroundEffect {
@@ -23,6 +25,8 @@
 .iconContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 1.2rem;
   margin-top: 1rem;
 }
@@ -35,4 +39,13 @@
 .iconLink:hover {
   transform: scale(1.15);
   opacity: 0.85;
+}
+@media (max-width: 480px) {
+  .footer {
+    padding: 1.5rem 1rem;
+  }
+
+  .iconContainer {
+    gap: 1rem;
+  }
 }
