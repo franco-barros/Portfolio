@@ -1,5 +1,7 @@
 .carouselWrapper {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
   width: 100%;
   position: relative;
   padding: 20px 0;
@@ -8,6 +10,11 @@
 .carousel {
   display: flex;
   gap: 20px;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
 }
 
 .carouselItem {

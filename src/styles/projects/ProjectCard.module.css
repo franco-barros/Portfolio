@@ -56,7 +56,6 @@
   font-size: 0.75rem;
   padding: 4px 8px;
   border-radius: 12px;
-
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -131,8 +130,20 @@
   .projectCard {
     width: 100%;
     max-width: 280px;
-    height: auto;
-    aspect-ratio: 350 / 200;
+    min-height: 160px;
+  }
+
+  @supports (aspect-ratio: 1) {
+    .projectCard {
+      aspect-ratio: 350 / 200;
+      height: auto;
+    }
+  }
+
+  @supports not (aspect-ratio: 1) {
+    .projectCard {
+      height: 160px;
+    }
   }
 
   .projectTitle {

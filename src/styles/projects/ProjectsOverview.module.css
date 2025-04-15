@@ -3,11 +3,14 @@
   padding: 6rem 2rem;
   background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: var(--foreground);
   text-align: left;
-  overflow: hidden;
+  overflow-x: hidden;
   z-index: 5;
+  min-height: calc(var(--vh, 1vh) * 100);
 }
+
 .projectsTitle {
   font-size: 2rem;
   font-weight: 500;
