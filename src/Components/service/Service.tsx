@@ -24,16 +24,16 @@ const Services: React.FC = () => {
 
           switch (service.cta) {
             case "Get a quote":
-              onClick = () => handleScrollTo("contact");
+            case "Explore solutions":
+            case "Build your site":
+            case "Start your app":
+              onClick = () => handleScrollTo("contactme");
               break;
             case "Let’s talk":
               onClick = handleWhatsApp;
               break;
             case "See portfolio":
               onClick = () => handleScrollTo("projects");
-              break;
-            case "Explore solutions":
-              onClick = () => handleScrollTo("contact");
               break;
             default:
               onClick = undefined;
