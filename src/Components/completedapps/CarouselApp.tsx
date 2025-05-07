@@ -1,24 +1,25 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import styles from "../../../styles/worked/carousel/CarouselComments.module.css";
-import { useCardHeight } from "../../../hooks/CarouselApp/useCardHeight";
+import styles from "../../styles/completedapps/CarouselApp.module.css";
+import { useTouchNavigation } from "../../hooks/CarouselApp/useTouchNavigation";
+import { useCardHeight } from "../../hooks/CarouselApp/useCardHeight";
 
-interface CommentsCarouselProps<T> {
+interface CompletedAppsCarouselProps<T> {
   items: T[];
   renderItem: (item: T, index: number) => React.ReactNode;
   activeIndex?: number;
   setActiveIndex?: React.Dispatch<React.SetStateAction<number>>;
-  setIsPaused?: React.Dispatch<React.SetStateAction<boolean>>; // agregado
+  setIsPaused?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CommentsCarousel = <T,>({
+const CompletedAppsCarousel = <T,>({
   items,
   renderItem,
   activeIndex: externalIndex,
   setActiveIndex: setExternalIndex,
-  setIsPaused, // agregado
-}: CommentsCarouselProps<T>) => {
+  setIsPaused,
+}: CompletedAppsCarouselProps<T>) => {
   const [internalIndex, setInternalIndex] = useState(0);
   const activeIndex = externalIndex ?? internalIndex;
   const setActiveIndex = setExternalIndex ?? setInternalIndex;
@@ -26,8 +27,9 @@ const CommentsCarousel = <T,>({
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const cardHeight = useCardHeight(cardRef);
-
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useTouchNavigation(containerRef, setActiveIndex, items.length);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -35,15 +37,13 @@ const CommentsCarousel = <T,>({
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
-
-      // Pausar autoplay temporalmente
       setIsPaused?.(true);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => setIsPaused?.(false), 2000);
 
       if (e.deltaY > 0) {
         setActiveIndex((prev) => (prev + 1) % items.length);
-      } else if (e.deltaY < 0) {
+      } else {
         setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
       }
     };
@@ -54,7 +54,10 @@ const CommentsCarousel = <T,>({
 
   const gap = 15;
   const effectiveCardHeight = cardHeight || 392;
-  const animateProp = { y: -activeIndex * (effectiveCardHeight + gap) };
+  const animateProp = {
+    y: -activeIndex * (effectiveCardHeight + gap),
+    transition: { duration: 0.5, ease: "easeInOut" },
+  };
 
   return (
     <div className={styles.verticalCarouselWrapper}>
@@ -64,11 +67,7 @@ const CommentsCarousel = <T,>({
         onMouseEnter={() => setIsPaused?.(true)}
         onMouseLeave={() => setIsPaused?.(false)}
       >
-        <motion.div
-          animate={animateProp}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className={styles.cardContainer}
-        >
+        <motion.div animate={animateProp} className={styles.cardContainer}>
           {items.map((item, index) => (
             <div
               key={index}
@@ -84,4 +83,4 @@ const CommentsCarousel = <T,>({
   );
 };
 
-export default CommentsCarousel;
+export default CompletedAppsCarousel;

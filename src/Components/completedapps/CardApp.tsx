@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "../../../styles/worked/card/CardApp.module.css";
+import styles from "../../styles/completedapps/CardApp.module.css";
 
 interface CardAppProps {
   title: string;

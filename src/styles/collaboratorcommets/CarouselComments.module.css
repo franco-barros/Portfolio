@@ -1,0 +1,52 @@
+.verticalCarouselWrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  height: 392px;
+  padding: 20px 0;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 392px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.cardContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.itemVertical {
+  flex-shrink: 0;
+  position: absolute;
+  width: 100%;
+  height: 392px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 📱 Responsivo para pantallas chicas */
+@media (max-width: 480px) {
+  .verticalCarouselWrapper,
+  .carousel,
+  .itemVertical {
+    height: auto;
+  }
+
+  .verticalCarouselWrapper {
+    padding: 10px 0;
+  }
+
+  .cardContainer {
+    gap: 10px;
+  }
+}

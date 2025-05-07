@@ -58,15 +58,6 @@ const AnimatedMenuOverlay: React.FC<AnimatedMenuOverlayProps> = ({
           </button>
           <button
             onClick={() => {
-              scrollToSection("skills");
-              handleClose();
-            }}
-            className={styles.menuItem}
-          >
-            Tools
-          </button>
-          <button
-            onClick={() => {
               scrollToSection("projects");
               handleClose();
             }}
@@ -76,12 +67,30 @@ const AnimatedMenuOverlay: React.FC<AnimatedMenuOverlayProps> = ({
           </button>
           <button
             onClick={() => {
-              scrollToSection("worked");
+              scrollToSection("apps");
               handleClose();
             }}
             className={styles.menuItem}
           >
-            Apps and Collaborators
+            Completed Apps
+          </button>
+          <button
+            onClick={() => {
+              scrollToSection("skills");
+              handleClose();
+            }}
+            className={styles.menuItem}
+          >
+            Tools
+          </button>
+          <button
+            onClick={() => {
+              scrollToSection("collaborators");
+              handleClose();
+            }}
+            className={styles.menuItem}
+          >
+            Collaborators
           </button>
           <button
             onClick={() => {
@@ -106,7 +115,6 @@ const AnimatedMenuOverlay: React.FC<AnimatedMenuOverlayProps> = ({
     </div>
   );
 
-  // Render the overlay into a portal so it covers the entire screen.
   return createPortal(overlayContent, document.body);
 };
 

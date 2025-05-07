@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from "../../../styles/worked/card/CardComments.module.css";
+import styles from "../../styles/collaboratorcommets/CardComments.module.css";
 
 interface CardCommentProps {
   description: string;
@@ -28,3 +28,4 @@ const CardComment: React.FC<CardCommentProps> = ({
 };
 
 export default CardComment;
+ 

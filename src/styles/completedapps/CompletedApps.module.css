@@ -1,0 +1,51 @@
+/* estilos de la sección padre (CompletedApps) */
+
+.appsSection {
+  position: relative;
+  padding: 6rem 2rem;
+  background: var(--navbar-scrolled-bg);
+  backdrop-filter: blur(8px);
+  color: var(--foreground);
+  text-align: left;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  z-index: 5;
+  box-sizing: border-box;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  color: var(--foreground);
+  margin: 0 auto 1rem auto;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  max-width: fit-content;
+  padding: 0.5rem 1rem;
+  background-color: var(--global-title-bg);
+  border: 2px solid var(--foreground);
+  border-radius: 50px;
+}
+
+.appsWrapper {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .appsSection {
+    height: auto;
+    padding: 1.5rem;
+  }
+  .appsWrapper {
+    flex-direction: column;
+  }
+}

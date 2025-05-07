@@ -6,9 +6,10 @@ import Hero from "../Components/hero";
 import AboutMe from "../Components/aboutme";
 import Projects from "../Components/projects";
 import Skills from "../Components/skills";
-import WorkedSection from "../Components/worked";
 import Service from "../Components/service";
 import ContactMe from "../Components/utils/contactme";
+import CompletedApps from "../Components/completedapps/CompletedApps";
+import CollaboratorComments from "../Components/collaboratorcomments/CollaboratorComments";
 
 const HomePage: React.FC = () => {
   const [showGreeting, setShowGreeting] = useState<boolean | null>(null);
@@ -81,14 +82,17 @@ const HomePage: React.FC = () => {
           <section id="about">
             <AboutMe />
           </section>
-          <section id="skills">
-            <Skills />
+          <section id="apps">
+            <CompletedApps />
           </section>
           <section id="projects">
             <Projects />
           </section>
-          <section id="worked">
-            <WorkedSection />
+          <section id="skills">
+            <Skills />
+          </section>
+          <section id="collaborators">
+            <CollaboratorComments />
           </section>
           <section id="service">
             <Service />
