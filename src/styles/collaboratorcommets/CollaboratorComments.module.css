@@ -1,16 +1,16 @@
+/* CollaboratorComments.module.css */
 .commentsSection {
   position: relative;
   padding: 6rem 2rem;
   background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(8px);
   color: var(--foreground);
-  text-align: left;
-  height: 100vh;
+  text-align: center; /* centrar título y contenido */
+  min-height: 100vh; /* que llene al menos toda la ventana */
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: visible;
-  z-index: 5;
+  justify-content: center; /* centrar verticalmente */
   box-sizing: border-box;
 }
 
@@ -19,11 +19,9 @@
   font-weight: 500;
   font-family: "Poppins", sans-serif;
   color: var(--foreground);
-  margin: 0 auto 1rem auto;
+  margin-bottom: 2rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  text-align: center;
-  max-width: fit-content;
   padding: 0.5rem 1rem;
   background-color: var(--global-title-bg);
   border: 2px solid var(--foreground);
@@ -32,19 +30,21 @@
 
 .commentsWrapper {
   width: 100%;
-  flex: 1;
+  max-width: 800px; /* límite de anchura para el carrusel */
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: center; /* centrar verticalmente el carrusel */
+  flex: 1;
 }
 
-/* Media query para pantallas pequeñas */
+/* En mobile, apilar y ajustar espacios */
 @media (max-width: 768px) {
   .commentsSection {
-    height: auto;
-    padding: 1.5rem;
+    padding: 2rem 1rem;
+    min-height: auto;
   }
   .commentsWrapper {
     flex-direction: column;
+    gap: 1.5rem;
   }
 }

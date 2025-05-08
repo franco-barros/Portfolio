@@ -22,6 +22,10 @@ const CardApp: React.FC<CardAppProps> = ({ title, image, link }) => {
         quality={100}
         loading="lazy"
       />
+
+      {/* Título visible al hacer hover */}
+      <div className={styles.cardTitle}>{title}</div>
+
       <div className={styles.cardButtonContainer}>
         <button className={styles.cardButton}>Ver app</button>
       </div>

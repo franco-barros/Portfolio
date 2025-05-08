@@ -1,3 +1,4 @@
+// CollaboratorComments.tsx
 "use client";
 import React, { useState } from "react";
 import InfiniteCarousel from "./CarouselComments";

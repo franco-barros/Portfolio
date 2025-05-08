@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import { AnimatePresence, motion, Variants, PanInfo } from "framer-motion";
 import styles from "../../styles/collaboratorcommets/CarouselComments.module.css";
 
 interface CommentsCarouselProps<T> {
@@ -38,14 +38,14 @@ const CommentsCarousel = <T,>({
   const [internalIndex, setInternalIndex] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
   const [paused, setPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const activeIndex = externalIndex ?? internalIndex;
   const setIndex = setExternalIndex ?? setInternalIndex;
-
   const containerRef = useRef<HTMLDivElement>(null);
   const wheelTimeout = useRef<NodeJS.Timeout>();
 
-  // Autoplay: solo si no está paused
+  // Autoplay
   useEffect(() => {
     if (paused) return;
     const play = () => {
@@ -56,15 +56,17 @@ const CommentsCarousel = <T,>({
     return () => clearInterval(interval);
   }, [items.length, autoplayInterval, setIndex, paused]);
 
-  // Wheel scroll: pausa 2s y cambia índice
+  // Wheel scroll (desktop hover only)
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const c = containerRef.current;
+    if (!c) return;
+
     const onWheel = (e: WheelEvent) => {
+      if (!isHovered) return;
       e.preventDefault();
       setPaused(true);
       setIsPaused?.(true);
-      if (wheelTimeout.current) clearTimeout(wheelTimeout.current);
+      clearTimeout(wheelTimeout.current!);
       wheelTimeout.current = setTimeout(() => {
         setPaused(false);
         setIsPaused?.(false);
@@ -78,15 +80,27 @@ const CommentsCarousel = <T,>({
         setIndex((prev) => (prev - 1 + items.length) % items.length);
       }
     };
-    container.addEventListener("wheel", onWheel, { passive: false });
-    return () => container.removeEventListener("wheel", onWheel);
-  }, [items.length, setIndex, setIsPaused]);
+
+    c.addEventListener("wheel", onWheel, { passive: false });
+    return () => c.removeEventListener("wheel", onWheel);
+  }, [items.length, setIndex, setIsPaused, isHovered]);
+
+  // Drag (mobile swipe)
+  const handleDragEnd = (event: MouseEvent | TouchEvent, info: PanInfo) => {
+    const offsetY = info.offset.y;
+    if (offsetY < -50) {
+      setDirection(1);
+      setIndex((prev) => (prev + 1) % items.length);
+    } else if (offsetY > 50) {
+      setDirection(-1);
+      setIndex((prev) => (prev - 1 + items.length) % items.length);
+    }
+  };
 
   return (
     <div className={styles.verticalCarouselWrapper}>
       <section ref={containerRef} className={styles.carousel}>
         <AnimatePresence initial={false} custom={direction}>
-          {/* outer motion.div controla la entrada/salida */}
           <motion.div
             key={activeIndex}
             custom={direction}
@@ -96,15 +110,22 @@ const CommentsCarousel = <T,>({
             exit="exit"
             transition={{ duration: 0.6, ease: "easeInOut" }}
             className={styles.itemVertical}
+            drag="y"
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
           >
-            {/* nested motion.div SOLO envuelve la card */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               onMouseEnter={() => {
-                setPaused(true);
-                setIsPaused?.(true);
+                if (window.matchMedia("(hover: hover)").matches) {
+                  setIsHovered(true);
+                  setPaused(true);
+                  setIsPaused?.(true);
+                }
               }}
               onMouseLeave={() => {
+                setIsHovered(false);
                 setPaused(false);
                 setIsPaused?.(false);
               }}

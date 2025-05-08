@@ -1,3 +1,4 @@
+// CompletedAppsCarousel.tsx
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -5,7 +6,7 @@ import styles from "../../styles/completedapps/CarouselApp.module.css";
 import { useTouchNavigation } from "../../hooks/CarouselApp/useTouchNavigation";
 import { useCardHeight } from "../../hooks/CarouselApp/useCardHeight";
 
-interface CompletedAppsCarouselProps<T> {
+interface CompletedAppsCarouselProps<T extends { name: string }> {
   items: T[];
   renderItem: (item: T, index: number) => React.ReactNode;
   activeIndex?: number;
@@ -13,7 +14,7 @@ interface CompletedAppsCarouselProps<T> {
   setIsPaused?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CompletedAppsCarousel = <T,>({
+const CompletedAppsCarousel = <T extends { name: string }>({
   items,
   renderItem,
   activeIndex: externalIndex,
@@ -21,41 +22,43 @@ const CompletedAppsCarousel = <T,>({
   setIsPaused,
 }: CompletedAppsCarouselProps<T>) => {
   const [internalIndex, setInternalIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const activeIndex = externalIndex ?? internalIndex;
-  const setActiveIndex = setExternalIndex ?? setInternalIndex;
+  const setActive = setExternalIndex ?? setInternalIndex;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const cardHeight = useCardHeight(cardRef);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  useTouchNavigation(containerRef, setActiveIndex, items.length);
+  // Swipe en touch
+  useTouchNavigation(containerRef, setActive, items.length);
 
+  // Wheel solo en hover desktop
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const handleWheel = (e: WheelEvent) => {
+    const c = containerRef.current;
+    if (!c) return;
+    const onWheel = (e: WheelEvent) => {
+      if (!isHovered) return;
       e.preventDefault();
       setIsPaused?.(true);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      clearTimeout(timeoutRef.current!);
       timeoutRef.current = setTimeout(() => setIsPaused?.(false), 2000);
-
-      if (e.deltaY > 0) {
-        setActiveIndex((prev) => (prev + 1) % items.length);
-      } else {
-        setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
-      }
+      setActive((i) =>
+        e.deltaY > 0
+          ? (i + 1) % items.length
+          : (i - 1 + items.length) % items.length
+      );
     };
+    c.addEventListener("wheel", onWheel, { passive: false });
+    return () => c.removeEventListener("wheel", onWheel);
+  }, [isHovered, items.length, setActive, setIsPaused]);
 
-    container.addEventListener("wheel", handleWheel, { passive: false });
-    return () => container.removeEventListener("wheel", handleWheel);
-  }, [items.length, setActiveIndex, setIsPaused]);
-
+  // Cálculo de desplazamiento vertical
   const gap = 15;
-  const effectiveCardHeight = cardHeight || 392;
+  const h = cardHeight || containerRef.current?.offsetHeight || 325;
   const animateProp = {
-    y: -activeIndex * (effectiveCardHeight + gap),
+    y: -activeIndex * (h + gap),
     transition: { duration: 0.5, ease: "easeInOut" },
   };
 
@@ -64,17 +67,19 @@ const CompletedAppsCarousel = <T,>({
       <section
         ref={containerRef}
         className={styles.carousel}
-        onMouseEnter={() => setIsPaused?.(true)}
-        onMouseLeave={() => setIsPaused?.(false)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <motion.div animate={animateProp} className={styles.cardContainer}>
-          {items.map((item, index) => (
+          {items.map((item, idx) => (
             <div
-              key={index}
-              ref={index === 0 ? cardRef : null}
+              key={idx}
+              ref={idx === 0 ? cardRef : null}
               className={styles.itemVertical}
             >
-              {renderItem(item, index)}
+              <div className={styles.cardInner}>
+                <div className={styles.appContent}>{renderItem(item, idx)}</div>
+              </div>
             </div>
           ))}
         </motion.div>

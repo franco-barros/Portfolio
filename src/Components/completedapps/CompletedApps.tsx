@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import AppsCarousel from "./CarouselApp"; // asegúrate de apuntar al archivo correcto
 import CardApp from "./CardApp";
-import { completedAppsData } from "../../data/collaboratorcomments/CompletedAppsData";
+import { completedAppsData } from "../../data/completedapp/CompletedAppsData";
 import styles from "../../styles/completedapps/CompletedApps.module.css";
 
 const CompletedApps: React.FC = () => {

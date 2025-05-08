@@ -1,3 +1,4 @@
+// CardComment.tsx
 "use client";
 import React from "react";
 import styles from "../../styles/collaboratorcommets/CardComments.module.css";
@@ -28,4 +29,3 @@ const CardComment: React.FC<CardCommentProps> = ({
 };
 
 export default CardComment;
- 

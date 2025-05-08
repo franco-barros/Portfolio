@@ -1,27 +1,33 @@
+/* CarouselComments.module.css */
+
 .verticalCarouselWrapper {
   overflow: hidden;
   width: 100%;
   position: relative;
   height: 392px;
   padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .carousel {
   position: relative;
   width: 100%;
+  max-width: 800px;
   height: 392px;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  touch-action: none;
 }
 
-.cardContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  transition: transform 0.5s ease-in-out;
+/* Restaurar scroll vertical de página en desktop */
+@media (hover: hover) and (pointer: fine) {
+  .carousel {
+    touch-action: pan-y;
+  }
 }
 
 .itemVertical {
@@ -34,15 +40,22 @@
   align-items: center;
 }
 
-/* 📱 Responsivo para pantallas chicas */
+.cardContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Responsive para pantallas pequeñas */
 @media (max-width: 480px) {
   .verticalCarouselWrapper,
   .carousel,
   .itemVertical {
-    height: auto;
-  }
-
-  .verticalCarouselWrapper {
+    /* quitamos height auto y forzamos un min-height que cubra la card + padding */
+    height: auto !important;
+    min-height: 365px; /* 325px de la card + 40px de padding wrapper (20px arriba y abajo) */
     padding: 10px 0;
   }
 
