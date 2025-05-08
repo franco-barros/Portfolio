@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
+import ProfileHintArrow from "../../utils/profilehintarrow";
 import styles from "../../../styles/animations/AnimatedSphere.module.css";
 
 const AnimatedSphere: React.FC = () => {
@@ -14,17 +15,16 @@ const AnimatedSphere: React.FC = () => {
       rotateY: flipped ? 180 : 0,
       transition: { duration: 0.8, ease: "easeInOut" },
     });
-  }, [flipControls, flipped]); // ✅ agregado flipControls
+  }, [flipControls, flipped]);
 
   useEffect(() => {
     verticalControls.start({
       y: [0, -20, 0],
       transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
     });
-  }, [verticalControls]); // ✅ agregado verticalControls
+  }, [verticalControls]);
 
   const handleMouseEnter = () => verticalControls.stop();
-
   const handleMouseLeave = () => {
     verticalControls.start({
       y: [0, -20, 0],
@@ -35,29 +35,32 @@ const AnimatedSphere: React.FC = () => {
   const handleClick = () => setFlipped((prev) => !prev);
 
   return (
-    <button
-      onClick={handleClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      aria-label="Esfera animada con foto de perfil"
-      className={styles.buttonReset}
-    >
-      <motion.div className={styles.container} animate={verticalControls}>
-        <motion.div className={styles.sphere} animate={flipControls}>
-          <div className={styles.front}></div>
-          <div className={styles.back}>
-            <Image
-              src="/assets/images/fotoperfil.png"
-              alt="Foto de perfil"
-              width={200}
-              height={200}
-              className={styles.image}
-              priority
-            />
-          </div>
+    <div className={styles.wrapper}>
+      <ProfileHintArrow />
+      <button
+        onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        aria-label="Esfera animada con foto de perfil"
+        className={styles.buttonReset}
+      >
+        <motion.div className={styles.container} animate={verticalControls}>
+          <motion.div className={styles.sphere} animate={flipControls}>
+            <div className={styles.front}></div>
+            <div className={styles.back}>
+              <Image
+                src="/assets/images/fotoperfil.png"
+                alt="Foto de perfil"
+                width={200}
+                height={200}
+                className={styles.image}
+                priority
+              />
+            </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
-    </button>
+      </button>
+    </div>
   );
 };
 
