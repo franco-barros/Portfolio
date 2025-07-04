@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from "../../styles/AboutMe.module.css";
+import styles from "../../styles/about/AboutMe.module.css";
 import FloatingShape from "../animations/animatedphrases";
 import AnimationCarousel from "./animationcarousel";
 

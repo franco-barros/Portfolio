@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const createStarPoints = (
@@ -23,17 +23,6 @@ const createStarPoints = (
 
 const CaptainShieldAnimation: React.FC = () => {
   const [wakandaMode, setWakandaMode] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  // Detectar tamaño de pantalla para condicionar animación
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 768); // por ejemplo, desktop desde 768px en adelante
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const starPoints = createStarPoints(100, 100, 35, 15, 10);
 
@@ -56,7 +45,7 @@ const CaptainShieldAnimation: React.FC = () => {
       <button
         type="button"
         onClick={() => setWakandaMode(!wakandaMode)}
-        title="Click para transformar el escudo"
+        title="Click para pulsar la estrella"
         aria-pressed={wakandaMode}
         style={{
           width: "100%",
@@ -73,13 +62,8 @@ const CaptainShieldAnimation: React.FC = () => {
           height="100%"
           preserveAspectRatio="xMidYMid meet"
           style={{ display: "block" }}
-          // Solo rota en desktop, no en mobile
-          animate={isDesktop ? { rotate: 360 } : {}}
-          transition={
-            isDesktop
-              ? { repeat: Infinity, duration: 20, ease: "linear" }
-              : undefined
-          }
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
         >
           <defs>
             <radialGradient id="redGradient" cx="50%" cy="50%" r="50%">
@@ -112,12 +96,12 @@ const CaptainShieldAnimation: React.FC = () => {
             </filter>
           </defs>
 
-          {/* Círculo externo rojo */}
+          {/* Círculo externo rojo fijo */}
           <circle
             cx="100"
             cy="100"
             r="95"
-            fill={wakandaMode ? "url(#blueGradient)" : "url(#redGradient)"}
+            fill="url(#redGradient)"
             stroke="#330000"
             strokeWidth="3"
           />
@@ -132,13 +116,13 @@ const CaptainShieldAnimation: React.FC = () => {
             strokeWidth="1.5"
           />
 
-          {/* Anillo rojo o azul */}
+          {/* Anillo rojo fijo */}
           <circle
             cx="100"
             cy="100"
             r="65"
-            fill={wakandaMode ? "url(#blueGradient)" : "url(#redGradient)"}
-            stroke={wakandaMode ? "#002050" : "#660000"}
+            fill="url(#redGradient)"
+            stroke="#660000"
             strokeWidth="1.5"
           />
 
@@ -157,27 +141,32 @@ const CaptainShieldAnimation: React.FC = () => {
             cx="100"
             cy="100"
             r="40"
-            fill={wakandaMode ? "#004a8f" : "#003399"}
+            fill="#003399"
             stroke="#001844"
             strokeWidth="2"
           />
 
-          {/* Estrella blanca con puntas iguales */}
+          {/* Estrella blanca con pulso exagerado al hacer click */}
           <motion.polygon
             points={starPoints}
             fill="white"
             stroke="#ccc"
             strokeWidth="1.5"
             filter="url(#starShadow)"
-            animate={{
-              scale: wakandaMode ? 1.1 : 1,
-              rotate: wakandaMode ? 15 : 0,
-              filter: wakandaMode
-                ? "drop-shadow(0 0 8px #7ec8ff)"
-                : "url(#starShadow)",
-            }}
+            animate={
+              wakandaMode
+                ? {
+                    scale: [1, 1.5, 1.2, 1.5, 1],
+                    rotate: [0, 20, -15, 20, 0],
+                  }
+                : { scale: 1, rotate: 0 }
+            }
+            transition={
+              wakandaMode
+                ? { duration: 1.5, ease: "easeInOut" }
+                : { duration: 0.5 }
+            }
             style={{ originX: "50%", originY: "50%" }}
-            transition={{ duration: 1, ease: "easeInOut" }}
           />
         </motion.svg>
       </button>

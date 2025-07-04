@@ -1,9 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const IronManReactor: React.FC = () => {
   const [pulse, setPulse] = useState(false);
+  const [showText, setShowText] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -11,6 +12,18 @@ const IronManReactor: React.FC = () => {
     }, 2000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleClick = () => {
+    setShowText(true);
+  };
+
+  // Para accesibilidad: activar texto también con Enter/Space
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleClick();
+    }
+  };
 
   const r = 48;
   const cx = 50;
@@ -62,11 +75,18 @@ const IronManReactor: React.FC = () => {
     inner: sidePoints[i],
   }));
 
-  // Hacemos el triángulo azul del centro más grande y un poco más bajo
   const triangleDownPoints = "30,38 50,68 70,38";
 
   const pointsToString = (points: { x: number; y: number }[]) =>
     points.map((p) => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(" ");
+
+  // Timer para ocultar texto después de 3s
+  React.useEffect(() => {
+    if (showText) {
+      const timer = setTimeout(() => setShowText(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showText]);
 
   return (
     <div
@@ -82,131 +102,181 @@ const IronManReactor: React.FC = () => {
         alignItems: "center",
         padding: 20,
         boxSizing: "border-box",
+        position: "relative",
+        userSelect: "none",
       }}
       title="Reactor ARC estilo Iron Man 3"
     >
-      <motion.svg
-        viewBox="0 0 100 100"
-        width="150"
-        height="150"
-        style={{ cursor: "pointer", overflow: "visible", display: "block" }}
+      <button
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        aria-pressed={showText}
+        aria-label="Mostrar mensaje I love you 3000"
+        style={{
+          cursor: "pointer",
+          border: "none",
+          background: "transparent",
+          padding: 0,
+          display: "block",
+          outline: "none",
+        }}
       >
-        <defs>
-          <radialGradient id="blueGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#00e5ff" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#004a64" stopOpacity="0.3" />
-          </radialGradient>
+        <motion.svg
+          viewBox="0 0 100 100"
+          width="150"
+          height="150"
+          style={{ overflow: "visible", display: "block" }}
+          tabIndex={-1} // no tab para svg porque el botón ya lo tiene
+        >
+          <defs>
+            <radialGradient id="blueGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#00e5ff" stopOpacity="0.7" />
+              <stop offset="100%" stopColor="#004a64" stopOpacity="0.3" />
+            </radialGradient>
 
-          {/* Gris intermedio, menos metálico que antes */}
-          <linearGradient id="softGrey" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#777" />
-            <stop offset="100%" stopColor="#999" />
-          </linearGradient>
+            <linearGradient id="softGrey" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#777" />
+              <stop offset="100%" stopColor="#999" />
+            </linearGradient>
 
-          <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
-            <feDropShadow
-              dx="0"
-              dy="0"
-              stdDeviation="3"
-              floodColor="#00e5ff"
-              floodOpacity="0.7"
-            />
-            <feDropShadow
-              dx="0"
-              dy="0"
-              stdDeviation="6"
-              floodColor="#00e5ff"
-              floodOpacity="0.4"
-            />
-          </filter>
-        </defs>
+            <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+              <feDropShadow
+                dx="0"
+                dy="0"
+                stdDeviation="3"
+                floodColor="#00e5ff"
+                floodOpacity="0.7"
+              />
+              <feDropShadow
+                dx="0"
+                dy="0"
+                stdDeviation="6"
+                floodColor="#00e5ff"
+                floodOpacity="0.4"
+              />
+            </filter>
+          </defs>
 
-        {/* Círculo negro exterior (borde) */}
-        <circle
-          cx={cx}
-          cy={cy}
-          r={r + 3.5}
-          fill="none"
-          stroke="#000"
-          strokeWidth="4"
-        />
+          {/* Círculo negro exterior (borde) */}
+          <circle
+            cx={cx}
+            cy={cy}
+            r={r + 3.5}
+            fill="none"
+            stroke="#000"
+            strokeWidth="4"
+          />
 
-        {/* Círculo exterior con brillo */}
-        <circle
-          cx={cx}
-          cy={cy}
-          r={r}
-          fill="url(#blueGlow)"
-          stroke="#00b8d4"
-          strokeWidth="3"
-          filter="url(#glow)"
-        />
+          {/* Círculo exterior con brillo */}
+          <circle
+            cx={cx}
+            cy={cy}
+            r={r}
+            fill="url(#blueGlow)"
+            stroke="#00b8d4"
+            strokeWidth="3"
+            filter="url(#glow)"
+          />
 
-        {/* Triángulo gris intermedio */}
-        <polygon
-          points={pointsToString(triangleVertices)}
-          fill="none"
-          stroke="url(#softGrey)"
-          strokeWidth="3"
-          style={{ filter: "drop-shadow(0 0 3px #444)" }}
-        />
-
-        {/* Líneas decorativas animadas con pulso */}
-        {outerLines.map((line, i) => (
-          <motion.line
-            key={`outer-line-${i}`}
-            x1={line.outer.x}
-            y1={line.outer.y}
-            x2={line.inner.x}
-            y2={line.inner.y}
+          {/* Triángulo gris intermedio */}
+          <polygon
+            points={pointsToString(triangleVertices)}
+            fill="none"
             stroke="url(#softGrey)"
-            strokeWidth={3}
+            strokeWidth="3"
+            style={{ filter: "drop-shadow(0 0 3px #444)" }}
+          />
+
+          {/* Líneas decorativas animadas con pulso */}
+          {outerLines.map((line, i) => (
+            <motion.line
+              key={`outer-line-${i}`}
+              x1={line.outer.x}
+              y1={line.outer.y}
+              x2={line.inner.x}
+              y2={line.inner.y}
+              stroke="url(#softGrey)"
+              strokeWidth={3}
+              animate={{
+                filter: pulse
+                  ? "drop-shadow(0 0 12px #00e5ff)"
+                  : "drop-shadow(0 0 5px #00b8d4)",
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+
+          {/* Grupo central animado con pulso tipo escala */}
+          <motion.g
+            style={{ originX: "50%", originY: "50%" }}
             animate={{
+              scale: pulse ? [1, 1.25, 1] : 1,
               filter: pulse
-                ? "drop-shadow(0 0 8px #00e5ff)"
-                : "drop-shadow(0 0 3px #00b8d4)",
+                ? "drop-shadow(0 0 20px #00e5ff) drop-shadow(0 0 40px #00b8d4)"
+                : "drop-shadow(0 0 12px #00e5ff) drop-shadow(0 0 25px #00b8d4)",
             }}
             transition={{
               duration: 2,
               repeat: Infinity,
               ease: "easeInOut",
             }}
-          />
-        ))}
+          >
+            <motion.polygon
+              points={triangleDownPoints}
+              fill="#00e5ff"
+              stroke="#00b8d4"
+              strokeWidth="3"
+              style={{ transformOrigin: "50% 50%" }}
+            />
+            <motion.circle
+              cx={cx}
+              cy={cy}
+              r={5}
+              fill="rgba(160, 216, 255, 0.3)"
+              filter="url(#glow)"
+              animate={{ opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.g>
+        </motion.svg>
+      </button>
 
-        {/* Grupo central animado con pulso tipo escala */}
-        <motion.g
-          style={{ originX: "50%", originY: "50%" }}
-          animate={{
-            scale: pulse ? [1, 1.15, 1] : 1,
-            filter: pulse
-              ? "drop-shadow(0 0 15px #00e5ff) drop-shadow(0 0 30px #00b8d4)"
-              : "drop-shadow(0 0 10px #00e5ff) drop-shadow(0 0 20px #00b8d4)",
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <motion.polygon
-            points={triangleDownPoints}
-            fill="#00e5ff"
-            stroke="#00b8d4"
-            strokeWidth="3"
-            style={{ transformOrigin: "50% 50%" }}
-          />
-          <motion.circle
-            cx={cx}
-            cy={cy}
-            r={5}
-            fill="rgba(160, 216, 255, 0.3"
-            filter="url(#glow)"
-            animate={{ opacity: [0.8, 1, 0.8] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.g>
-      </motion.svg>
+      {/* Texto "I love you 3000" animado y centrado en botón */}
+      <AnimatePresence>
+        {showText && (
+          <motion.button
+            key="love-text"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.5 }}
+            onClick={() => setShowText(false)}
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              background: "transparent",
+              border: "none",
+              color: "#fff",
+              fontWeight: "bold",
+              fontSize: "1.5rem",
+              textShadow: "0 0 8px #00e5ff, 0 0 15px #00b8d4, 0 0 20px #00b8d4",
+              cursor: "pointer",
+              padding: 0,
+              userSelect: "none",
+              whiteSpace: "nowrap",
+            }}
+            aria-label="Cerrar mensaje I love you 3000"
+          >
+            I love you 3000
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

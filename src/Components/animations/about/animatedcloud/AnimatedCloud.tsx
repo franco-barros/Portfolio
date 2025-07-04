@@ -140,7 +140,7 @@ const CloudsAnimation: React.FC = () => {
           transition={{ duration: 1.5, ease: "easeInOut" }}
           style={{
             position: "absolute",
-            color: "#35eb25e5",
+            color: "#8cd603e1",
             fontSize: 32,
             fontWeight: "bold",
             userSelect: "none",
