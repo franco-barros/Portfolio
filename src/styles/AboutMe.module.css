@@ -38,33 +38,9 @@
   justify-content: center;
 }
 
-/* Contenedor del contenido: dos columnas */
-.contentContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-/* Animación a la derecha */
-.squareContainer {
-  flex: 1;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  height: 300px;
-  z-index: 20;
-  transform: translateY(-30px);
-}
-
-/* Texto a la izquierda (más ancho) */
 .textContainer {
-  flex: 2;
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
   z-index: 20;
 }
@@ -87,24 +63,69 @@
   color: var(--foreground);
 }
 
+/* Carousel Container */
+.animationCarousel {
+  max-width: 320px;
+  margin: 2rem auto;
+  text-align: center;
+  position: relative;
+  user-select: none;
+}
+
+.animationDisplay {
+  height: 220px; /* altura fija para no cambiar layout */
+  min-width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Botones de navegación */
+.animationControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.animationControls button {
+  background: var(--global-title-bg);
+  border: 2px solid var(--foreground);
+  color: var(--foreground);
+  font-size: 1.3rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+.animationControls button:hover,
+.animationControls button:focus {
+  background: var(--foreground);
+  color: var(--global-title-bg);
+  outline: none;
+}
+
+.animationControls span {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--foreground);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .aboutSection {
     padding: 3rem 1rem;
   }
 
-  .contentContainer {
-    flex-direction: column;
+  .animationCarousel {
+    max-width: 90vw;
   }
 
-  .textContainer,
-  .squareContainer {
-    flex: 1 1 100%;
-    width: 100%;
-  }
-
-  .squareContainer {
-    height: 300px;
-    transform: translateY(0);
+  .animationDisplay {
+    min-width: 280px;
+    height: 180px;
   }
 }

@@ -6,9 +6,12 @@ const YinYangAnimation: React.FC = () => {
   return (
     <div
       style={{
-        width: "300px",
-        height: "300px",
-        marginTop: "130px",
+        width: "100%",
+        maxWidth: 400,
+        aspectRatio: "1 / 1",
+        margin: "2rem auto",
+        background: "#0d1b2a",
+        borderRadius: 12,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -16,12 +19,11 @@ const YinYangAnimation: React.FC = () => {
     >
       <motion.svg
         viewBox="0 0 200 200"
-        width="200"
-        height="200"
+        width="100%"
+        height="100%"
         animate={{ rotate: 360, scale: [1, 1.05, 1] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       >
-        {/* Definición del degradado para la base */}
         <defs>
           <radialGradient id="yinYangGradient" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="#fff" />
@@ -32,7 +34,7 @@ const YinYangAnimation: React.FC = () => {
         {/* Círculo base */}
         <circle cx="100" cy="100" r="90" fill="url(#yinYangGradient)" />
 
-        {/* Mitades del yin-yang */}
+        {/* Mitades del Yin-Yang */}
         <path
           d="M100,10 A90,90 0 0,1 100,190 A45,45 0 0,0 100,10"
           fill="#fff"
@@ -42,7 +44,7 @@ const YinYangAnimation: React.FC = () => {
           fill="#000"
         />
 
-        {/* Trail for the black sphere */}
+        {/* Esferas de transición (trails) */}
         <motion.circle
           cx="100"
           r="10"
@@ -56,13 +58,10 @@ const YinYangAnimation: React.FC = () => {
             duration: 16,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 0.2,
             times: [0, 0.25, 0.5, 0.75, 1],
           }}
           style={{ zIndex: 1 }}
         />
-
-        {/* Trail for the white sphere */}
         <motion.circle
           cx="100"
           r="10"
@@ -76,13 +75,12 @@ const YinYangAnimation: React.FC = () => {
             duration: 16,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 0.2,
             times: [0, 0.25, 0.5, 0.75, 1],
           }}
           style={{ zIndex: 1 }}
         />
 
-        {/* Main black sphere */}
+        {/* Esferas principales */}
         <motion.circle
           cx="100"
           r="10"
@@ -99,8 +97,6 @@ const YinYangAnimation: React.FC = () => {
           }}
           style={{ zIndex: 2 }}
         />
-
-        {/* Main white sphere */}
         <motion.circle
           cx="100"
           r="10"

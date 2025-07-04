@@ -1,0 +1,172 @@
+"use client";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+
+const createStarPoints = (
+  cx: number,
+  cy: number,
+  outerRadius: number,
+  innerRadius: number,
+  points: number
+) => {
+  const angleStep = (Math.PI * 2) / points;
+  let path = "";
+  for (let i = 0; i < points; i++) {
+    const r = i % 2 === 0 ? outerRadius : innerRadius;
+    const angle = i * angleStep - Math.PI / 2; // start at top
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    path += `${x},${y} `;
+  }
+  return path.trim();
+};
+
+const CaptainShieldAnimation: React.FC = () => {
+  const [wakandaMode, setWakandaMode] = useState(false);
+
+  const starPoints = createStarPoints(100, 100, 35, 15, 10);
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        maxWidth: 400,
+        aspectRatio: "1 / 1",
+        margin: "2rem auto",
+        borderRadius: 12,
+        background: "#0d1b2a",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 20,
+        boxSizing: "border-box",
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => setWakandaMode(!wakandaMode)}
+        title="Click para transformar el escudo"
+        aria-pressed={wakandaMode}
+        style={{
+          width: "100%",
+          height: "100%",
+          background: "transparent",
+          border: "none",
+          cursor: "pointer",
+          padding: 0,
+        }}
+      >
+        <motion.svg
+          viewBox="0 0 200 200"
+          width="100%"
+          height="100%"
+          preserveAspectRatio="xMidYMid meet"
+          style={{ display: "block" }}
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+        >
+          <defs>
+            <radialGradient id="redGradient" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#ff4c4c" />
+              <stop offset="100%" stopColor="#7a0000" />
+            </radialGradient>
+            <radialGradient id="blueGradient" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#5a9fff" />
+              <stop offset="100%" stopColor="#002f6c" />
+            </radialGradient>
+            <radialGradient id="whiteGradient" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="100%" stopColor="#cccccc" />
+            </radialGradient>
+
+            <filter
+              id="starShadow"
+              x="-50%"
+              y="-50%"
+              width="200%"
+              height="200%"
+            >
+              <feDropShadow
+                dx="0"
+                dy="0"
+                stdDeviation="2"
+                floodColor="#000"
+                floodOpacity="0.5"
+              />
+            </filter>
+          </defs>
+
+          {/* Círculo externo rojo */}
+          <circle
+            cx="100"
+            cy="100"
+            r="95"
+            fill={wakandaMode ? "url(#blueGradient)" : "url(#redGradient)"}
+            stroke="#330000"
+            strokeWidth="3"
+          />
+
+          {/* Anillo blanco */}
+          <circle
+            cx="100"
+            cy="100"
+            r="80"
+            fill="url(#whiteGradient)"
+            stroke="#888"
+            strokeWidth="1.5"
+          />
+
+          {/* Anillo rojo o azul */}
+          <circle
+            cx="100"
+            cy="100"
+            r="65"
+            fill={wakandaMode ? "url(#blueGradient)" : "url(#redGradient)"}
+            stroke={wakandaMode ? "#002050" : "#660000"}
+            strokeWidth="1.5"
+          />
+
+          {/* Anillo blanco interior */}
+          <circle
+            cx="100"
+            cy="100"
+            r="50"
+            fill="url(#whiteGradient)"
+            stroke="#888"
+            strokeWidth="1.5"
+          />
+
+          {/* Círculo azul central */}
+          <circle
+            cx="100"
+            cy="100"
+            r="40"
+            fill={wakandaMode ? "#004a8f" : "#003399"}
+            stroke="#001844"
+            strokeWidth="2"
+          />
+
+          {/* Estrella blanca con puntas iguales */}
+          <motion.polygon
+            points={starPoints}
+            fill="white"
+            stroke="#ccc"
+            strokeWidth="1.5"
+            filter="url(#starShadow)"
+            animate={{
+              scale: wakandaMode ? 1.1 : 1,
+              rotate: wakandaMode ? 15 : 0,
+              filter: wakandaMode
+                ? "drop-shadow(0 0 8px #7ec8ff)"
+                : "url(#starShadow)",
+            }}
+            style={{ originX: "50%", originY: "50%" }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+          />
+        </motion.svg>
+      </button>
+    </div>
+  );
+};
+
+export default CaptainShieldAnimation;
