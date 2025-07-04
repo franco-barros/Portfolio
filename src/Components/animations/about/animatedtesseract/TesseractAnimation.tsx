@@ -1,8 +1,19 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const TesseractAnimation: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    // Detectar ancho de pantalla
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768); // breakpoint a gusto
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current!;
@@ -48,18 +59,16 @@ const TesseractAnimation: React.FC = () => {
       return [x * scale + 200, y * scale + 200]; // Centrado
     }
 
+    let animationFrameId: number;
+
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const points2D = vertices4D.map((v) => project(rotate4D(v, angle)));
 
-      // Conectamos vértices relacionados
       for (let i = 0; i < 16; i++) {
         for (let j = i + 1; j < 16; j++) {
-          const diff = i ^ j; // XOR para detectar vértices conectados
-          if (
-            diff &&
-            (diff & (diff - 1)) === 0 // potencias de 2 → solo un bit de diferencia
-          ) {
+          const diff = i ^ j;
+          if (diff && (diff & (diff - 1)) === 0) {
             const [x1, y1] = points2D[i];
             const [x2, y2] = points2D[j];
             ctx.beginPath();
@@ -71,12 +80,19 @@ const TesseractAnimation: React.FC = () => {
         }
       }
 
-      angle += 0.01;
-      requestAnimationFrame(draw);
+      if (isDesktop) {
+        angle += 0.01;
+      }
+
+      animationFrameId = requestAnimationFrame(draw);
     }
 
     draw();
-  }, []);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [isDesktop]);
 
   return (
     <canvas

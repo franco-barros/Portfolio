@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const createStarPoints = (
@@ -23,6 +23,17 @@ const createStarPoints = (
 
 const CaptainShieldAnimation: React.FC = () => {
   const [wakandaMode, setWakandaMode] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Detectar tamaño de pantalla para condicionar animación
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768); // por ejemplo, desktop desde 768px en adelante
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const starPoints = createStarPoints(100, 100, 35, 15, 10);
 
@@ -62,8 +73,13 @@ const CaptainShieldAnimation: React.FC = () => {
           height="100%"
           preserveAspectRatio="xMidYMid meet"
           style={{ display: "block" }}
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+          // Solo rota en desktop, no en mobile
+          animate={isDesktop ? { rotate: 360 } : {}}
+          transition={
+            isDesktop
+              ? { repeat: Infinity, duration: 20, ease: "linear" }
+              : undefined
+          }
         >
           <defs>
             <radialGradient id="redGradient" cx="50%" cy="50%" r="50%">
