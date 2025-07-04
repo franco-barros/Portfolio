@@ -40,6 +40,7 @@ const CaptainShieldAnimation: React.FC = () => {
         alignItems: "center",
         padding: 20,
         boxSizing: "border-box",
+        maxHeight: "90vw", // Evita que crezca demasiado en móviles
       }}
     >
       <button
