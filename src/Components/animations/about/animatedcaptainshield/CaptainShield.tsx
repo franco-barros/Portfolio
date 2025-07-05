@@ -46,7 +46,6 @@ const CaptainShieldAnimation: React.FC = () => {
       <button
         type="button"
         onClick={() => setWakandaMode(!wakandaMode)}
-        title="Click para pulsar la estrella"
         aria-pressed={wakandaMode}
         style={{
           width: "100%",

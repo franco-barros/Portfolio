@@ -2,6 +2,7 @@
 import React, { useState, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import styles from "../../../styles/utils/ContactMe.module.css";
+import { FadeInOnScroll } from "../../shared/fadeInonscroll";
 
 const ContactMe: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -89,48 +90,53 @@ const ContactMe: React.FC = () => {
 
   return (
     <section id="contact" className={styles.contactSection}>
-      <h2 className={styles.heading}>Get in Touch</h2>
-      <form onSubmit={handleSubmit} className={styles.contactForm}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          className={styles.inputField}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          className={styles.inputField}
-        />
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          value={formData.message}
-          onChange={handleChange}
-          required
-          className={styles.textAreaField}
-        />
+      <FadeInOnScroll>
+        <h2 className={styles.heading}>Get in Touch</h2>
+      </FadeInOnScroll>
 
-        <ReCAPTCHA
-          ref={recaptchaRef}
-          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-        />
+      <FadeInOnScroll delay={0.15}>
+        <form onSubmit={handleSubmit} className={styles.contactForm}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className={styles.inputField}
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className={styles.inputField}
+          />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+            className={styles.textAreaField}
+          />
 
-        <button
-          type="submit"
-          className={styles.submitButton}
-          disabled={isSending}
-        >
-          {isSending ? "Sending..." : "Send Message"}
-        </button>
-      </form>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
+          />
+
+          <button
+            type="submit"
+            className={styles.submitButton}
+            disabled={isSending}
+          >
+            {isSending ? "Sending..." : "Send Message"}
+          </button>
+        </form>
+      </FadeInOnScroll>
 
       {statusMessage && (
         <p

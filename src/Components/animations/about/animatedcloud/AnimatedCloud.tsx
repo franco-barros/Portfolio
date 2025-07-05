@@ -79,7 +79,6 @@ const CloudsAnimation: React.FC = () => {
       ref={containerRef}
       type="button"
       onClick={() => setOpened((o) => !o)}
-      title="Click para abrir/cerrar nubes"
       aria-pressed={opened}
       style={{
         width: "100%",

@@ -1,8 +1,10 @@
+"use client";
 import styles from "../../styles/projects/ProjectsOverview.module.css";
 import FrontendProjectsCarousel from "./FrontendProjectsCarousel";
 import BackendProjectsCarousel from "./BackendProjectsCarousel";
 import { projectsData } from "../../data/Project/ProjectsData";
 import type { ProjectData } from "../../data/Project/types";
+import { FadeInOnScroll } from "../shared/fadeInonscroll";
 
 const projectsArray = Object.values(projectsData).map(
   (project: ProjectData) => ({
@@ -29,19 +31,23 @@ const ProjectsOverview = () => {
 
   return (
     <section id="projects" className={styles.projectsSection}>
-      <h2 className={styles.projectsTitle}>Projects</h2>
+      <FadeInOnScroll>
+        <h2 className={styles.projectsTitle}>Projects</h2>
+      </FadeInOnScroll>
 
-      {/* Sección de proyectos frontend */}
-      <div className={styles.categoryContainer}>
-        <h3 className={styles.categoryTitle}>Frontend Projects</h3>
-        <FrontendProjectsCarousel projects={frontendProjects} />
-      </div>
+      <FadeInOnScroll delay={0.1}>
+        <div className={styles.categoryContainer}>
+          <h3 className={styles.categoryTitle}>Frontend Projects</h3>
+          <FrontendProjectsCarousel projects={frontendProjects} />
+        </div>
+      </FadeInOnScroll>
 
-      {/* Sección de proyectos backend */}
-      <div className={styles.categoryContainer}>
-        <h3 className={styles.categoryTitle}>Backend Projects</h3>
-        <BackendProjectsCarousel projects={backendProjects} />
-      </div>
+      <FadeInOnScroll delay={0.2}>
+        <div className={styles.categoryContainer}>
+          <h3 className={styles.categoryTitle}>Backend Projects</h3>
+          <BackendProjectsCarousel projects={backendProjects} />
+        </div>
+      </FadeInOnScroll>
     </section>
   );
 };

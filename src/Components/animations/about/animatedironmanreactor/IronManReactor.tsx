@@ -105,7 +105,6 @@ const IronManReactor: React.FC = () => {
         position: "relative",
         userSelect: "none",
       }}
-      title="Reactor ARC estilo Iron Man 3"
     >
       <button
         onClick={handleClick}
