@@ -1,6 +1,8 @@
+import type { Service } from "../../types/service";
 import { serviceDescriptions } from "./ServiceDescriptions";
+import { Code, Database, MessageSquare, Monitor } from "lucide-react";
 
-export const servicesData = [
+export const servicesData: Service[] = [
   {
     title: "Web Development",
     subtitle: "Responsive, Scalable & Polished",
@@ -14,6 +16,7 @@ export const servicesData = [
       "Seamless backend/API integration",
     ],
     cta: "Build your site",
+    icon: Code,
   },
   {
     title: "Application Architecture",
@@ -28,8 +31,8 @@ export const servicesData = [
       "Clear and thorough documentation",
     ],
     cta: "Start your app",
+    icon: Database,
   },
-
   {
     title: "Tech Consulting",
     subtitle: "Tailored Technical Guidance",
@@ -43,6 +46,7 @@ export const servicesData = [
       "Practical guidance at all levels",
     ],
     cta: "Let’s talk",
+    icon: MessageSquare,
   },
   {
     title: "UI/UX Design",
@@ -57,5 +61,6 @@ export const servicesData = [
       "Developer-ready designs",
     ],
     cta: "See portfolio",
+    icon: Monitor,
   },
 ];

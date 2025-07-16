@@ -4,7 +4,7 @@ import AppsCarousel from "./CarouselApp";
 import CardApp from "./CardApp";
 import { completedAppsData } from "../../data/completedapp/CompletedAppsData";
 import styles from "../../styles/completedapps/CompletedApps.module.css";
-import { FadeInOnScroll } from "../shared/fadeInonscroll"; // Asegúrate que el path es correcto
+import { FadeInOnScroll } from "../shared/fadeInonscroll";
 
 const CompletedApps: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);

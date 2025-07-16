@@ -2,6 +2,7 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
 import styles from "../../styles/service/ServicesCard.module.css";
+import type { LucideIcon } from "lucide-react";
 
 interface ServiceCardProps {
   title: string;
@@ -10,6 +11,7 @@ interface ServiceCardProps {
   features?: string[];
   cta?: string;
   onClick?: () => void;
+  icon?: LucideIcon; // nuevo
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -19,9 +21,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   features,
   cta,
   onClick,
+  icon: Icon, // desestructuramos con alias
 }) => {
   return (
     <div className={styles.serviceCard}>
+      {Icon && <Icon className={styles.serviceIcon} />}
       <h3 className={styles.serviceTitle}>{title}</h3>
       {subtitle && <h4 className={styles.serviceSubtitle}>{subtitle}</h4>}
       <p className={styles.serviceDescription}>{description}</p>

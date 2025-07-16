@@ -14,7 +14,6 @@ const nestApi: ProjectData = {
     "/assets/images/nest/Nest4.png",
     "/assets/images/nest/Nest5.png",
   ],
-  video: "/assets/videos/Nest.webm",
   github: "https://github.com/franco-barros/Node-Nest",
 };
 

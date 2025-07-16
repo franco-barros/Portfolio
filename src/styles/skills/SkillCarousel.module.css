@@ -12,8 +12,8 @@
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
+  background-color: rgba(136, 136, 136, 0.7); /* gris translúcido */
+  backdrop-filter: blur(4px); /* opcional, da profundidad */
   border-radius: 8px;
   padding: 2rem;
   text-align: center;
@@ -30,6 +30,7 @@
   font-weight: bold;
   transition: all 0.3s ease;
   flex-shrink: 0;
+  color: var(--foreground);
 }
 
 /* Contenedor del ícono */

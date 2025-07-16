@@ -1,20 +1,20 @@
 export const completedAppsData = [
   {
-    name: "Java Bank",
+    name: "Psycology Landing",
     description: "Brief description of App 1.",
-    image: "/assets/images/javabank/JavaBank.png",
-    link: "https://github.com/franco-barros/JavaBank",
+    image: "/assets/images/psicology-landingpage/PsicologyLanding.png",
+    link: "https://psicology-landing.vercel.app/",
   },
   {
-    name: "Market Multiverse",
+    name: "Kineya frontend",
     description: "Brief description of App 2.",
-    image: "/assets/images/marketmultiverse/MarketMultiverse.png",
-    link: "https://franco-barros.github.io/Market-multiverse/",
+    image: "/assets/images/kineya/kineya1.png",
+    link: "https://kine-ya.vercel.app/",
   },
   {
-    name: "Listify",
+    name: "JurisMind frontend",
     description: "Brief description of App 3.",
-    image: "/assets/images/listify/Listify.png",
-    link: "https://franco-barros.github.io/Listify/",
+    image: "/assets/images/jurismind/jurismind4.png",
+    link: "https://juris-mind-front.vercel.app/",
   },
 ];

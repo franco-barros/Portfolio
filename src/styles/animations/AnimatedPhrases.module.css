@@ -6,12 +6,20 @@
   margin-top: 1rem;
   height: 50px;
   overflow: hidden;
+
+  /* Fondo para mejorar legibilidad */
+  background-color: rgba(0, 0, 0, 0.5); /* fondo oscuro semitransparente */
+  backdrop-filter: blur(8px);
+  padding: 0 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .phrase {
   font-size: 1.5rem;
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
+  color: #fff; /* asegurar texto claro */
 }
 
 /* Ajustes para pantallas pequeñas */
@@ -32,6 +40,7 @@
   font-size: 1.5rem;
   text-align: center;
   white-space: pre;
+  color: #fff; /* asegurar texto claro */
 }
 
 .letterContainer span {

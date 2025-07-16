@@ -15,7 +15,6 @@ const ltEsteticaVehicular: ProjectData = {
     "/assets/images/ltvehicular/LtVehicular5.png",
     "/assets/images/ltvehicular/LtVehicular6.png",
   ],
-  video: "/assets/videos/LtVehicular.webm",
   github: "https://github.com/franco-barros/LT-estetica",
 };
 

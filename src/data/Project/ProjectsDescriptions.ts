@@ -1,14 +1,16 @@
 export const projectDescriptions: Record<string, string> = {
-  "market-multiverse":
-    "Market Multiverse is an innovative online marketplace that blends immersive design with an exceptional " +
-    "user experience. It features a sleek, intuitive interface for exploring a wide variety of products and " +
-    "services. Its responsive, modular layout adapts to any device, ensuring a smooth, engaging shopping " +
-    "experience with advanced tools that enhance buyer-seller interaction.",
+  jurismind:
+    "Jurismind is a modern web application built to simplify access to legal services and advice. " +
+    "It connects users with legal professionals, provides appointment booking, and delivers reliable legal information in an intuitive format. " +
+    "Designed with accessibility and clarity in mind, Jurismind offers a responsive and easy-to-use interface for both clients and legal experts. " +
+    "It supports real-time updates, user profiles, and scheduling tools that streamline the interaction between lawyers and their clients.",
 
-  listify:
-    "Listify is a simple yet powerful task management app that helps users create, organize, and track to-do lists " +
-    "efficiently. Designed with a clean, minimalist interface, it allows prioritization, reminders, and real-time " +
-    "progress tracking. Collaborative features and synchronization make it perfect for personal use and team projects.",
+  "kine-ya":
+    "Kine-Ya is an intuitive and efficient appointment management app designed specifically for physical therapy services. " +
+    "It enables patients to easily search for kinesiology professionals, view availability, and book sessions in just a few steps. " +
+    "On the other hand, professionals can manage their schedules, confirm or reschedule appointments, and track patient progress. " +
+    "The platform offers a clean, responsive interface for both users, supporting real-time updates and notifications to streamline the scheduling experience. " +
+    "Its dual-role system makes it ideal for individual practitioners and clinics looking to simplify their administrative workflow.",
 
   "lt-estetica-vehicular-landing-page":
     "Automotive Landing Page is a visually impactful and modern one-page site designed for automotive brands. Its " +

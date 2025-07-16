@@ -10,6 +10,11 @@ const deviconMap: Record<string, string> = {
   CSS: "devicon-css3-plain colored",
   "Tailwind CSS": "devicon-tailwindcss-plain colored",
   HTML: "devicon-html5-plain colored",
+
+  Supabase: "devicon-supabase-plain",
+  PostgreSQL: "devicon-postgresql-plain colored",
+  SQL: "devicon-mysql-plain colored",
+  Python: "devicon-python-plain colored",
 };
 
 export default deviconMap;

@@ -11,8 +11,8 @@ const projectsArray = Object.values(projectsData).map(
     projectsId: project.id,
     ...project,
     category: [
-      "market-multiverse",
-      "listify",
+      "jurismind",
+      "kineya",
       "lt-estetica-vehicular-landing-page",
     ].includes(project.id)
       ? "frontend"

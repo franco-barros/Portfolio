@@ -1,9 +1,9 @@
 "use client";
+
 import React from "react";
 import styles from "../../styles/service/Services.module.css";
-import ServiceCard from "./ServiceCard";
+import ServiceCarousel from "./ServiceCarousel";
 import { servicesData } from "../../data/service/ServiceData";
-import { FadeInOnScroll } from "../shared/fadeInonscroll";
 
 const Services: React.FC = () => {
   const handleScrollTo = (id: string) => {
@@ -15,48 +15,33 @@ const Services: React.FC = () => {
     window.open("https://wa.me/5492645878987", "_blank");
   };
 
+  const servicesWithOnClick = servicesData.map((service) => {
+    let onClick;
+
+    switch (service.cta) {
+      case "Get a quote":
+      case "Explore solutions":
+      case "Build your site":
+      case "Start your app":
+        onClick = () => handleScrollTo("contactme");
+        break;
+      case "Let’s talk":
+        onClick = handleWhatsApp;
+        break;
+      case "See portfolio":
+        onClick = () => handleScrollTo("projects");
+        break;
+      default:
+        onClick = undefined;
+    }
+
+    return { ...service, onClick };
+  });
+
   return (
     <section id="services" className={styles.servicesSection}>
-      <FadeInOnScroll>
-        <h2 className={styles.sectionTitle}>Services</h2>
-      </FadeInOnScroll>
-
-      <FadeInOnScroll delay={0.15}>
-        <div className={styles.servicesContainer}>
-          {servicesData.map((service) => {
-            let onClick;
-
-            switch (service.cta) {
-              case "Get a quote":
-              case "Explore solutions":
-              case "Build your site":
-              case "Start your app":
-                onClick = () => handleScrollTo("contactme");
-                break;
-              case "Let’s talk":
-                onClick = handleWhatsApp;
-                break;
-              case "See portfolio":
-                onClick = () => handleScrollTo("projects");
-                break;
-              default:
-                onClick = undefined;
-            }
-
-            return (
-              <ServiceCard
-                key={service.title}
-                title={service.title}
-                subtitle={service.subtitle}
-                description={service.description}
-                features={service.features}
-                cta={service.cta}
-                onClick={onClick}
-              />
-            );
-          })}
-        </div>
-      </FadeInOnScroll>
+      <h2 className={styles.sectionTitle}>Services</h2>
+      <ServiceCarousel services={servicesWithOnClick} />
     </section>
   );
 };

@@ -1,13 +1,21 @@
 .aboutSection {
   position: relative;
   padding: 6rem 2rem;
-  background: var(--navbar-scrolled-bg);
-  backdrop-filter: blur(8px);
   color: var(--foreground);
   z-index: 5;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.aboutSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/assets/Programacion1.png");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
 }
 
 .headerContainer {
@@ -20,7 +28,7 @@
 }
 
 .aboutTitle {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 500;
   font-family: "Poppins", sans-serif;
   color: var(--foreground);
@@ -54,11 +62,12 @@
   max-width: 700px;
   box-sizing: border-box;
   font-weight: bold;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
   margin: 1rem 0;
 }
 
 .paragraph {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.75;
   color: var(--foreground);
 }
@@ -73,7 +82,7 @@
 }
 
 .animationDisplay {
-  height: 220px; /* altura fija para no cambiar layout */
+  height: 220px;
   min-width: 320px;
   display: flex;
   justify-content: center;
@@ -108,6 +117,11 @@
   outline: none;
 }
 
+.animationControls button:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+}
+
 .animationControls span {
   font-weight: 600;
   font-size: 1rem;
@@ -127,5 +141,27 @@
   .animationDisplay {
     min-width: 280px;
     height: 180px;
+  }
+
+  .textCard {
+    font-size: 0.95rem;
+    padding: 1.5rem;
+  }
+
+  .paragraph {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .animationControls button {
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .animationDisplay {
+    min-width: 100%;
+    height: 160px;
   }
 }

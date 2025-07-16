@@ -1,14 +1,25 @@
 .skillsSection {
   position: relative;
   padding: 6rem 2rem;
-  background: var(--navbar-scrolled-bg);
-  backdrop-filter: blur(8px);
   color: var(--foreground);
   overflow: hidden;
   z-index: 1;
   align-items: stretch;
 }
 
+.skillsSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/assets/Programacion2.png"); /* Ruta de tu imagen */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Título */
 .skillsTitle {
   font-size: 2rem;
   font-weight: 500;
@@ -56,7 +67,8 @@
   border-radius: 8px;
   background-color: var(--skills-list-bg, rgba(255, 255, 255, 0.1));
   backdrop-filter: blur(4px);
-  height: 320px;
+  height: auto; /* Crece con contenido */
+  min-height: 320px; /* Altura mínima escritorio */
   box-sizing: border-box;
 }
 
@@ -92,21 +104,31 @@
   white-space: nowrap;
   transition: transform 0.2s ease, background-color 0.2s ease;
   border: 1px solid var(--border-color);
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #888; /* fondo gris sólido */
   color: var(--foreground);
 }
 
-.skillTag:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
+/* Hover solo en pantallas mayores a 480px */
+@media (min-width: 481px) {
+  .skillTag:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+
+  .skillTag.frontend:hover {
+    background-color: #6a0dad;
+  }
+
+  .skillTag.backend:hover {
+    background-color: #35eb25e5;
+  }
 }
 
-.skillTag.frontend:hover {
-  background-color: #6a0dad;
-}
-
-.skillTag.backend:hover {
-  background-color: #35eb25e5;
+/* En mobile, efecto al tocar */
+@media (max-width: 480px) {
+  .skillTag:active {
+    filter: brightness(0.9);
+  }
 }
 
 /* Responsividad */
@@ -122,7 +144,6 @@
   }
 }
 
-/* Asegurar mismo tamaño y centrado en mobile */
 @media (max-width: 480px) {
   .skillsLayout {
     flex-direction: column;
@@ -134,11 +155,12 @@
   .skillCarouselContainer {
     max-width: 320px;
     width: 100%;
-    min-height: 240px;
+    min-height: 400px; /* Más altura para no cortar contenido en móvil */
     padding: 1.2rem;
     display: flex;
-    align-items: center;
+    align-items: center; /* Cambia a flex-start si quieres contenido arriba */
     justify-content: center;
     text-align: center;
+    height: auto; /* Crece con contenido */
   }
 }

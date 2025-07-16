@@ -9,112 +9,90 @@ const phrases = [
   "Technology innovator",
 ];
 
-const AnimatedPhrases = () => {
-  const [current, setCurrent] = useState(0);
-  const [animate, setAnimate] = useState(true);
-  // Duración total de la animación para letra por letra (en segundos)
+// Función para generar el delay en segundos por letra según la animación
+function getAnimationDelay(index: number, length: number, type: "ltr" | "rtl") {
   const totalAnimationDuration = 0.5;
+  if (type === "ltr") return (totalAnimationDuration / length) * index;
+  else return (totalAnimationDuration / length) * (length - index - 1);
+}
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimate(false);
-      setTimeout(() => {
-        setCurrent((prev) => (prev + 1) % phrases.length);
-        setAnimate(true);
-      }, 500);
-    }, 3000); // Cambia la frase cada 3 segundos
-    return () => clearInterval(interval);
-  }, []);
-
-  // Para las primeras dos frases, animación vertical
-  if (current === 0 || current === 1) {
-    const letters = phrases[current].split("");
-    return (
-      <div className={styles.phraseContainer}>
-        <p className={styles.letterContainer}>
-          {letters.map((letter, i) => {
-            // Si es la primera frase, delay de izquierda a derecha;
-            // si es la segunda, de derecha a izquierda.
-            const delay =
-              current === 0
-                ? (totalAnimationDuration / letters.length) * i
-                : (totalAnimationDuration / letters.length) *
-                  (letters.length - i - 1);
-            return (
-              <span
-                key={i}
-                className={animate ? styles.dropIn : styles.fadeOutLetter}
-                style={{ animationDelay: `${delay}s` }}
-              >
-                {letter}
-              </span>
-            );
-          })}
-        </p>
-      </div>
-    );
-  }
-
-  // Para la tercera frase, animación horizontal de izquierda a derecha
-  if (current === 2) {
-    const letters = phrases[current].split("");
-    return (
-      <div className={styles.phraseContainer}>
-        <p className={styles.letterContainer}>
-          {letters.map((letter, i) => {
-            const delay = (totalAnimationDuration / letters.length) * i;
-            return (
-              <span
-                key={i}
-                className={animate ? styles.slideInLtr : styles.fadeOutLetter}
-                style={{ animationDelay: `${delay}s` }}
-              >
-                {letter}
-              </span>
-            );
-          })}
-        </p>
-      </div>
-    );
-  }
-
-  // Para la cuarta frase, animación horizontal de derecha a izquierda
-  if (current === 3) {
-    const letters = phrases[current].split("");
-    return (
-      <div className={styles.phraseContainer}>
-        <p className={styles.letterContainer}>
-          {letters.map((letter, i) => {
-            const delay =
-              (totalAnimationDuration / letters.length) *
-              (letters.length - i - 1);
-            return (
-              <span
-                key={i}
-                className={animate ? styles.slideInRtl : styles.fadeOutLetter}
-                style={{ animationDelay: `${delay}s` }}
-              >
-                {letter}
-              </span>
-            );
-          })}
-        </p>
-      </div>
-    );
-  }
-
-  // Para otras frases (si existieran) se usa fade in/out tradicional
+// Función para renderizar una frase con animación letra por letra
+function renderAnimatedPhrase(
+  phrase: string,
+  animate: boolean,
+  animationClass: string,
+  delayType: "ltr" | "rtl"
+) {
+  const letters = phrase.split("");
   return (
     <div className={styles.phraseContainer}>
-      <p
-        className={`${styles.phrase} ${
-          animate ? styles.fadeIn : styles.fadeOut
-        }`}
-      >
-        {phrases[current]}
+      <p className={styles.letterContainer}>
+        {letters.map((letter, idx) => {
+          const delay = getAnimationDelay(idx, letters.length, delayType);
+          const key = `${letter}-${idx}`;
+          return (
+            <span
+              key={key}
+              className={animate ? animationClass : styles.fadeOutLetter}
+              style={{ animationDelay: `${delay}s` }}
+            >
+              {letter}
+            </span>
+          );
+        })}
       </p>
     </div>
   );
+}
+
+const AnimatedPhrases = () => {
+  const [current, setCurrent] = useState(0);
+  const [animate, setAnimate] = useState(true);
+
+  useEffect(() => {
+    function restartAnimation() {
+      setCurrent((prev) => (prev + 1) % phrases.length);
+      setAnimate(true);
+    }
+
+    function updatePhrase() {
+      setAnimate(false);
+      setTimeout(restartAnimation, 500);
+    }
+
+    const interval = setInterval(updatePhrase, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const phrase = phrases[current];
+
+  switch (current) {
+    case 0:
+      // Animación vertical de arriba hacia abajo (dropIn) delay izquierda a derecha
+      return renderAnimatedPhrase(phrase, animate, styles.dropIn, "ltr");
+    case 1:
+      // Animación vertical de arriba hacia abajo (dropIn) delay derecha a izquierda
+      return renderAnimatedPhrase(phrase, animate, styles.dropIn, "rtl");
+    case 2:
+      // Animación horizontal izquierda a derecha (slideInLtr)
+      return renderAnimatedPhrase(phrase, animate, styles.slideInLtr, "ltr");
+    case 3:
+      // Animación horizontal derecha a izquierda (slideInRtl)
+      return renderAnimatedPhrase(phrase, animate, styles.slideInRtl, "rtl");
+    default:
+      // Si hay más frases (no contempladas), fade in/out normal
+      return (
+        <div className={styles.phraseContainer}>
+          <p
+            className={`${styles.phrase} ${
+              animate ? styles.fadeIn : styles.fadeOut
+            }`}
+          >
+            {phrase}
+          </p>
+        </div>
+      );
+  }
 };
 
 export default AnimatedPhrases;
