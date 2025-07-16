@@ -11,8 +11,12 @@
   border-radius: 50%;
   background-color: var(--dot-color, #ccc);
   border: none;
+  padding: 0; /* quitar padding */
+  margin: 0; /* eliminar márgenes no deseados */
   cursor: pointer;
   transition: background-color 0.3s ease;
+  display: inline-block;
+  box-sizing: content-box;
 }
 
 .dot:hover {
@@ -33,4 +37,15 @@
     width: 10px;
     height: 10px;
   }
+}
+
+/* Asegurar que cada slide ocupe todo el ancho, centrado y con padding lateral */
+.keen-slider__slide {
+  width: 100% !important;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
+  align-items: flex-start; /* evita que las cards se estiren en altura */
+  height: auto !important;
 }

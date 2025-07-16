@@ -34,13 +34,13 @@ const CaptainShieldAnimation: React.FC = () => {
         aspectRatio: "1 / 1",
         margin: "2rem auto",
         borderRadius: 12,
-        background: "#0d1b2a",
+        background: "rgba(13, 27, 42, 0.7)", // fondo azul oscuro con transparencia
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         padding: 20,
         boxSizing: "border-box",
-        maxHeight: "90vw", // Evita que crezca demasiado en móviles
+        maxHeight: "90vw",
       }}
     >
       <button

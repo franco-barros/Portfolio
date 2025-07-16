@@ -5,7 +5,7 @@
   backdrop-filter: blur(8px);
   color: var(--foreground);
   text-align: center;
-  overflow: hidden;
+  overflow-x: hidden; /* Evita scroll horizontal */
   z-index: 5;
   display: flex;
   flex-direction: column;
@@ -44,6 +44,9 @@
   margin: 0 auto;
   padding: 0 1rem;
   justify-items: center;
+  box-sizing: border-box; /* Para que padding no aumente ancho */
+  overflow-wrap: break-word; /* Forzar salto de línea en texto largo */
+  word-break: break-word; /* Forzar salto de línea en texto largo */
 }
 
 @media (max-width: 768px) {

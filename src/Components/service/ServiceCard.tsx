@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { FaCheck } from "react-icons/fa";
 import styles from "../../styles/service/ServicesCard.module.css";
@@ -11,7 +12,7 @@ interface ServiceCardProps {
   features?: string[];
   cta?: string;
   onClick?: () => void;
-  icon?: LucideIcon; // nuevo
+  icon?: LucideIcon;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -21,16 +22,20 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   features,
   cta,
   onClick,
-  icon: Icon, // desestructuramos con alias
+  icon: Icon,
 }) => {
   return (
     <div className={styles.serviceCard}>
-      {Icon && <Icon className={styles.serviceIcon} />}
-      <h3 className={styles.serviceTitle}>{title}</h3>
+      <div className={styles.titleWrapper}>
+        {Icon && <Icon className={styles.serviceIcon} />}
+        <h3 className={styles.serviceTitle}>{title}</h3>
+      </div>
+
       {subtitle && <h4 className={styles.serviceSubtitle}>{subtitle}</h4>}
+
       <p className={styles.serviceDescription}>{description}</p>
 
-      {features && (
+      {features && features.length > 0 && (
         <ul className={styles.featuresList}>
           {features.map((feature) => (
             <li key={`${title}-${feature}`} className={styles.featureItem}>
@@ -42,7 +47,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       )}
 
       {cta && (
-        <button onClick={onClick} className={styles.ctaButton}>
+        <button onClick={onClick} className={styles.ctaButton} type="button">
           {cta}
         </button>
       )}

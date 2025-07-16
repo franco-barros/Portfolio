@@ -13,43 +13,37 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-align: left;
 
-  /* Para que el padding no sume al ancho total */
   box-sizing: border-box;
-  /* Para que no se expanda más de lo permitido en flexbox */
   min-width: 0;
-  /* Permite que el texto largo haga wrap */
   overflow-wrap: break-word;
   word-break: break-word;
 }
 
-/* Asegurar que el slide contenedor ocupe todo el ancho */
-.keen-slider__slide {
-  width: 100% !important;
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .serviceIcon {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   color: var(--accent-color);
-  margin-bottom: 1rem;
-  align-self: center;
-}
-
-.serviceTitle,
-.serviceSubtitle,
-.serviceDescription,
-.featuresList,
-.featureItem {
-  overflow-wrap: break-word;
-  word-break: break-word;
-  max-width: 100%;
+  margin-bottom: 0;
+  flex-shrink: 0;
 }
 
 .serviceTitle {
   font-size: 1.5rem;
   font-family: "Poppins", sans-serif;
-  margin-bottom: 0.5rem;
   color: var(--foreground);
   text-align: left;
+  margin: 0;
+  /* Sacamos el nowrap y overflow para que no corte el texto */
+  max-width: 100%;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
 }
 
 .serviceSubtitle {
@@ -65,7 +59,12 @@
   color: var(--foreground);
   margin-bottom: 1.2rem;
   text-align: left;
-  line-height: 1.5;
+  line-height: 1.4;
+  max-width: 460px;
+  white-space: normal !important;
+  overflow: visible !important;
+  display: block;
+  word-break: break-word;
 }
 
 .featuresList {
@@ -99,7 +98,7 @@
   transition: background-color 0.2s ease;
   font-size: 1rem;
   max-width: 100%;
-  white-space: normal; /* Permitir que el texto del botón haga wrap */
+  white-space: normal;
 }
 
 .ctaButton:hover {
@@ -108,21 +107,24 @@
 
 @media (max-width: 768px) {
   .serviceCard {
-    max-width: 100%;
+    max-width: 100% !important;
+    width: 100% !important;
     padding: 16px;
+    box-sizing: border-box;
   }
 
-  .keen-slider__slide {
-    width: 100% !important;
+  .titleWrapper {
+    gap: 6px;
+    margin-bottom: 0.4rem;
   }
 
   .serviceIcon {
-    font-size: 2rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
   }
 
   .serviceTitle {
     font-size: 1.3rem;
+    max-width: 100%;
   }
 
   .serviceSubtitle {
@@ -130,6 +132,7 @@
   }
 
   .serviceDescription {
+    max-width: 100%;
     font-size: 0.95rem;
   }
 

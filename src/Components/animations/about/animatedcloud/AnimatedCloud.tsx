@@ -87,7 +87,7 @@ const CloudsAnimation: React.FC = () => {
         margin: "2rem auto",
         position: "relative",
         overflow: "hidden",
-        background: "#0d1b2a", // fondo azul oscuro como los otros componentes
+        background: "#0d1b2a", // fondo azul oscuro
         borderRadius: 12,
         boxSizing: "border-box",
         userSelect: "none",
@@ -96,6 +96,9 @@ const CloudsAnimation: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        border: "none",
+        outline: "none",
+        boxShadow: "none",
       }}
     >
       <svg
@@ -139,11 +142,14 @@ const CloudsAnimation: React.FC = () => {
           transition={{ duration: 1.5, ease: "easeInOut" }}
           style={{
             position: "absolute",
-            color: "#8cd603e1",
+            color: "#a259ff", // morado bonito
             fontSize: 32,
             fontWeight: "bold",
             userSelect: "none",
             pointerEvents: "none",
+            borderRadius: 12,
+            padding: "0.25rem 1rem",
+            backgroundColor: "rgba(162, 89, 255, 0.15)", // fondo semitransparente morado clarito
           }}
         >
           Amazing!

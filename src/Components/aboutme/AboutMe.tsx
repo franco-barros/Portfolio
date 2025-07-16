@@ -4,7 +4,7 @@ import React from "react";
 import styles from "../../styles/about/AboutMe.module.css";
 import FloatingShape from "../animations/animatedphrases";
 import AnimationCarousel from "./animationcarousel";
-import { FadeInOnScroll } from "../shared/fadeInonscroll"; // Asegurate de que la ruta sea correcta
+import { FadeInOnScroll } from "../shared/fadeInonscroll";
 
 const AboutMe: React.FC = () => {
   return (

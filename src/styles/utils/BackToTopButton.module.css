@@ -1,9 +1,9 @@
-.whatsappButton {
+.backToTopButton {
   position: fixed;
   bottom: 20px;
-  left: 20px;
+  right: 20px;
   z-index: 9998;
-  background-color: #25d366;
+  background-color: #6a0dad;
   color: white;
   border-radius: 50%;
   width: 60px;
@@ -11,11 +11,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
+  border: none;
+  outline: none;
 }
 
-.whatsappIcon {
+.icon {
   font-size: 24px;
+  pointer-events: none;
 }

@@ -96,7 +96,7 @@ const IronManReactor: React.FC = () => {
         aspectRatio: "1 / 1",
         margin: "2rem auto",
         borderRadius: 12,
-        background: "#0d1b2a",
+        background: "rgba(13, 27, 42, 0.7)", // background semitransparente
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -114,10 +114,16 @@ const IronManReactor: React.FC = () => {
         style={{
           cursor: "pointer",
           border: "none",
+          outline: "none",
+          boxShadow: "none",
+          appearance: "none",
           background: "transparent",
           padding: 0,
           display: "block",
-          outline: "none",
+          position: "relative",
+          width: 150,
+          height: 150,
+          userSelect: "none",
         }}
       >
         <motion.svg
@@ -242,40 +248,39 @@ const IronManReactor: React.FC = () => {
             />
           </motion.g>
         </motion.svg>
-      </button>
 
-      {/* Texto "I love you 3000" animado y centrado en botón */}
-      <AnimatePresence>
-        {showText && (
-          <motion.button
-            key="love-text"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5 }}
-            onClick={() => setShowText(false)}
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              background: "transparent",
-              border: "none",
-              color: "#fff",
-              fontWeight: "bold",
-              fontSize: "1.5rem",
-              textShadow: "0 0 8px #00e5ff, 0 0 15px #00b8d4, 0 0 20px #00b8d4",
-              cursor: "pointer",
-              padding: 0,
-              userSelect: "none",
-              whiteSpace: "nowrap",
-            }}
-            aria-label="Cerrar mensaje I love you 3000"
-          >
-            I love you 3000
-          </motion.button>
-        )}
-      </AnimatePresence>
+        {/* Texto alineado a la izquierda dentro del botón */}
+        <AnimatePresence>
+          {showText && (
+            <motion.span
+              key="love-text-inline"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.5 }}
+              onClick={() => setShowText(false)}
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "1%",
+                transform: "translate(-1%, -50%)",
+                borderRadius: 8,
+                padding: "6px 12px",
+                color: "#fff",
+                fontWeight: "bold",
+                fontSize: "1.1rem",
+                cursor: "pointer",
+                userSelect: "none",
+                whiteSpace: "nowrap",
+                pointerEvents: "auto",
+              }}
+              aria-label="Cerrar mensaje I love you 3000"
+            >
+              I love you 3000
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </button>
     </div>
   );
 };

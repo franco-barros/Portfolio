@@ -4,6 +4,7 @@ import SetViewportHeight from "../Components/utils/setviewportheight";
 import Navbar from "../Components/navbar";
 import Footer from "../Components/footer";
 import WhatsAppButton from "../Components/utils/whatsappbutton";
+import BackToTopButton from "../Components/utils/backtotopbutton";
 import Greeting from "../Components/animations/greeting/Greeting";
 import MouseEffect from "../Components/mouseeffect";
 import "@/styles/globals.css";
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="relative z-20">
             <Navbar />
             <WhatsAppButton />
+            <BackToTopButton />
             <main className="layerContent">{children}</main>
             <Footer className="layerFooter" />
           </div>

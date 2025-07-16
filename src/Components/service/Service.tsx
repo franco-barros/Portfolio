@@ -1,11 +1,15 @@
 "use client";
 
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 import styles from "../../styles/service/Services.module.css";
 import ServiceCarousel from "./ServiceCarousel";
+import ServiceCard from "./ServiceCard";
 import { servicesData } from "../../data/service/ServiceData";
 
 const Services: React.FC = () => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   const handleScrollTo = (id: string) => {
     const section = document.getElementById(id);
     section?.scrollIntoView({ behavior: "smooth" });
@@ -41,7 +45,16 @@ const Services: React.FC = () => {
   return (
     <section id="services" className={styles.servicesSection}>
       <h2 className={styles.sectionTitle}>Services</h2>
-      <ServiceCarousel services={servicesWithOnClick} />
+
+      {isMobile ? (
+        <ServiceCarousel services={servicesWithOnClick} />
+      ) : (
+        <div className={styles.servicesContainer}>
+          {servicesWithOnClick.map((service) => (
+            <ServiceCard key={service.title} {...service} />
+          ))}
+        </div>
+      )}
     </section>
   );
 };
