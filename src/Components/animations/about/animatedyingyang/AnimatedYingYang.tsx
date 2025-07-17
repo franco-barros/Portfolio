@@ -6,36 +6,32 @@ const YinYangAnimation: React.FC = () => {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
-    if (clicked) return; // evita múltiples clicks rápidos
+    if (clicked) return;
     setClicked(true);
-    setTimeout(() => setClicked(false), 400); // vuelve a círculo en 400ms
+    setTimeout(() => setClicked(false), 400);
   };
 
   return (
-    <button
+    <div
       style={{
         width: "100%",
         maxWidth: 400,
         aspectRatio: "1 / 1",
         margin: "2rem auto",
-        background: "rgba(13, 27, 42, 0.7)", // background semitransparente
+        background: "rgba(13, 27, 42, 0.7)",
         borderRadius: 12,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        cursor: "pointer",
-        border: "none",
-        outline: "none",
-        padding: 0,
-        transition: "border-radius 0.4s ease",
+        userSelect: "none",
       }}
-      onClick={handleClick}
-      onFocus={(e) => (e.currentTarget.style.outline = "none")}
     >
       <motion.svg
+        onClick={handleClick}
         viewBox="0 0 200 200"
         width="100%"
         height="100%"
+        style={{ cursor: "pointer" }}
         animate={{
           rotate: 360,
           scale: [1, 1.05, 1],
@@ -52,7 +48,7 @@ const YinYangAnimation: React.FC = () => {
           </radialGradient>
         </defs>
 
-        {/* Aquí reemplazamos el círculo por un rect con rx y ry animados */}
+        {/* Forma que cambia */}
         <motion.rect
           x={10}
           y={10}
@@ -65,7 +61,7 @@ const YinYangAnimation: React.FC = () => {
           transition={{ duration: 0.4, ease: "easeInOut" }}
         />
 
-        {/* Partes internas del yin-yang */}
+        {/* Yin-yang clásico */}
         <path
           d="M100,10 A90,90 0 0,1 100,190 A45,45 0 0,0 100,10"
           fill="#fff"
@@ -75,7 +71,7 @@ const YinYangAnimation: React.FC = () => {
           fill="#000"
         />
 
-        {/* Bolas animadas */}
+        {/* Bolas interiores (dobles para efecto) */}
         <motion.circle
           cx="100"
           r={10}
@@ -109,6 +105,7 @@ const YinYangAnimation: React.FC = () => {
           }}
         />
 
+        {/* Capas duplicadas */}
         <motion.circle
           cx="100"
           r={10}
@@ -140,7 +137,7 @@ const YinYangAnimation: React.FC = () => {
           }}
         />
       </motion.svg>
-    </button>
+    </div>
   );
 };
 

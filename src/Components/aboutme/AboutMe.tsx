@@ -5,6 +5,7 @@ import styles from "../../styles/about/AboutMe.module.css";
 import FloatingShape from "../animations/animatedphrases";
 import AnimationCarousel from "./animationcarousel";
 import { FadeInOnScroll } from "../shared/fadeInonscroll";
+import { ArrowDownCircle } from "lucide-react";
 
 const AboutMe: React.FC = () => {
   return (
@@ -37,9 +38,15 @@ const AboutMe: React.FC = () => {
         </div>
       </FadeInOnScroll>
 
-      {/* Carousel con animación actual y controles internos */}
+      {/* Subtítulo + Carousel */}
       <FadeInOnScroll delay={0.4}>
-        <AnimationCarousel />
+        <div className={styles.carouselIntro}>
+          <p className={styles.carouselSubtitle}>
+            Tap to view the animation
+            <ArrowDownCircle size={22} className={styles.arrowIcon} />
+          </p>
+          <AnimationCarousel />
+        </div>
       </FadeInOnScroll>
     </section>
   );
